@@ -132,7 +132,7 @@ var Stage = cc.Class.extend({
             //Enemies 死亡時の処理、Zソート
             for(var i=0;i<this.game.enemies.length;i++){
                 this.game.enemies[i].eyeSight = 500;
-                this.game.enemies[i].walkSpeed = 3;
+                this.game.enemies[i].walkSpeed = 2;
             }
 
 
