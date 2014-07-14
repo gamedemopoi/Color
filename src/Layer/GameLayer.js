@@ -220,7 +220,7 @@ var GameLayer = cc.Layer.extend({
         //プレイヤー占領中のマーカーを表示する
         if(this.player.targetChip != null && this.player.targetChip.isOccupied == false){
             this.marker.setVisible(true);
-            this.marker.setOpacity(255 * 0.1);
+            this.marker.setOpacity(255 * 0.5);
             var collCnt = this.player.targetChip.colleagueCnt;
             this.markerScale+= (0.01 + collCnt * 0.005);
             if(this.markerScale >= 3){

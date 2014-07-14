@@ -109,6 +109,9 @@ this.type = "twitter";
         }else{
 this.type = "normal";
             this.chipSprite = cc.Sprite.create(s_mapchip_001);
+            this.hp = 0;
+            //this.rectBase.setScale(0,0);
+            //this.rectBase.setOpacity(255*0.7);
         }
         //マップイメージ
 /*
@@ -141,6 +144,11 @@ this.type = "normal";
         this.rectBase.setPosition(0,0);
         this.rectBase.setAnchorPoint(0.5,0.5);
         this.addChild(this.rectBase);
+
+if(this.type == "normal"){
+    this.rectBase.setOpacity(255*0);
+}
+
     
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);
