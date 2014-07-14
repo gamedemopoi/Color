@@ -24,7 +24,7 @@
         },
         { 
             "id"             : 1, 
-            "title"          : "1-1.土地×5の復元",
+            "title"          : "1-1.土地×2を占領",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -39,7 +39,7 @@
         },
         { 
             "id"             : 2, 
-            "title"          : "1-2:土地×5を復元",
+            "title"          : "1-2:土地×5を占領",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",

@@ -31,41 +31,8 @@ var Chip = cc.Node.extend({
         this.enemyDepTime      = 0;
 
         this.coloredTime       = 1;
-if(this.id == 13){
-    this.coloredTime       = 1;
-}
-if( 
-    this.id == 8 || 
-    this.id == 12 || 
-    this.id == 17 || 
-    this.id == 21 || 
-    this.id == 18 ||
-    this.id == 14 ||
-    this.id == 9 ||
-    this.id == 5
-){
-this.coloredTime       = 2;
-}
-if(
-    this.id == 1  || 
-    this.id == 2  || 
-    this.id == 4  || 
-    this.id == 7  || 
-    this.id == 11 ||
-    this.id == 16 ||
-    this.id == 20 ||
-    this.id == 23 ||
-    this.id == 25 ||
-    this.id == 24 ||
-    this.id == 22 ||
-    this.id == 19 ||
-    this.id == 15 ||
-    this.id == 10 ||
-    this.id == 6 ||
-    this.id == 3
-){
-this.coloredTime       = 3;
-}
+
+        this.setColoredTime();
 
         //デバッグ用の中心を表示するサインマーカー
         if(CONFIG.DEBUG_FLAG==1){
@@ -82,19 +49,19 @@ this.hp = 10;
 this.maxHp = 10;
             this.chipSprite = cc.Sprite.create(s_chip_003);
         }else if(this.id == 10){
-            this.enemyDepMaxTime = 30 * 20;
+            this.enemyDepMaxTime = 30 * 30;
 this.type = "boss";
             //boss
             this.chipSprite = cc.Sprite.create(s_chip_002);
         }else if(this.id == 11 || this.id == 25){
 this.type = "azito";
             if(this.id == 11){
-                this.enemyDepTime    = 30 * 5;
+                this.enemyDepTime    = 30 * 8;
                 this.enemyDepMaxTime = 30 * 10;
             }
             if(this.id == 25){
                 this.enemyDepTime    = 30 * 0;
-                this.enemyDepMaxTime = 30 * 10;
+                this.enemyDepMaxTime = 30 * 15;
             }
             //ajito
             this.chipSprite = cc.Sprite.create(s_chip_001);
@@ -175,10 +142,89 @@ if(this.type == "normal"){
         return [cubeX,cubeY];
     },
 
+
+    setColoredTime:function(){
+        if(this.id == 13){
+            this.coloredTime       = 1;
+        }
+        if(this.id == 18){
+            this.coloredTime       = 2;
+        }
+        if(this.id == 14){
+            this.coloredTime       = 3;
+        }
+        if(this.id == 9){
+            this.coloredTime       = 4;
+        }
+        if(this.id == 5){
+            this.coloredTime       = 5;
+        }
+        if(this.id == 8){
+            this.coloredTime       = 6;
+        }
+        if(this.id == 12){
+            this.coloredTime       = 7;
+        }
+        if(this.id == 7){
+            this.coloredTime       = 8;
+        }
+        if(this.id == 21){
+            this.coloredTime       = 9;
+        }
+        if(this.id == 24){
+            this.coloredTime       = 10;
+        }
+        if(this.id == 22){
+            this.coloredTime       = 11;
+        }
+        if(this.id == 19){
+            this.coloredTime       = 12;
+        }
+        if(this.id == 15){
+            this.coloredTime       = 13;
+        }
+        if(this.id == 10){
+            this.coloredTime       = 14;
+        }
+        if(this.id == 6){
+            this.coloredTime       = 15;
+        }
+        if(this.id == 3){
+            this.coloredTime       = 16;
+        }
+        if(this.id == 1){
+            this.coloredTime       = 17;
+        }
+        if(this.id == 2){
+            this.coloredTime       = 18;
+        }
+        if(this.id == 4){
+            this.coloredTime       = 19;
+        }
+        if(this.id == 7){
+            this.coloredTime       = 20;
+        }
+        if(this.id == 11){
+            this.coloredTime       = 21;
+        }
+        if(this.id == 16){
+            this.coloredTime       = 22;
+        }
+        if(this.id == 20){
+            this.coloredTime       = 23;
+        }
+        if(this.id == 23){
+            this.coloredTime       = 24;
+        }
+        if(this.id == 25){
+            this.coloredTime       = 25;
+        }
+    },
+
     update:function() {
         if(this.colorAlpha >= 1){
             this.coloredCnt++;
-            if(this.coloredCnt>=10*this.coloredTime){
+            if(this.coloredCnt>=2*this.coloredTime){
                 if(this.isSetColor==false){
                     this.isSetColor=true;
 
@@ -215,7 +261,18 @@ if(this.type == "normal"){
 
 if(this.id == 11 || this.id == 25 || this.id == 10){
 
-        this.enemyDepTime++;
+        var depEnemyCnt = 0;
+        for(var i=0;i<this.game.enemies.length;i++){
+            if(this.game.enemies[i].depChipId == this.id){
+                depEnemyCnt++;
+            }
+        }
+
+
+        if(depEnemyCnt == 0){
+            this.enemyDepTime++;
+        }
+
         var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
         this.timeLabel.setString("" + nokori);
         if(this.enemyDepTime >= this.enemyDepMaxTime){
@@ -315,7 +372,7 @@ if(this.type == "poi"){
         //HPの最大と最小
         if(this.hp <= 0){
             this.hp = this.maxHp;
-            this.game.addColleagues(5);
+            this.game.addColleagues(1);
         }
         if(this.hp >= this.maxHp) this.hp = this.maxHp;
 

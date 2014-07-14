@@ -121,7 +121,6 @@ var Stage = cc.Class.extend({
 
     update:function(){
 
-
         //世界が色づく
         var cnt = this.getTerritoryCnt();
         if(cnt >= 2){
@@ -129,6 +128,14 @@ var Stage = cc.Class.extend({
             if(this.isColored == false){
                 this.isColored = true;
             }
+
+            //Enemies 死亡時の処理、Zソート
+            for(var i=0;i<this.game.enemies.length;i++){
+                this.game.enemies[i].eyeSight = 500;
+                this.game.enemies[i].walkSpeed = 3;
+            }
+
+
             for(var i=0;i<this.chips.length;i++){
                 this.chips[i].isOccupied = false;
                 if(this.chips[i].colorAlpha == 0){

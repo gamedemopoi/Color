@@ -381,7 +381,6 @@ var Colleague = cc.Node.extend({
         }
     },
 
-
     attackTo:function(enemy){
         if(this.isStop) return;
 

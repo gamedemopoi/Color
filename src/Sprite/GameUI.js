@@ -11,7 +11,7 @@ var GameUI = cc.Node.extend({
         this._super();
         this.game    = game;
         this.storage = this.game.storage;
-
+/*
         //card
         this.card001Amount = 3;
         this.card002Amount = 10;
@@ -27,7 +27,7 @@ var GameUI = cc.Node.extend({
         this.card002Label  = "×05\n[P10]";
         this.card003Label  = "×10\n[P20]";
         this.card004Label  = "×20\n[P30]";
-
+*/
         //header
         this.uiHeader = cc.LayerColor.create(cc.c4b(0,255,255,255 * 0),320,200);
         this.uiHeader.setPosition(0,430);
@@ -223,7 +223,7 @@ var GameUI = cc.Node.extend({
         //this.comboLabel.setOpacity(255*0.4);
 
     },
-
+/*
     useCard001:function(){
         var amount = this.storage.coinAmount;
         if(amount >= this.card001Amount){
@@ -263,7 +263,7 @@ var GameUI = cc.Node.extend({
             this.storage.productCnt+=this.add004Amount;
         }
     },
-
+*/
     //UIのテキストをupdateする
     update:function() {
 

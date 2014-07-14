@@ -10,13 +10,15 @@ var Enemy = cc.Node.extend({
         this._super();
         this.game    = game;
         this.storage = this.game.storage;
+        this.routes  = routes;
 
-
+        //dep
         this.routeId = 0;
-        this.routes = routes;
         var dep = this.game.stage.getChipPosition(this.routes[this.routeId]);
         this.depX = dep[0];
         this.depY = dep[1];
+        this.depChipId = this.routes[this.routeId];
+        this.setPosition(this.depX,this.depY);
 
         //HPゲージ
         this.gauge = new Gauge(30,4,'red');
@@ -26,22 +28,6 @@ var Enemy = cc.Node.extend({
         this.initializeParam(code);
         this.initSprite();
         this.update();
-
-
-
-
-
-this.setPosition(this.depX,this.depY);
-/*
-        this.depX    = depX;
-        this.depY    = depY;
-*/
-
-        //this.routes = [11,16,20,17,12,7];
-        /*
-        this.routes = [25,24,22,18,21,23];
-        this.routes = [10,15,19,14,9,5,3,6];
-        */
     },
 
     loadEnemyJson : function() {
@@ -226,10 +212,9 @@ this.setPosition(this.depX,this.depY);
             this.getPosition()
         );
 
-        if(this.routes){
-            var posi = this.game.stage.getChipPosition(this.routes[this.routeId]);
-            var dX = posi[0] - this.getPosition().x;
-            var dY = posi[1] - this.getPosition().y;
+        if(distance <= this.eyeSight){
+            var dX = this.game.player.getPosition().x - this.getPosition().x;
+            var dY = this.game.player.getPosition().y - this.getPosition().y;
             var rad = Math.atan2(dX,dY);
             var speedX = this.walkSpeed * Math.sin(rad);
             var speedY = this.walkSpeed * Math.cos(rad);
@@ -237,6 +222,32 @@ this.setPosition(this.depX,this.depY);
                 this.getPosition().x + speedX,
                 this.getPosition().y + speedY
             );
+        }else{
+            if(this.routes){
+                var posi = this.game.stage.getChipPosition(this.routes[this.routeId]);
+                var dX = posi[0] - this.getPosition().x;
+                var dY = posi[1] - this.getPosition().y;
+
+
+                var distance = Math.sqrt(dX * dX + dY * dY);
+
+
+                var rad = Math.atan2(dX,dY);
+                var speedX = this.walkSpeed * Math.sin(rad);
+                var speedY = this.walkSpeed * Math.cos(rad);
+
+                if(speedX > distance || speedY > distance){
+                    this.setPosition(
+                        posi[0],
+                        posi[1]
+                    );
+                }else{
+                    this.setPosition(
+                        this.getPosition().x + speedX,
+                        this.getPosition().y + speedY
+                    );
+                }
+            }
         }
 
 /*

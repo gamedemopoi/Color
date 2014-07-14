@@ -53,18 +53,6 @@ var GameLayer = cc.Layer.extend({
             this.addEnemy(this.storage.enemyCode);
         }*/
 
-/*
-        this.routes = [11,16,20,17,12,7];
-        this.addEnemyByPos(1,this.routes);
-
-        this.routes = [25,24,22,18,21,23];
-        this.addEnemyByPos(4,this.routes);
-
-        this.routes = [10,15,19,14,9,5,3,6];
-        this.addEnemyByPos(8,this.routes);
-*/
-
-
         //initialize camera
         this.cameraX = 320/2 - this.player.getPosition().x;
         this.cameraY = 420/2 - this.player.getPosition().y;
