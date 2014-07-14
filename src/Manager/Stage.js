@@ -83,6 +83,18 @@ var Stage = cc.Class.extend({
         }
     },
 
+    getChipPosition:function(id){
+        for(var i=0;i<this.chips.length;i++){
+            if(this.chips[i].id == id){
+                return [
+                    this.chips[i].getPosition().x,
+                    this.chips[i].getPosition().y
+                ];
+            }
+        }
+        return [0,0];
+    },
+
     //敵が目標とするターゲットを取得する
     getEnemyTargetChip:function(){
         for(var i=0;i<this.chips.length;i++){
@@ -109,23 +121,16 @@ var Stage = cc.Class.extend({
 
     update:function(){
 
+
         //世界が色づく
         var cnt = this.getTerritoryCnt();
-        if(cnt >= 1){
-
+        if(cnt >= 2){
             //敵が増殖
             if(this.isColored == false){
                 this.isColored = true;
-                /*
-                for(var i=0;i<=50;i++){
-                    cc.log("addEnemy");
-                    this.game.addEnemy(this.game.storage.enemyCode);
-                }*/
             }
-
             for(var i=0;i<this.chips.length;i++){
                 this.chips[i].isOccupied = false;
-
                 if(this.chips[i].colorAlpha == 0){
                     this.chips[i].colorAlpha=1;
                 }
@@ -134,8 +139,6 @@ var Stage = cc.Class.extend({
             for(var i=0;i<this.game.colleagues.length;i++){
                 this.game.colleagues[i].hp = 0;
             }
-
-            //this.isColored = true;
         }
 
         if(this.enemyTargetChip == null){

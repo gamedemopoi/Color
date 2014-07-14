@@ -40,11 +40,11 @@ var s_mapchip_black      = base_dir + "map/q_map_black_200.png";
 var s_mapchip_sakura     = base_dir + "map/sakura.png";
 
 
-var s_chip_001        = base_dir + "map/chip_001.png";
-var s_chip_002        = base_dir + "map/chip_002.png";
-var s_chip_003        = base_dir + "map/chip_003.png";
-var s_chip_004        = base_dir + "map/chip_004.png";
-var s_chip_005        = base_dir + "map/chip_005.png";
+var s_chip_001        = base_dir + "map/q_map_ajito.png";
+var s_chip_002        = base_dir + "map/q_map_boss.png";
+var s_chip_003        = base_dir + "map/q_map_poi.png";
+var s_chip_004        = base_dir + "map/q_map_tree.png";
+var s_chip_005        = base_dir + "map/q_map_twitter.png";
 var s_chip_006        = base_dir + "map/chip_006.png";
 var s_chip_007        = base_dir + "map/chip_007.png";
 var s_chip_008        = base_dir + "map/chip_008.png";

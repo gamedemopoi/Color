@@ -181,6 +181,8 @@ var Colleague = cc.Node.extend({
             //作戦:プレイヤーを追従(コイ)
             if(this.game.strategyCode == 1){
                 //プレイヤーのターゲットがいればそれを追いかける
+                this.moveTo(this.player);
+/*
                 if(this.player.targetEnemy != null){
                     if(this.player.targetEnemy.hp > 0){
                         this.attackTo(this.player.targetEnemy);
@@ -188,6 +190,7 @@ var Colleague = cc.Node.extend({
                 }else{
                     this.moveTo(this.player);
                 }
+*/
             }
 
             //作戦:防御

@@ -73,27 +73,28 @@ var GameUI = cc.Node.extend({
         this.territoryNumLable.setAnchorPoint(0,0);
         this.territoryNumLable.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
         this.uiHeader.addChild(this.territoryNumLable);
-
+/*
         //EnergyGauge
         this.energyGauge = cc.LayerColor.create(cc.c4b(255,255,0,255),42,34);
         this.energyGauge.setPosition(22,18);
         this.energyGauge.setAnchorPoint(0,0);
         this.uiFooter.addChild(this.energyGauge);
-
+*/
         //コイン数
+        /*
         this.coinNumLable = cc.LabelTTF.create("","Arial",20);        
         this.coinNumLable.setPosition(25,10);
         this.coinNumLable.setAnchorPoint(0,0);
         this.coinNumLable.setFontFillColor(cc.c4b(255,0,0,255));
         this.coinNumLable.enableStroke(cc.c4b(0,0,0,5),2,false);
         this.uiFooter.addChild(this.coinNumLable);
-
+*/
         //タイムリミット
         this.timeLabel = cc.LabelTTF.create("","Arial",20);
         this.timeLabel.setPosition(320/2,15);
         this.timeLabel.setAnchorPoint(0.5,0);
         this.uiHeader.addChild(this.timeLabel);
-
+/*
         //カードCover
         this.card001Gauge = cc.LayerColor.create(cc.c4b(0,0,0,255*0.75),52,52);
         this.card001Gauge.setPosition(40 + 55 * 1,5);
@@ -174,7 +175,7 @@ var GameUI = cc.Node.extend({
             createLabel(this.card004Label,15,40 + 55 * 4 + 5,10),
             40
         );
-
+*/
         //カード
         var homeButton = cc.MenuItemImage.create(
             s_home_button,
@@ -191,7 +192,7 @@ var GameUI = cc.Node.extend({
         );
         this.uiHeader.addChild(this.headerMenu,33);
         this.headerMenu.setPosition(0,0);
-
+/*
         //set footer
         this.footerMenu = cc.Menu.create(
             card001Button,
@@ -201,7 +202,7 @@ var GameUI = cc.Node.extend({
         );
         this.uiFooter.addChild(this.footerMenu,33);
         this.footerMenu.setPosition(0,0);
-
+*/
         var frameSeq = [];
         for (var i = 0; i <= 4; i++) {
             var frame = cc.SpriteFrame.create(s_break,cc.rect(48*i,0,48,96));
@@ -299,14 +300,16 @@ var GameUI = cc.Node.extend({
         );
 
         //エネルギーの容量を表示
+/*
         var amount = getZeroPaddingNumber(this.storage.coinAmount,3);
         this.coinNumLable.setString(
             "" + amount + ""
         );
         var rate = this.storage.coinAmount / 20;
         if(rate > 1){rate = 1;}
-        this.energyGauge.setScale(1,rate);
-
+*/
+        //this.energyGauge.setScale(1,rate);
+/*
         if(amount >= this.card001Amount){
             this.card001Gauge.setVisible(false);
         }else{
@@ -327,6 +330,7 @@ var GameUI = cc.Node.extend({
         }else{
             this.card004Gauge.setVisible(true);
         }
+        */
     },
 
 });

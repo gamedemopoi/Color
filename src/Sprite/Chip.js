@@ -27,6 +27,46 @@ var Chip = cc.Node.extend({
         this.colorAlpha        = 0;
         this.isSetColor        = false;
 
+        this.enemyDepMaxTime   = 30 * 5;
+        this.enemyDepTime      = 0;
+
+        this.coloredTime       = 1;
+if(this.id == 13){
+    this.coloredTime       = 1;
+}
+if( 
+    this.id == 8 || 
+    this.id == 12 || 
+    this.id == 17 || 
+    this.id == 21 || 
+    this.id == 18 ||
+    this.id == 14 ||
+    this.id == 9 ||
+    this.id == 5
+){
+this.coloredTime       = 2;
+}
+if(
+    this.id == 1  || 
+    this.id == 2  || 
+    this.id == 4  || 
+    this.id == 7  || 
+    this.id == 11 ||
+    this.id == 16 ||
+    this.id == 20 ||
+    this.id == 23 ||
+    this.id == 25 ||
+    this.id == 24 ||
+    this.id == 22 ||
+    this.id == 19 ||
+    this.id == 15 ||
+    this.id == 10 ||
+    this.id == 6 ||
+    this.id == 3
+){
+this.coloredTime       = 3;
+}
+
         //デバッグ用の中心を表示するサインマーカー
         if(CONFIG.DEBUG_FLAG==1){
             this.sigh = cc.LayerColor.create(cc.c4b(255,0,0,255),3,3);
@@ -34,13 +74,48 @@ var Chip = cc.Node.extend({
             this.addChild(this.sigh,-9995);
         }
 
+
+        if(this.id == 1){
+            //poi
+this.type = "poi";
+this.hp = 10;
+this.maxHp = 10;
+            this.chipSprite = cc.Sprite.create(s_chip_003);
+        }else if(this.id == 10){
+            this.enemyDepMaxTime = 30 * 20;
+this.type = "boss";
+            //boss
+            this.chipSprite = cc.Sprite.create(s_chip_002);
+        }else if(this.id == 11 || this.id == 25){
+this.type = "azito";
+            if(this.id == 11){
+                this.enemyDepTime    = 30 * 5;
+                this.enemyDepMaxTime = 30 * 10;
+            }
+            if(this.id == 25){
+                this.enemyDepTime    = 30 * 0;
+                this.enemyDepMaxTime = 30 * 10;
+            }
+            //ajito
+            this.chipSprite = cc.Sprite.create(s_chip_001);
+        }else if(this.id == 23 || this.id == 22){
+this.type = "tree";
+            //tree
+            this.chipSprite = cc.Sprite.create(s_chip_004);
+        }else if(this.id == 16 || this.id == 19){
+this.type = "twitter";
+            //twitter
+            this.chipSprite = cc.Sprite.create(s_chip_005);
+        }else{
+this.type = "normal";
+            this.chipSprite = cc.Sprite.create(s_mapchip_001);
+        }
         //マップイメージ
+/*
         if(this.type == "normal"){
-            /*
-            var rand = getRandNumberFromRange(1,8);
-            var num = getZeroPaddingNumber(rand,3);
-            var imgPath = "map/chip_" + num + ".png";
-            */
+            //var rand = getRandNumberFromRange(1,8);
+            //var num = getZeroPaddingNumber(rand,3);
+            //var imgPath = "map/chip_" + num + ".png";
             this.chipSprite = cc.Sprite.create(s_mapchip_001);
         }else if(this.type == "levelup"){
             this.chipSprite = cc.Sprite.create(s_mapchip_002);
@@ -51,6 +126,8 @@ var Chip = cc.Node.extend({
         }else if(this.type == "costdown"){
             this.chipSprite = cc.Sprite.create(s_mapchip_005);
         }
+*/
+
 
         //マップ配置
         this.addChild(this.chipSprite);
@@ -70,6 +147,14 @@ var Chip = cc.Node.extend({
         this.colored.setPosition(0,0);
         this.colored.setAnchorPoint(0.5,0.5);
         this.addChild(this.colored);
+/*
+        //mapNumber
+        this.missionLabel = cc.LabelTTF.create(this.id,"Arial",14);
+        this.addChild(this.missionLabel);
+*/
+        //timeNumber
+        this.timeLabel = cc.LabelTTF.create("","Arial",35);
+        this.addChild(this.timeLabel);
     },
 
     getCirclePos:function(cubeAngle){
@@ -85,15 +170,15 @@ var Chip = cc.Node.extend({
     update:function() {
         if(this.colorAlpha >= 1){
             this.coloredCnt++;
-            if(this.coloredCnt>=10*this.id){
+            if(this.coloredCnt>=10*this.coloredTime){
                 if(this.isSetColor==false){
                     this.isSetColor=true;
 
-this.game.addEnemyByPos(this.game.storage.enemyCode,this.getPosition().x,this.getPosition().y);
+                    //this.game.addEnemyByPos(this.game.storage.enemyCode,this.getPosition().x,this.getPosition().y);
 
                     //木を生やす
                     var frameSeq = [];
-                    for (var y = 0; y <= 2; y++) {
+                    for (var y = 0; y <= 3; y++) {
                         for (var x = 0; x <= 4; x++) {
                             var frame = cc.SpriteFrame.create(s_effect_pipo113,cc.rect(192*x,192*y,192,192));
                             frameSeq.push(frame);
@@ -107,14 +192,44 @@ this.game.addEnemyByPos(this.game.storage.enemyCode,this.getPosition().x,this.ge
                     this.energySprite.setPosition(0,70);
                     this.energySprite.runAction(this.energyRep);
                     this.addChild(this.energySprite);
-                }
+/*
                 this.colorAlpha++;
                 if(this.colorAlpha>=100){
                     this.colorAlpha = 100;
                 }
-                this.colored.setOpacity(255*this.colorAlpha/100);
+*/
+                this.colored.setOpacity(255*100/100);
+                }
+
             }
         }
+
+
+if(this.id == 11 || this.id == 25 || this.id == 10){
+
+        this.enemyDepTime++;
+        var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
+        this.timeLabel.setString("" + nokori);
+        if(this.enemyDepTime >= this.enemyDepMaxTime){
+            //this.timeLabel.setString("OPEN");
+            if(this.id == 11){
+                this.enemyDepTime = 0;
+                this.routes = [11,16,20,17,12,7];
+                this.game.addEnemyByPos(1,this.routes);
+            }else if(this.id == 25){
+                this.enemyDepTime = 0;
+                this.routes = [25,24,22,18,21,23];
+                this.game.addEnemyByPos(4,this.routes);
+            }else if(this.id == 10){
+                this.enemyDepTime = -9999;
+                this.timeLabel.setString("OPEN");
+                this.routes = [10,15,19,14,9,5,3,6];
+                this.game.addEnemyByPos(8,this.routes);
+            }
+        }
+}
+
+
 
         if(this.enemyCollisionCnt == 1){
             this.enemyCollisionFlg = true;
@@ -127,45 +242,49 @@ this.game.addEnemyByPos(this.game.storage.enemyCode,this.getPosition().x,this.ge
 
         //プレイヤーが占領する
         if(this.isOccupied == false && this.hp <= 0){
-            this.isOccupied = true;
-            this.game.storage.occupiedCnt++;
+            if(this.type == "tree"){
+                this.isOccupied = true;
+                this.game.storage.occupiedCnt++;
+            }
             //SE
             playSE(s_se_occupied);
-            if(this.type == "normal"){           
+            if(this.type == "tree"){           
                 this.game.setTerritoryCnt();
 
                 //占領ミッションの場合はカットインを表示する
                 if(this.game.storage.missionGenre == "occupy"){
                     this.game.cutIn.set_text(
-                        "占領した!.[" + this.game.territoryCnt + "/" + this.game.missionMaxCnt + "]"
+                        "占領した!.[" + this.game.territoryCnt + "/2]"
                     );
                 }
 
                 //コインを作成する
+                /*
                 for (var i=0 ; i < 6 ; i++){
                     var data = this.getCirclePos(i * 60);
                     this.game.stage.addCoin(data[0],data[1]);
-                }
+                }*/
             }
             if(this.type == "recover"){
-                this.game.setAllUnitRecover();
-                this.game.cutIn.set_text("全ユニット回復!!");
+                //this.game.setAllUnitRecover();
+                //this.game.cutIn.set_text("全ユニット回復!!");
             }
             if(this.type == "levelup"){           
-                this.game.setLevelUpPlayerAndColleagues();
-                this.game.cutIn.set_text("パワーアップ × " + this.game.player.lv + "");
-                this.game.strategyCode = 4;
+                //this.game.setLevelUpPlayerAndColleagues();
+                //this.game.cutIn.set_text("パワーアップ × " + this.game.player.lv + "");
+                //this.game.strategyCode = 4;
             }
             if(this.type == "bomb"){
-                this.game.setRemoveAllEnemies();
-                this.game.cutIn.set_text("Map上の敵を排除!");
+                //this.game.setRemoveAllEnemies();
+                //this.game.cutIn.set_text("Map上の敵を排除!");
             }
             if(this.type == "costdown"){
-                this.game.setBornCostDecrease();
-                this.game.cutIn.set_text("仲間生産コスト↓");
+                //this.game.setBornCostDecrease();
+                //this.game.cutIn.set_text("仲間生産コスト↓");
             }
         }
 
+/*
         //敵が占領する
         if(this.isOccupied == true && this.hp >= 100){
             this.isOccupied = false;
@@ -180,10 +299,25 @@ this.game.addEnemyByPos(this.game.storage.enemyCode,this.getPosition().x,this.ge
             this.game.setTerritoryCnt();
             this.game.cutIn.set_text("敵に占領された.[" + this.game.territoryCnt + "/" + this.game.missionMaxCnt + "]");
         }
+*/
 
+
+        
+if(this.type == "poi"){
+        //HPの最大と最小
+        if(this.hp <= 0){
+            this.hp = this.maxHp;
+            this.game.addColleagues(5);
+        }
+        if(this.hp >= this.maxHp) this.hp = this.maxHp;
+
+
+}else{
         //HPの最大と最小
         if(this.hp <= 0)   this.hp = 0;
-        if(this.hp >= 100) this.hp = 100;
+        if(this.hp >= this.maxHp) this.hp = this.maxHp;
+}  
+
         var rate = this.hp / this.maxHp;
         this.rectBase.setScale(rate);
     },

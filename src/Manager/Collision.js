@@ -23,8 +23,8 @@ var collisionPlayerAndChip = function(game){
             //このチップと仲間全員との距離を測る
             var cnt = getCollisionColleagueAndChipCount(game,game.stage.chips[i]);
             //最大値は8程度
-            if(cnt >= 8){cnt = 8;}
-            game.stage.chips[i].hp -= 0.01 + cnt * CONFIG.PLAYER_OCCUPY_POWER;
+            if(cnt >= 2){cnt = 2;}
+            game.stage.chips[i].hp -= 0.18 + cnt * CONFIG.PLAYER_OCCUPY_POWER;
             game.stage.chips[i].colleagueCnt = cnt;
         }else{
             if(game.stage.chips[i].isOccupied == false){

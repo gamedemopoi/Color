@@ -6,12 +6,18 @@
 //  Copyright (c) 2014 http://oggata.github.io All rights reserved.
 
 var Enemy = cc.Node.extend({
-    ctor:function (game,code,depX,depY) {
+    ctor:function (game,code,routes) {
         this._super();
         this.game    = game;
         this.storage = this.game.storage;
-        this.depX    = depX;
-        this.depY    = depY;
+
+
+        this.routeId = 0;
+        this.routes = routes;
+        var dep = this.game.stage.getChipPosition(this.routes[this.routeId]);
+        this.depX = dep[0];
+        this.depY = dep[1];
+
         //HPゲージ
         this.gauge = new Gauge(30,4,'red');
         this.gauge.setPosition(-20,20);
@@ -20,6 +26,22 @@ var Enemy = cc.Node.extend({
         this.initializeParam(code);
         this.initSprite();
         this.update();
+
+
+
+
+
+this.setPosition(this.depX,this.depY);
+/*
+        this.depX    = depX;
+        this.depY    = depY;
+*/
+
+        //this.routes = [11,16,20,17,12,7];
+        /*
+        this.routes = [25,24,22,18,21,23];
+        this.routes = [10,15,19,14,9,5,3,6];
+        */
     },
 
     loadEnemyJson : function() {
@@ -129,6 +151,25 @@ var Enemy = cc.Node.extend({
     },
 
     update:function() {
+        if(this.routes){
+            cc.log(this.routes[this.routeId]);
+            var pos = this.game.stage.getChipPosition(this.routes[this.routeId]);
+            var margin = 1;
+            if(
+                this.getPosition().x  - margin <= pos[0] 
+            &&  pos[0] <= this.getPosition().x + margin
+
+            &&  this.getPosition().y - margin <= pos[1]
+            &&  pos[1] <= this.getPosition().y + margin
+
+            ){
+                this.routeId+=1;
+                if(this.routeId >= this.routes.length){
+                    this.routeId = 0;
+                }
+            }
+        }
+
         //body
         for(var i=0;i<this.enemyBodies.length;i++){
             this.enemyBodies[i].update();
@@ -185,6 +226,20 @@ var Enemy = cc.Node.extend({
             this.getPosition()
         );
 
+        if(this.routes){
+            var posi = this.game.stage.getChipPosition(this.routes[this.routeId]);
+            var dX = posi[0] - this.getPosition().x;
+            var dY = posi[1] - this.getPosition().y;
+            var rad = Math.atan2(dX,dY);
+            var speedX = this.walkSpeed * Math.sin(rad);
+            var speedY = this.walkSpeed * Math.cos(rad);
+            this.setPosition(
+                this.getPosition().x + speedX,
+                this.getPosition().y + speedY
+            );
+        }
+
+/*
         if(this.type == "cockroach"){
             this.cockroachTime++;
             if(this.cockroachTime >= 90){
@@ -220,13 +275,7 @@ var Enemy = cc.Node.extend({
                 }
             }
         }else if(this.type == "snake" || this.type == "jellyfish"){
-            /*
-            var rCubePos = this.game.stageRollingCube.getMapPosition();
-            this.setPosition(
-                rCubePos[0],
-                rCubePos[1]
-            );
-            */
+
             //playerが視界に入ったらプレイヤーを攻撃する
             if(distance <= 150){
                 var dX = this.game.player.getPosition().x - this.getPosition().x;
@@ -321,6 +370,7 @@ var Enemy = cc.Node.extend({
                 }
             }
         }
+*/
         this.gauge.update(this.hp/this.maxHp);
 
         //HPが0になった場合は死ぬ

@@ -44,13 +44,26 @@ var GameLayer = cc.Layer.extend({
         this.mapNode.addChild(this.targetSprite);
 
         //setColleague
-        this.addColleagues(4);
+        //this.addColleagues(4);
 
         //setEnemies
+        /*
         var enemyCnt = this.storage.initEnemyCnt;
         for(var i=0;i<enemyCnt;i++){
             this.addEnemy(this.storage.enemyCode);
-        }
+        }*/
+
+/*
+        this.routes = [11,16,20,17,12,7];
+        this.addEnemyByPos(1,this.routes);
+
+        this.routes = [25,24,22,18,21,23];
+        this.addEnemyByPos(4,this.routes);
+
+        this.routes = [10,15,19,14,9,5,3,6];
+        this.addEnemyByPos(8,this.routes);
+*/
+
 
         //initialize camera
         this.cameraX = 320/2 - this.player.getPosition().x;
@@ -256,7 +269,7 @@ var GameLayer = cc.Layer.extend({
             this.cameraX = this.mapNode.getPosition().x;
             this.cameraY = this.mapNode.getPosition().y;
         }
-
+/*
         //時間経過による敵の作成
         if(this.enemies.length <= 10){
             this.enemySetTime++;
@@ -266,7 +279,7 @@ var GameLayer = cc.Layer.extend({
                 this.addEnemy(this.storage.enemyCode);
             }
         }
-
+*/
         //UI
         this.gameUI.update();
 
@@ -527,7 +540,7 @@ var GameLayer = cc.Layer.extend({
             this.colleagues[i].isSettableTargetEnemy = false;
         }
     },
-
+/*
     addEnemy : function(code){
         //set room number
         var walkingRoute = Array();
@@ -541,14 +554,12 @@ var GameLayer = cc.Layer.extend({
         this.enemy.setPosition(depX,depY);
         this.enemies.push(this.enemy);
     },
-
-    addEnemyByPos : function(code,depX,depY){
-        this.enemy = new Enemy(this,code,depX,depY);
+*/
+    addEnemyByPos : function(code,routes){
+        this.enemy = new Enemy(this,code,routes);
         this.mapNode.addChild(this.enemy);
-        this.enemy.setPosition(depX,depY);
         this.enemies.push(this.enemy);
     },
-
 
 //デバイス入力----->
     onTouchesBegan:function (touches, event) {
@@ -682,7 +693,7 @@ var GameLayer = cc.Layer.extend({
 
     isToucheable:function (){
         return true;
-    },
+    }
 });
 
 GameLayer.create = function (storage) {

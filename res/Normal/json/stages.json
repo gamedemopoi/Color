@@ -26,7 +26,7 @@
             "id"             : 1, 
             "title"          : "1-1.土地×5の復元",
             "detail"         : "",
-            "time_limit"     : 270000,
+            "time_limit"     : 2700,
             "genre"          : "occupy",
             "mission_count"  : 5,
             "map"            : {"image":"sprite/ghost.png","w":32,"h":48,"x":5,"y":5},
@@ -35,7 +35,7 @@
             "enemy_code"     : 0,
             "init_enemy_cnt" : 0,      
             "enemy_interval" : 170,
-            "items"          : [{"type":"levelup","count":1},{"type":"bomb","count":1}]
+            "items"          : [{"type":"levelup","count":0}]
         },
         { 
             "id"             : 2, 
