@@ -12,6 +12,8 @@ var Enemy = cc.Node.extend({
         this.storage = this.game.storage;
         this.routes  = routes;
 
+        this.id      = getRandNumberFromRange(1,9999999);
+
         //dep
         this.routeId = 0;
         var dep = this.game.stage.getChipPosition(this.routes[this.routeId]);
@@ -91,7 +93,7 @@ var Enemy = cc.Node.extend({
         //軌跡（クラゲ型)
         this.trackJellyFishes = new Array();
         for (var i=0 ; i < 18 ; i++){
-            this.cube = new Cube(i,20,120);
+            this.cube = new Cube(i,30,65);
             this.trackJellyFishes.push(this.cube);
             this.addChild(this.cube,999);
         }

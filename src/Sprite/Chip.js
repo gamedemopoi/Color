@@ -56,12 +56,12 @@ this.type = "boss";
         }else if(this.id == 11 || this.id == 25){
 this.type = "azito";
             if(this.id == 11){
-                this.enemyDepTime    = 30 * 8;
-                this.enemyDepMaxTime = 30 * 10;
+                this.enemyDepTime    = 30 * 4;
+                this.enemyDepMaxTime = 30 * 5;
             }
             if(this.id == 25){
                 this.enemyDepTime    = 30 * 0;
-                this.enemyDepMaxTime = 30 * 15;
+                this.enemyDepMaxTime = 30 * 8;
             }
             //ajito
             this.chipSprite = cc.Sprite.create(s_chip_001);
@@ -307,13 +307,18 @@ if(this.id == 11 || this.id == 25 || this.id == 10){
 
         //プレイヤーが占領する
         if(this.isOccupied == false && this.hp <= 0){
+            /*
             if(this.type == "tree"){
                 this.isOccupied = true;
                 this.game.storage.occupiedCnt++;
-            }
+            }*/
             //SE
             playSE(s_se_occupied);
-            if(this.type == "tree"){           
+            if(this.type == "tree"){  
+                this.isOccupied = true;
+                this.game.storage.occupiedCnt++;
+
+
                 this.game.setTerritoryCnt();
 
                 //占領ミッションの場合はカットインを表示する

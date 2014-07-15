@@ -18,6 +18,8 @@ var Colleague = cc.Node.extend({
         this.damageCnt         = 0;
         this.isDamageOn        = false;
 
+        this.randId            = getRandNumberFromRange(1,16);
+
         //status
         this.lv                = this.storage.lv;
         this.hp                = this.storage.hp;
@@ -177,11 +179,34 @@ var Colleague = cc.Node.extend({
         this.drawnode.setVisible(false);
 
 
+
+if(this.player.targetType == "ENEMY"){
+
+    /*
+    this.moveToPositions(
+        this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[rand].getPosition().x,
+        this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[rand].getPosition().y
+    );
+    */
+
+    this.moveToPositions(
+        this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+        this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y
+    );
+
+//cc.log(this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].getPosition().x);
+
+}else{
+    this.moveTo(this.player);
+}
+
+
+
         if(this.isChase == true){            
             //作戦:プレイヤーを追従(コイ)
             if(this.game.strategyCode == 1){
                 //プレイヤーのターゲットがいればそれを追いかける
-                this.moveTo(this.player);
+                //this.moveTo(this.player);
 /*
                 if(this.player.targetEnemy != null){
                     if(this.player.targetEnemy.hp > 0){

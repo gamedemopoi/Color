@@ -31,18 +31,21 @@ var Cube = cc.Node.extend({
 
     update:function() {
 
+
         if(this.rangeMin != this.rangeMax){
             this.eyeSightRange += 1 * this.frowaringDirection;
             if(this.eyeSightRange > this.rangeMax){
-                this.frowaringDirection = -1;
+                this.frowaringDirection = -5;
             }
             if(this.eyeSightRange < this.rangeMin){
-                this.frowaringDirection = 1;
+                this.frowaringDirection = 5;
             }
         }
 
+//this.eyeSightRange = 80;
+
         //update rolling cube
-        this.cubeAngle+=2;
+        //this.cubeAngle+=2;
         if(this.cubeAngle>=360){
             this.cubeAngle = 0;
         }

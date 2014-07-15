@@ -201,7 +201,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                     enemies[k].damage(colleagues[j].attack);
                 }
             }
-
+/*
             //ノックバック
             if(distance < 30){
                 var diffX = colleagues[j].getPosition().x - enemies[k].getPosition().x;
@@ -231,6 +231,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                     );
                 }
             }
+*/
         }
     }
 };
@@ -268,7 +269,7 @@ var collisionPlayerAndEnemy = function(player,enemies){
                 }
             }
         }
-
+/*
         //プレイヤーと敵のノックバック用の判定
         if(distance < CONFIG.PLAYER_AND_ENEMY_KNOCK_BAKC_RANGE){
             var diffX = player.getPosition().x - enemy.getPosition().x;
@@ -314,6 +315,7 @@ var collisionPlayerAndEnemy = function(player,enemies){
                 );
             }
         } 
+*/
     }
 };
 

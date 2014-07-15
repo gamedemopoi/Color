@@ -558,6 +558,28 @@ var GameLayer = cc.Layer.extend({
         var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
         this.targetSprite.setPosition(tPosX,tPosY);
         
+        //Enemies 死亡時の処理、Zソート
+        for(var i=0;i<this.enemies.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
+            if(distance <= 50){
+cc.log("敵を指定しています");
+this.player.targetType = "ENEMY";
+this.player.targetId   = this.enemies[i].id;
+this.player.tE         = this.enemies[i];
+return;
+            }
+        }
+        for(var i=0;i<this.stage.chips.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+            if(distance <= 50){
+cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
+this.player.targetType = "CHIP";
+this.player.targetId   = this.stage.chips[i].id;
+            }
+        }
+
+
+
 //cc.log("began");
     },
 

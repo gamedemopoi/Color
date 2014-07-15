@@ -36,6 +36,10 @@ var Player = cc.Node.extend({
         this.direction         = "front";
         this.bulletSpeed       = CONFIG.BULLET_SPEED;
 
+        this.targetType        = "none";
+        this.targetId          = 0;
+        this.tE                = null;
+
         this.targetChip        = null;
         this.damangeTexts      = new Array();
         this.isDamaged         = false;

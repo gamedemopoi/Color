@@ -21,6 +21,6 @@ var Tower = cc.Node.extend({
     },
 
     setAlpha:function(alpha){
-    	this.tree.setOpacity(alpha);
+    	//this.tree.setOpacity(alpha);
     }
 });

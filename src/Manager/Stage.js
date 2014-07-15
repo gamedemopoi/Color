@@ -58,7 +58,7 @@ var Stage = cc.Class.extend({
                     this.tree = new Tower(posX,posY,this.game);
                     this.game.mapNode.addChild(this.tree,1000 - posY);
                     this.trees.push(this.tree);
-                    this.tree.setVisible(false);
+                    //this.tree.setVisible(false);
 
                     chipNum++;
                 }
@@ -81,6 +81,15 @@ var Stage = cc.Class.extend({
                 Math.floor(0 - this.chips[i].getPosition().y)
             );
         }
+/*
+        for(var i=0;i<this.trees.length;i++){
+            //zソートする
+            this.game.mapNode.reorderChild(
+                this.trees[i],
+                Math.floor(0 - this.trees[i].getPosition().y)
+            );
+        }
+*/
     },
 
     getChipPosition:function(id){
