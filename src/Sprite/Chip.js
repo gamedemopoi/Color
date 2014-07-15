@@ -71,6 +71,8 @@ this.type = "tree";
             this.chipSprite = cc.Sprite.create(s_chip_004);
         }else if(this.id == 16 || this.id == 19){
 this.type = "twitter";
+this.hp = 15;
+this.maxHp = 15;
             //twitter
             this.chipSprite = cc.Sprite.create(s_chip_005);
         }else{
@@ -377,7 +379,16 @@ if(this.type == "poi"){
         //HPの最大と最小
         if(this.hp <= 0){
             this.hp = this.maxHp;
-            this.game.addColleagues(1);
+            this.game.addColleagues(1,1);
+        }
+        if(this.hp >= this.maxHp) this.hp = this.maxHp;
+
+
+}else if(this.type == "twitter"){
+        //HPの最大と最小
+        if(this.hp <= 0){
+            this.hp = this.maxHp;
+            this.game.addColleagues(1,2);
         }
         if(this.hp >= this.maxHp) this.hp = this.maxHp;
 

@@ -81,6 +81,7 @@ var s_chara001           = base_dir + "sprite/chara001.png";
 var s_chara002           = base_dir + "sprite/chara002.png";
 var s_chara003           = base_dir + "sprite/chara003.png";
 var s_chara004           = base_dir + "sprite/chara004.png";
+var s_chara005           = base_dir + "sprite/chara005.png";
 
 var s_enemy_devil        = base_dir + "sprite/devil_001.png";
 var s_enemy_devil_boss   = base_dir + "sprite/devil_002.png";
@@ -169,6 +170,7 @@ var g_resources       = [
     s_chara002,
     s_chara003,
     s_chara004,
+    s_chara005,
     s_attack_rolling,
     s_break,
     s_initSprite,

@@ -7,7 +7,7 @@
 //
 
 var Colleague = cc.Node.extend({
-    ctor:function (game) {
+    ctor:function (game,type) {
         this._super();
         this.game              = game;
         this.storage           = this.game.storage;
@@ -32,10 +32,18 @@ var Colleague = cc.Node.extend({
 
         //image
         this.charactorCode     = this.storage.charactorCode;
+
+if(type == 1){
         this.image             = this.storage.image;
         this.imgWidth          = this.storage.imgWidth; 
         this.imgHeight         = this.storage.imgHeight;
-
+}else{
+        this.image             = "sprite/chara005.png";
+        this.imgWidth          = 40; 
+        this.imgHeight         = 51.75;
+        this.hp                = 200;
+        this.maxHp             = 200;
+}
         //init
         this.battleInterval    = 0;
         this.scale = 1;

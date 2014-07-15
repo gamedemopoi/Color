@@ -508,9 +508,9 @@ var GameLayer = cc.Layer.extend({
         );
     },
 
-    addColleagues:function(num){
+    addColleagues:function(num,type){
         for (var i=0 ; i <  num ; i++){
-            this.colleague = new Colleague(this);
+            this.colleague = new Colleague(this,type);
             this.mapNode.addChild(this.colleague,100);
             var depX = getRandNumberFromRange(this.player.getPosition().x - 50,this.player.getPosition().x + 50);
             var depY = getRandNumberFromRange(this.player.getPosition().y - 50,this.player.getPosition().y + 50);
