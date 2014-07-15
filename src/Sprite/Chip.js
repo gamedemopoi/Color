@@ -42,6 +42,13 @@ var Chip = cc.Node.extend({
         }
 
 
+/*
+cc.log(storage.stageDatas.length);
+cc.log(storage.stageDatas[0].type);
+for()
+*/
+
+
         if(this.id == 1){
             //poi
 this.type = "poi";
@@ -67,6 +74,8 @@ this.type = "azito";
             this.chipSprite = cc.Sprite.create(s_chip_001);
         }else if(this.id == 23 || this.id == 22){
 this.type = "tree";
+this.hp = 50;
+this.maxHp = 50;
             //tree
             this.chipSprite = cc.Sprite.create(s_chip_004);
         }else if(this.id == 16 || this.id == 19){

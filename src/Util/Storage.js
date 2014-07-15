@@ -190,6 +190,7 @@ var getStageDataFromJson = function(storage,stageNum) {
     storage.itemCoinCnt      = stageData["item_coin"];
     storage.enemySetInterval = stageData["enemy_interval"];
     storage.enemyCode        = stageData["enemy_code"];
+    storage.stageDatas       = stageData["datas"];
     storage.stageItems       = stageData["items"];
 
     return storage;

@@ -16,6 +16,10 @@ var Stage = cc.Class.extend({
         this.trees            = [];
         this.isColored        = false;
 
+/*
+cc.log(storage.stageDatas.length);
+cc.log(storage.stageDatas[0].type);
+*/
         var excludeNums = [];
         var items = [];
         for(var i=0;i<game.storage.stageItems.length;i++){            
