@@ -269,9 +269,9 @@ if(this.id == 11 || this.id == 25 || this.id == 10){
         }
 
 
-        if(depEnemyCnt == 0){
+        //if(depEnemyCnt == 0){
             this.enemyDepTime++;
-        }
+        //}
 
         var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
         this.timeLabel.setString("" + nokori);
