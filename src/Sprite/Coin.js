@@ -11,12 +11,12 @@ var Coin = cc.Node.extend({
         this._super();
         var frameSeq = [];
         for (var i = 0; i <= 2; i++) {
-            var frame = cc.SpriteFrame.create(s_enargy,cc.rect(40*i,0,40,40));
+            var frame = cc.SpriteFrame.create(s_coin,cc.rect(32*i,0,32,32));
             frameSeq.push(frame);
         }
         this.wa = cc.Animation.create(frameSeq,0.1);
         this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
-        this.coinSprite = cc.Sprite.create(s_enargy,cc.rect(0,0,40,40));
+        this.coinSprite = cc.Sprite.create(s_coin,cc.rect(0,0,32,32));
         this.coinSprite.runAction(this.ra);
         this.addChild(this.coinSprite);
 

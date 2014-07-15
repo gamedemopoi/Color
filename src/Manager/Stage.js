@@ -136,25 +136,42 @@ var Stage = cc.Class.extend({
             //敵が増殖
             if(this.isColored == false){
                 this.isColored = true;
-            }
-
-            //Enemies 死亡時の処理、Zソート
-            for(var i=0;i<this.game.enemies.length;i++){
-                this.game.enemies[i].eyeSight = 500;
-                this.game.enemies[i].walkSpeed = 2;
-            }
 
 
-            for(var i=0;i<this.chips.length;i++){
-                this.chips[i].isOccupied = false;
-                if(this.chips[i].colorAlpha == 0){
-                    this.chips[i].colorAlpha=1;
+
+                //コインを作成する
+                /*
+                for (var i=0 ; i < 6 ; i++){
+                    var data = this.getCirclePos(i * 60);
+                    this.game.stage.addCoin(data[0],data[1]);
+                }*/
+
+
+                //Enemies 死亡時の処理、Zソート
+                for(var i=0;i<this.game.enemies.length;i++){
+                    this.game.enemies[i].eyeSight = 500;
+                    this.game.enemies[i].walkSpeed = 2;
                 }
+
+                for(var i=0;i<this.chips.length;i++){
+                    var pos = this.chips[i].getPosition();
+                    this.game.stage.addCoin(pos.x,pos.y);
+
+                    this.chips[i].isOccupied = false;
+                    if(this.chips[i].colorAlpha == 0){
+                        this.chips[i].colorAlpha=1;
+                    }
+                }
+                //仲間が姿を消す
+                for(var i=0;i<this.game.colleagues.length;i++){
+                    this.game.colleagues[i].hp = 0;
+                }
+
+
+
             }
-            //仲間が姿を消す
-            for(var i=0;i<this.game.colleagues.length;i++){
-                this.game.colleagues[i].hp = 0;
-            }
+
+
         }
 
         if(this.enemyTargetChip == null){

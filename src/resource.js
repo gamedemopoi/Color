@@ -74,6 +74,7 @@ var s_damage_002         = base_dir + "text/damage002.png";
 //sprite
 var s_initSprite         = base_dir + "sprite/initSprite.png";
 var s_enargy             = base_dir + "sprite/enargy.png";
+var s_coin               = base_dir + "sprite/coin.png";
 
 var s_shadow             = base_dir + "sprite/shadow.png";
 var s_chara001           = base_dir + "sprite/chara001.png";
