@@ -28,7 +28,7 @@
             "name"         : "デビルLv2",
             "detail"       : "", 
             "hp"           : 200,
-            "attack"       : 1,
+            "attack"       : 10,
             "defence"      : 10,
             "eye_sight"    : 80,
             "walk_speed"   : 1.8,
