@@ -15,8 +15,8 @@ var Player = cc.Node.extend({
 
         //status
         this.lv               = this.storage.lv;
-        this.hp               = this.storage.hp;
-        this.maxHp            = this.storage.maxHp;
+        this.hp               = 200;
+        this.maxHp            = 200;
         this.attack           = this.storage.attack;
         this.defence          = this.storage.defence;
         this.eyeSightRange    = this.storage.eyeSightRange;
