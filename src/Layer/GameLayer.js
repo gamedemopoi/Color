@@ -661,6 +661,9 @@ this.player.targetId   = this.stage.chips[i].id;
             this.scrollRPower++;
         }else
 */
+
+
+if(distX > 60 || distY > 60){
         if(distX > distY){
             cc.log("横しこ");
             this.scrollXPower+=5;
@@ -670,6 +673,7 @@ this.player.targetId   = this.stage.chips[i].id;
             cc.log("縦しこ");
             this.scrollYPower+=5;
         }
+}
 
 
         this.movedCnt++;
