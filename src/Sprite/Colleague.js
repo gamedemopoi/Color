@@ -130,7 +130,7 @@ if(type == 1){
     },
 
     update:function() {
-//cc.log(this.bulletLncTime);
+
         if(this.bulletLncTime>=1){
             this.iconVoice.setOpacity(255*0);
             this.bulletLncTime++;
@@ -140,12 +140,6 @@ if(type == 1){
         }else{
             this.iconVoice.setOpacity(255*1);
         }
-        /*
-        if(this.bulletLncTime >= 30 * 10){
-            this.bulletLncTime = 0;
-            this.game.addColleagueBullet(this);
-        }*/
-
 
         if(this.isDamageOn == true){
             this.addFlashCnt();
@@ -188,55 +182,21 @@ if(type == 1){
 
         this.drawnode.setVisible(false);
 
-
-
-if(this.player.targetType == "ENEMY"){
-
-    this.moveToPositions(
-        this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-        this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y
-    );
-
-}else if(this.player.targetType == "CHIP"){
-
-    if(this.game.scrollXPower > 50){
-        this.moveToPositions(
-            this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-            this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y
-        );
-    }else{
-        this.moveTo(this.player);
-    }
-}else{
-    this.moveTo(this.player);
-}
-
-
-
-        if(this.isChase == true){            
-            //作戦:プレイヤーを追従(コイ)
-            if(this.game.strategyCode == 1){
-                //プレイヤーのターゲットがいればそれを追いかける
-                //this.moveTo(this.player);
-/*
-                if(this.player.targetEnemy != null){
-                    if(this.player.targetEnemy.hp > 0){
-                        this.attackTo(this.player.targetEnemy);
-                    }
-                }else{
-                    this.moveTo(this.player);
-                }
-*/
-            }
-
-            //作戦:防御
-            if(this.game.strategyCode == 4){
-                var posX = this.player.getPosition().x 
-                    + this.player.cubes[this.rollingId].rollingCube.getPosition().x;
-                var posY = this.player.getPosition().y 
-                    + this.player.cubes[this.rollingId].rollingCube.getPosition().y;
-                this.moveToPositions(posX,posY);
-            }
+        if(this.game.scrollXPower > 50){
+            this.actionType = "CHIP";
+            this.moveToPositions(
+                this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+                this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y
+            );
+        }else if(this.game.scrollYPower > 50){
+            this.actionType = "ENEMY";
+            this.moveToPositions(
+                this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+                this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y
+            );
+        }else{
+            this.actionType = "FOLLOW";
+            this.moveTo(this.player);
         }
 
         //向きの制御
@@ -534,7 +494,6 @@ if(this.player.targetType == "ENEMY"){
 
 
     moveToPositions:function(posX,posY) {
-
         //if(this.isStop) return;
         if(this.getPosition().x < posX){
             if(Math.abs(this.getPosition().x - posX) > this.walkSpeed){

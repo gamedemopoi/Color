@@ -276,25 +276,7 @@ cc.log(this.player.targetType);
         }else{
             this.marker.setVisible(false);
         }
-/*
-        //Enemy占領中のマーカーを表示する
-        if(this.stage.enemyTargetChip != null && this.stage.enemyTargetChip.enemyCollisionFlg == true){
-            this.enemyMarker.setVisible(true);
-            this.enemyMarker.setOpacity(255 * 0.1);
 
-            this.enemyMarkerScale+=0.05;
-            if(this.enemyMarkerScale >= 3){
-                this.enemyMarkerScale = 1;
-            }
-            this.enemyMarker.setPosition(
-                this.stage.enemyTargetChip.getPosition().x,
-                this.stage.enemyTargetChip.getPosition().y
-            );
-            this.enemyMarker.setScale(this.enemyMarkerScale);
-        }else{
-            this.enemyMarker.setVisible(false);
-        }
-*/
         //プレイヤー
         this.player.update();
         this.mapNode.reorderChild(
@@ -303,12 +285,14 @@ cc.log(this.player.targetType);
         );
         this.player.playerDirectionManage(this.targetSprite);
 
-
-
         if(this.scrollYPower >= 50){
+            this.player.targetType = "ENEMY";
             this.player.moveToNearistEnemy();
+        }else if(this.scrollXPower >= 50){
+            this.player.targetType = "CHIP";
+            this.player.moveToTargetMarker(this.targetSprite);
         }else{
-            //プレイヤーの移動
+            this.player.targetType = "NONE";
             this.player.moveToTargetMarker(this.targetSprite);
         }
 
@@ -318,17 +302,7 @@ cc.log(this.player.targetType);
             this.cameraX = this.mapNode.getPosition().x;
             this.cameraY = this.mapNode.getPosition().y;
         }
-/*
-        //時間経過による敵の作成
-        if(this.enemies.length <= 10){
-            this.enemySetTime++;
-            var interval = this.storage.enemySetInterval;
-            if(this.enemySetTime >= interval){
-                this.enemySetTime = 0;
-                this.addEnemy(this.storage.enemyCode);
-            }
-        }
-*/
+
         //UI
         this.gameUI.update();
 
@@ -456,7 +430,6 @@ cc.log(this.player.targetType);
 
         this.storage.calcScore();
 
-
         //ミッションのジャンルによる成果計算
         if(this.storage.missionGenre == "occupy"){
             this.missionCnt = this.territoryCnt;
@@ -536,11 +509,11 @@ cc.log(this.player.targetType);
         collisionEnemyAndChip(this);
 
         //仲間 &　スライド
+        /*
         var isTouched = getCollisionColleagueAndSlide(this);
         if(isTouched >= 1){
             this.comboCnt++;
-        }
-//cc.log(combo);
+        }*/
     },
 
     moveCamera:function(){
@@ -651,24 +624,9 @@ this.player.targetId   = this.stage.chips[i].id;
     onTouchesMoved:function (touches, event) {
         if(this.isToucheable() == false) return;
         this.touched = touches[0].getLocation();
-        /*
-        var scrollX = this.firstTouchX - this.touched.x;
-        var scrollY = this.firstTouchY - this.touched.y;
-        var layerPos = this.getPosition();
-        */
 
-//cc.log("moved");
         this.scrollX = (this.touched.x - this.cameraX) / this.mapScale;
         this.scrollY = (this.touched.y - this.cameraY) / this.mapScale;
-
-
-
-/*
-        this.scrollMinX = 0;
-        this.scrollMaxX = 0;
-        this.scrollMinY = 0;
-        this.scrollMaxY = 0;
-*/
 
         if(this.scrollMinX < this.touched.x){
             this.scrollMinX = this.touched.x;
@@ -683,19 +641,9 @@ this.player.targetId   = this.stage.chips[i].id;
             this.scrollMaxY = this.touched.y;
         }
 
-
         var distX = Math.abs(this.scrollMaxX - this.scrollMinX);
         var distY = Math.abs(this.scrollMaxY - this.scrollMinY);
 
-
-/*
-        this.scrollXPower = 0;
-        this.scrollYPower = 0;
-        this.scrollRPower = 0;
-*/
-
-
-//cc.log(distX);
 /*
         if(distX > 230 && distY > 230){
             cc.log("円しこ");
@@ -705,9 +653,9 @@ this.player.targetId   = this.stage.chips[i].id;
         if(distX > distY){
             cc.log("横しこ");
             this.scrollXPower+=5;
-            this.player.targetType = "CHIP";
+            //this.player.targetType = "CHIP";
         }else{
-            this.player.targetType = "ENEMY";
+            //this.player.targetType = "ENEMY";
             cc.log("縦しこ");
             this.scrollYPower+=5;
         }
@@ -728,7 +676,9 @@ this.player.targetId   = this.stage.chips[i].id;
 
     onTouchesEnded:function (touches, event) {
 
-this.player.targetType = "NONE";
+        this.scrollXPower=0;
+        this.scrollYPower=0;
+        this.scrollRPower=0;
 
         if(this.scrollX == 0){
             this.touched = touches[0].getLocation();
@@ -746,6 +696,14 @@ this.player.targetType = "NONE";
         this.scrollMinY = 0;
         this.scrollMaxY = 0;
 
+        for(var i=0;i<this.stage.chips.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+            if(distance <= 50){
+                this.player.targetChip = this.stage.chips[i];
+            }
+        }
+
+/*
         for(var i=0;i<this.enemies.length;i++){
             var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
             if(distance <= 50){
@@ -766,10 +724,11 @@ this.player.targetChip = this.stage.chips[i];
 
             }
         }
-
+*/
     },
 
     onTouchesCancelled:function (touches, event) {
+cc.log("cancel");
     },
 
     //アイテムの使用関数----->

@@ -9,7 +9,6 @@
 //プレイヤとマップチップの衝突判定
 var collisionPlayerAndChip = function(game){
     //game.player.targetChip = null;
-
     for(var i=0;i<game.stage.chips.length;i++){
         if(
             game.stage.chips[i].getPosition().x -50 <= game.player.getPosition().x 
@@ -19,21 +18,13 @@ var collisionPlayerAndChip = function(game){
         &&  game.player.getPosition().y <= game.stage.chips[i].getPosition().y + 50
 
         ){
-            //game.player.targetChip = game.stage.chips[i];
-            
-
             //このチップと仲間全員との距離を測る
             var cnt = getCollisionColleagueAndChipCount(game,game.stage.chips[i]);
-            //最大値は8程度
-            if(cnt >= 2){cnt = 2;}
-
-
-if(game.scrollXPower >= 50){
-            game.stage.chips[i].hp -= 0.18 + cnt * CONFIG.PLAYER_OCCUPY_POWER;
-            game.stage.chips[i].colleagueCnt = cnt;
-}
-
-
+            if(cnt >= 5){cnt = 5;}
+            if(game.player.targetType == "CHIP"){
+                game.stage.chips[i].hp -= 0.18 + cnt * CONFIG.PLAYER_OCCUPY_POWER;
+                game.stage.chips[i].colleagueCnt = cnt;
+            }
         }else{
             if(game.stage.chips[i].isOccupied == false){
                 game.stage.chips[i].hp = 100;
@@ -91,11 +82,6 @@ var collisionPlayerAndColleague = function(player,colleagues,game){
     for(var i=0;i<colleagues.length;i++){
         var colleague = colleagues[i];
         var distance = cc.pDistance(player.getPosition(),colleague.getPosition());
-        
-        //付近に来たら仲間になる（プレイヤーを追いかける）
-        if(distance < 50){
-            colleague.isChase = true;
-        }
         
         //近づき過ぎたら止まる
         colleague.isStop = false;
@@ -186,7 +172,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
         for(var k=0;k<enemies.length;k++){
             var distance = cc.pDistance(colleagues[j].getPosition(),enemies[k].getPosition());
 
-            if(distance < 50 && colleagues[j].isChase == true){
+            if(distance < 50){
 
                 //ターゲットにSet可能状態のときのみ、ターゲットをセットする
                 if(colleagues[j].isSettableTargetEnemy == true){
@@ -206,7 +192,9 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                 colleagues[j].battleInterval++;
                 if(colleagues[j].battleInterval >= 30){
                     colleagues[j].battleInterval = 0;
-                    enemies[k].damage(colleagues[j].attack);
+                    if(colleagues[j].actionType == "ENEMY"){
+                        enemies[k].damage(colleagues[j].attack);
+                    }
                 }
             }
 /*
@@ -263,7 +251,9 @@ var collisionPlayerAndEnemy = function(player,enemies){
             player.battleInterval++;
             if(player.battleInterval >= 30){
                 player.battleInterval = 0;
-                enemies[i].damage(player.attack);
+                if(player.targetType == "ENEMY"){
+                    enemies[i].damage(player.attack);
+                }
             }
         }
 
