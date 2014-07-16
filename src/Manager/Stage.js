@@ -11,15 +11,11 @@ var Stage = cc.Class.extend({
     ctor:function (game) {
         this.game             = game;
         this.storage          = this.game.storage;
-        this.enemyTargetChip  = null;
+        //this.enemyTargetChip  = null;
         this.chips            = [];
         this.trees            = [];
         this.isColored        = false;
 
-/*
-cc.log(storage.stageDatas.length);
-cc.log(storage.stageDatas[0].type);
-*/
         var excludeNums = [];
         var items = [];
         for(var i=0;i<game.storage.stageItems.length;i++){            
@@ -55,14 +51,23 @@ cc.log(storage.stageDatas[0].type);
                         var posY = (105/2) * j;  
                     }
 
+                    //マップチップを張る
                     this.chipSprite = new Chip(posX,posY,this.game,type,chipNum);
                     this.game.mapNode.addChild(this.chipSprite);
                     this.chips.push(this.chipSprite);
 
-                    this.tree = new Tower(posX,posY,this.game);
-                    this.game.mapNode.addChild(this.tree,1000 - posY);
-                    this.trees.push(this.tree);
-                    //this.tree.setVisible(false);
+                    //目印になるタワーを建てる
+                    if(this.chipSprite.type == "poi"){
+                        this.tree = new Tower(posX,posY,this.game,2);
+                        this.game.mapNode.addChild(this.tree,1000 - posY);
+                        this.trees.push(this.tree);
+                        //this.tree.setVisible(false);
+                    }else{
+                        this.tree = new Tower(posX,posY,this.game,1);
+                        this.game.mapNode.addChild(this.tree,1000 - posY);
+                        this.trees.push(this.tree);
+                        //this.tree.setVisible(false);
+                    }
 
                     chipNum++;
                 }
@@ -70,30 +75,14 @@ cc.log(storage.stageDatas[0].type);
             }
         }
 
-        //コインを作成する
-        var coinCnt = this.storage.itemCoinCnt;
-        for (var i=0 ; i < coinCnt ; i++){
-            var coinX = getRandNumberFromRange(0,CONFIG.MAP_WIDHT);
-            var coinY = getRandNumberFromRange(0,CONFIG.MAP_WIDHT);
-            this.addCoin(coinX,coinY);
-        }
-
-        for(var i=0;i<this.chips.length;i++){
-            //zソートする
-            this.game.mapNode.reorderChild(
-                this.chips[i],
-                Math.floor(0 - this.chips[i].getPosition().y)
-            );
-        }
-/*
         for(var i=0;i<this.trees.length;i++){
             //zソートする
             this.game.mapNode.reorderChild(
                 this.trees[i],
-                Math.floor(0 - this.trees[i].getPosition().y)
+                Math.floor(1000 - this.trees[i].getPosition().y)
             );
         }
-*/
+
     },
 
     getChipPosition:function(id){
@@ -106,16 +95,6 @@ cc.log(storage.stageDatas[0].type);
             }
         }
         return [0,0];
-    },
-
-    //敵が目標とするターゲットを取得する
-    getEnemyTargetChip:function(){
-        for(var i=0;i<this.chips.length;i++){
-            if(this.chips[i].isOccupied == true && this.chips[i].type == "normal"){
-                this.enemyTargetChip  = this.chips[i];
-                break;
-            }
-        }
     },
 
     getTerritoryCnt:function(){
@@ -133,32 +112,12 @@ cc.log(storage.stageDatas[0].type);
     },
 
     update:function(){
-
-        for(var i=0;i<this.chips.length;i++){
-            //zソートする
-            this.game.mapNode.reorderChild(
-                this.chips[i],
-                Math.floor(0 - this.chips[i].getPosition().y)
-            );
-        }
-
-
         //世界が色づく
         var cnt = this.getTerritoryCnt();
         if(cnt >= 2){
             //敵が増殖
             if(this.isColored == false){
                 this.isColored = true;
-
-
-
-                //コインを作成する
-                /*
-                for (var i=0 ; i < 6 ; i++){
-                    var data = this.getCirclePos(i * 60);
-                    this.game.stage.addCoin(data[0],data[1]);
-                }*/
-
 
                 //Enemies 死亡時の処理、Zソート
                 for(var i=0;i<this.game.enemies.length;i++){
@@ -169,7 +128,6 @@ cc.log(storage.stageDatas[0].type);
                 for(var i=0;i<this.chips.length;i++){
                     var pos = this.chips[i].getPosition();
                     this.game.stage.addCoin(pos.x,pos.y);
-
                     this.chips[i].isOccupied = false;
                     if(this.chips[i].colorAlpha == 0){
                         this.chips[i].colorAlpha=1;
@@ -179,41 +137,21 @@ cc.log(storage.stageDatas[0].type);
                 for(var i=0;i<this.game.colleagues.length;i++){
                     this.game.colleagues[i].hp = 0;
                 }
-
-
-
             }
-
-
-        }
-
-        if(this.enemyTargetChip == null){
-            this.getEnemyTargetChip();
         }
 
         for(var i=0;i<this.chips.length;i++){
-
             this.chips[i].update();
-
-            if(this.chips[i].type == "normal"){
-                //占領した場合は木を表示する
-                if(this.chips[i].isOccupied == true){
+            this.trees[i].setVisible(false);
+            if(this.chips[i].type == "tree" || this.chips[i].type == "poi"){
+                //占領が完了した場合に木がたつ
+                if(this.chips[i].isOccupied == true && this.chips[i].type == "tree"){
                     this.trees[i].setVisible(true);
-                }else{
-                    this.trees[i].setVisible(false);
                 }
-                
-                //木がプレイヤーが画面で重なっている場合は透過する
-                if(this.trees[i].getPosition().x - 100 <= this.game.player.getPosition().x 
-                    && this.game.player.getPosition().x <= this.trees[i].getPosition().x + 100
-                    && this.trees[i].getPosition().y <= this.game.player.getPosition().y
-                ){
-                    this.trees[i].setAlpha(255*0.3);
-                }else{
-                    this.trees[i].setAlpha(255*1);
+                if(this.chips[i].type == "poi"){
+                    this.trees[i].setVisible(true);
                 }
-            }else{
-                this.trees[i].setVisible(false);
+                this.trees[i].update();
             }
         }
     },

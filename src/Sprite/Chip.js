@@ -92,12 +92,13 @@ var Chip = cc.Node.extend({
         this.colored.setAnchorPoint(0.5,0.5);
         this.addChild(this.colored);
 
+/*
 if(this.type == "poi"){
         this.temple = cc.Sprite.create(s_temple);
         this.temple.setPosition(0,40);
         this.temple.setAnchorPoint(0.5,0.5);
         this.addChild(this.temple);
-}
+}*/
 /*
         //mapNumber
         this.missionLabel = cc.LabelTTF.create(this.id,"Arial",14);

@@ -7,22 +7,40 @@
 //
 
 var Tower = cc.Node.extend({
-    ctor:function (posX,posY,game) {
+    ctor:function (posX,posY,game,type) {
         this._super();
         this.game     = game;
         this.storage  = this.game.storage;
         this.posX     = posX;
         this.posY     = posY;
+        this.type     = type;
         this.setPosition(posX,posY);
-/*
-        this.tree     = cc.Sprite.create(s_mapchip_sakura);
-        this.tree.setPosition(0,50);
-        //this.tree.setVisible(false);
-        this.addChild(this.tree);
-*/
+
+        if(this.type==1){
+            this.tree     = cc.Sprite.create(s_mapchip_sakura);
+            this.tree.setPosition(0,50);
+            this.addChild(this.tree);
+        }else if(this.type==2){
+            this.tree     = cc.Sprite.create(s_temple);
+            this.tree.setPosition(0,40);
+            this.addChild(this.tree);        
+        }
+    },
+
+    update:function(){
+        if(this.type == 2) return;
+        //木がプレイヤーが画面で重なっている場合は透過する
+        if(this.getPosition().x - 100 <= this.game.player.getPosition().x 
+            && this.game.player.getPosition().x <= this.getPosition().x + 100
+            && this.getPosition().y <= this.game.player.getPosition().y
+        ){
+            this.setAlpha(255*0.3);
+        }else{
+            this.setAlpha(255*1);
+        }
     },
 
     setAlpha:function(alpha){
-    	//this.tree.setOpacity(alpha);
+    	this.tree.setOpacity(alpha);
     }
 });
