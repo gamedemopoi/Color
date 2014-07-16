@@ -48,14 +48,6 @@ cc.log(storage.stageDatas[0].type);
 for()
 */
 
-        //軌跡（クラゲ型)
-        this.trackJellyFishes = new Array();
-        for (var i=0 ; i < 18 ; i++){
-            this.cube = new Cube(i,30,65);
-            this.trackJellyFishes.push(this.cube);
-            this.addChild(this.cube,999);
-        }
-
 
         if(this.id == 1){
             this.type  = "poi";
@@ -92,6 +84,20 @@ for()
             this.chipSprite = cc.Sprite.create(s_mapchip_001);
             this.hp = 0;
         }
+
+
+        if(this.type == "normal"){
+        }else{
+            //軌跡（クラゲ型)
+            this.trackJellyFishes = new Array();
+            for (var i=0 ; i < 18 ; i++){
+                this.cube = new Cube(i,30,90);
+                this.trackJellyFishes.push(this.cube);
+                this.addChild(this.cube,999);
+            }
+        }
+
+
 
         //マップ配置
         this.addChild(this.chipSprite);
@@ -223,10 +229,18 @@ if(this.type == "poi"){
 
     update:function() {
 
-        //cubes
-        for(var i=0;i<this.trackJellyFishes.length;i++){
-            this.trackJellyFishes[i].update();
+
+
+        if(this.type == "normal"){
+        }else{
+            //cubes
+            for(var i=0;i<this.trackJellyFishes.length;i++){
+                this.trackJellyFishes[i].update();
+            }
         }
+
+
+
 if(this.game.player.targetChip){
         if(this.game.player.targetChip.id == this.id){
             if(this.type == "poi"){

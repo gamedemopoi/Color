@@ -306,17 +306,11 @@ if(this.trackSnakeInterval >= 20){
                 min = distance;
                 //this.player.nE = this.enemies[i];
                 this.nearistEnemy   = this.game.enemies[i];
-
-
                 this.targetType = "ENEMY";
                 this.targetId   = this.game.enemies[i].id;
                 this.tE         = this.game.enemies[i];
             }
         }
-
-
-
-
 
         if(this.getPosition().x < this.nearistEnemy.getPosition().x){
             if(Math.abs(this.getPosition().x - this.nearistEnemy.getPosition().x) > this.walkSpeed){
