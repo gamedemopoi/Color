@@ -509,11 +509,10 @@ cc.log(this.player.targetType);
         collisionEnemyAndChip(this);
 
         //仲間 &　スライド
-        /*
         var isTouched = getCollisionColleagueAndSlide(this);
         if(isTouched >= 1){
             this.comboCnt++;
-        }*/
+        }
     },
 
     moveCamera:function(){
@@ -590,6 +589,18 @@ cc.log(this.player.targetType);
         if(this.isToucheable() == false) return;
 
 this.player.targetType = "NONE";
+
+        this.touched = touches[0].getLocation();
+        var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
+        var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
+        this.targetSprite.setPosition(tPosX,tPosY);
+        for(var i=0;i<this.stage.chips.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+            if(distance <= 50){
+                this.player.targetChip = this.stage.chips[i];
+            }
+        }
+
 /*
         this.touched = touches[0].getLocation();
         var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
