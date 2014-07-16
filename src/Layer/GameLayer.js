@@ -147,6 +147,9 @@ var GameLayer = cc.Layer.extend({
         this.storage.coinAmount = 999;
         this.comboCnt=0;
 
+        this.beforeTPosX = 0;
+        this.beforeTPosY = 0;
+
 
         this.scrollXCnt    = 0;
         this.scrollYCnt    = 0;
@@ -260,7 +263,7 @@ cc.log(this.player.targetType);
         this.stageRollingCube.update();
 
         //プレイヤー占領中のマーカーを表示する
-        if(this.player.targetChip != null && this.player.targetChip.isOccupied == false){
+        if(this.player.targetChip != null){
             this.marker.setVisible(true);
             this.marker.setOpacity(255 * 0.5);
             var collCnt = this.player.targetChip.colleagueCnt;
@@ -290,7 +293,7 @@ cc.log(this.player.targetType);
             this.player.moveToNearistEnemy();
         }else if(this.scrollXPower >= 50){
             this.player.targetType = "CHIP";
-            this.player.moveToTargetMarker(this.targetSprite);
+            this.player.moveToTargetMarker(this.player.targetChip);
         }else{
             this.player.targetType = "NONE";
             this.player.moveToTargetMarker(this.targetSprite);
@@ -588,15 +591,21 @@ cc.log(this.player.targetType);
     onTouchesBegan:function (touches, event) {
         if(this.isToucheable() == false) return;
 
-this.player.targetType = "NONE";
+        this.player.targetType = "NONE";
 
         this.touched = touches[0].getLocation();
         var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
         var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
+        
+
+this.beforeTPosX = this.targetSprite.getPosition().x;
+this.beforeTPosY = this.targetSprite.getPosition().y;
+
         this.targetSprite.setPosition(tPosX,tPosY);
+
         for(var i=0;i<this.stage.chips.length;i++){
             var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 50){
+            if(distance <= 70){
                 this.player.targetChip = this.stage.chips[i];
             }
         }
@@ -627,13 +636,24 @@ this.player.targetId   = this.stage.chips[i].id;
             }
         }
 */
-
-
 //cc.log("began");
     },
 
     onTouchesMoved:function (touches, event) {
         if(this.isToucheable() == false) return;
+
+
+
+
+        this.targetSprite.setPosition(this.beforeTPosX,this.beforeTPosY);
+        for(var i=0;i<this.stage.chips.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+            if(distance <= 70){
+                this.player.targetChip = this.stage.chips[i];
+            }
+        }
+
+
         this.touched = touches[0].getLocation();
 
         this.scrollX = (this.touched.x - this.cameraX) / this.mapScale;
@@ -667,9 +687,7 @@ if(distX > 60 || distY > 60){
         if(distX > distY){
             cc.log("横しこ");
             this.scrollXPower+=5;
-            //this.player.targetType = "CHIP";
         }else{
-            //this.player.targetType = "ENEMY";
             cc.log("縦しこ");
             this.scrollYPower+=5;
         }
@@ -713,7 +731,7 @@ if(distX > 60 || distY > 60){
 
         for(var i=0;i<this.stage.chips.length;i++){
             var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 50){
+            if(distance <= 70){
                 this.player.targetChip = this.stage.chips[i];
             }
         }
