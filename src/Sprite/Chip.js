@@ -395,7 +395,7 @@ if(this.type == "poi"){
         //HPの最大と最小
         if(this.hp <= 0){
             this.hp = this.maxHp;
-            this.game.addColleagues(1,1);
+            //this.game.addColleagues(1,1);
         }
         if(this.hp >= this.maxHp) this.hp = this.maxHp;
 

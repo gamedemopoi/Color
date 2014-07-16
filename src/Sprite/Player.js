@@ -39,6 +39,7 @@ var Player = cc.Node.extend({
         this.targetType        = "none";
         this.targetId          = 0;
         this.tE                = null;
+        this.nE                = null;
 
         this.targetChip        = null;
         this.damangeTexts      = new Array();
@@ -169,6 +170,8 @@ if(this.trackSnakeInterval >= 20){
             this.sigh.setPosition(0,0);
             this.addChild(this.sigh);
         }
+
+        this.nearistEnemy;
     },
 
     walkLeftDown:function(){
@@ -287,6 +290,83 @@ if(this.trackSnakeInterval >= 20){
                 this.setPosition(
                     this.getPosition().x,
                     targetSprite.getPosition().y
+                );
+            }
+        }
+    },
+
+
+    moveToNearistEnemy:function() {
+        if(this.isStop) return;
+
+        var min = 9999;
+        for(var i=0;i<this.game.enemies.length;i++){
+            var distance = cc.pDistance(this.getPosition(),this.game.enemies[i].getPosition());
+            if(min > distance){
+                min = distance;
+                //this.player.nE = this.enemies[i];
+                this.nearistEnemy   = this.game.enemies[i];
+
+
+                this.targetType = "ENEMY";
+                this.targetId   = this.game.enemies[i].id;
+                this.tE         = this.game.enemies[i];
+            }
+        }
+
+
+
+
+
+        if(this.getPosition().x < this.nearistEnemy.getPosition().x){
+            if(Math.abs(this.getPosition().x - this.nearistEnemy.getPosition().x) > this.walkSpeed){
+                this.setPosition(
+                    this.getPosition().x + this.walkSpeed,
+                    this.getPosition().y
+                );
+            }else{
+                this.setPosition(
+                    this.nearistEnemy.getPosition().x,
+                    this.getPosition().y
+                );
+            }
+        }
+        if(this.getPosition().x > this.nearistEnemy.getPosition().x){
+            if(Math.abs(this.getPosition().x - this.nearistEnemy.getPosition().x) > this.walkSpeed){
+                this.setPosition(
+                    this.getPosition().x - this.walkSpeed,
+                    this.getPosition().y
+                );
+            }else{
+                this.setPosition(
+                    this.nearistEnemy.getPosition().x,
+                    this.getPosition().y
+                );
+            }
+        }
+        if(this.getPosition().y < this.nearistEnemy.getPosition().y){
+            if(Math.abs(this.getPosition().y - this.nearistEnemy.getPosition().y) > this.walkSpeed){
+                this.setPosition(
+                    this.getPosition().x,
+                    this.getPosition().y + this.walkSpeed
+                );
+            }else{
+                this.setPosition(
+                    this.getPosition().x,
+                    this.nearistEnemy.getPosition().y
+                );
+            }
+        }
+        if(this.getPosition().y > this.nearistEnemy.getPosition().y){
+            if(Math.abs(this.getPosition().y - this.nearistEnemy.getPosition().y) > this.walkSpeed){
+                this.setPosition(
+                    this.getPosition().x,
+                    this.getPosition().y - this.walkSpeed
+                );
+            }else{
+                this.setPosition(
+                    this.getPosition().x,
+                    this.nearistEnemy.getPosition().y
                 );
             }
         }

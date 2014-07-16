@@ -158,12 +158,18 @@ var GameLayer = cc.Layer.extend({
         this.comboCnt=0;
 
 
-
-
+        this.scrollXCnt    = 0;
+        this.scrollYCnt    = 0;
+        this.scrollRCnt    = 0;
+        this.scrollXPower = 0;
+        this.scrollYPower = 0;
+        this.scrollRPower = 0;
         this.scrollMinX = 0;
         this.scrollMaxX = 0;
         this.scrollMinY = 0;
         this.scrollMaxY = 0;
+
+        this.movedCnt = 0;
     },
 
     setUI : function(){
@@ -208,6 +214,58 @@ var GameLayer = cc.Layer.extend({
         if(this.isMovedResult == true) return;
         //ミッションが表示中はupdateは実行しない
         if(this.isMissionVisible == true) return;
+
+
+        this.scrollXPower-=1;
+        this.scrollYPower-=1;
+        this.scrollRPower-=1;
+if(this.scrollXPower>100){
+    this.scrollXPower=100;
+}
+if(this.scrollYPower>100){
+    this.scrollYPower=100;
+}
+if(this.scrollRPower>100){
+    this.scrollRPower=100;
+}
+if(this.scrollXPower<0){
+    this.scrollXPower=0;
+}
+if(this.scrollYPower<0){
+    this.scrollYPower=0;
+}
+if(this.scrollRPower<0){
+    this.scrollRPower=0;
+}
+
+this.gameUI.gauge1.update(this.scrollRPower/100);
+this.gameUI.gauge2.update(this.scrollYPower/100);
+this.gameUI.gauge3.update(this.scrollXPower/100);
+
+
+if(this.scrollXPower>50){
+    this.scrollXCnt++;
+    if(this.scrollXCnt>10){
+        this.scrollXCnt=0;
+        this.addColleagues(1,1);
+    }
+}else{
+    this.scrollXCnt=0;
+}
+if(this.scrollYPower>50){
+    this.scrollYCnt++;
+    if(this.scrollYCnt>10){
+        this.scrollYCnt=0;
+    }
+}else{
+    this.scrollYCnt=0;
+}
+/*
+        this.scrollXCnt    = 0;
+        this.scrollYCnt    = 0;
+        this.scrollRCnt    = 0;
+*/
+
 
         this.stage.update();
 
@@ -257,8 +315,17 @@ var GameLayer = cc.Layer.extend({
         );
         this.player.playerDirectionManage(this.targetSprite);
 
+
+
+if(this.scrollYPower >= 50){
+        this.player.moveToNearistEnemy();
+}else{
         //プレイヤーの移動
         this.player.moveToTargetMarker(this.targetSprite);
+}
+
+
+
         if(this.scrollType == 1){
             this.moveCamera();
         }else if(this.scrollType == 2){
@@ -560,13 +627,14 @@ var GameLayer = cc.Layer.extend({
 //デバイス入力----->
     onTouchesBegan:function (touches, event) {
         if(this.isToucheable() == false) return;
-        
+
+/*
         this.touched = touches[0].getLocation();
         var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
         var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
         this.targetSprite.setPosition(tPosX,tPosY);
-        
-        //Enemies 死亡時の処理、Zソート
+
+
         for(var i=0;i<this.enemies.length;i++){
             var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
             if(distance <= 50){
@@ -585,7 +653,7 @@ this.player.targetType = "CHIP";
 this.player.targetId   = this.stage.chips[i].id;
             }
         }
-
+*/
 
 
 //cc.log("began");
@@ -630,12 +698,45 @@ this.player.targetId   = this.stage.chips[i].id;
         var distX = Math.abs(this.scrollMaxX - this.scrollMinX);
         var distY = Math.abs(this.scrollMaxY - this.scrollMinY);
 
+
+/*
+        this.scrollXPower = 0;
+        this.scrollYPower = 0;
+        this.scrollRPower = 0;
+*/
+
+
 //cc.log(distX);
+/*
+        if(distX > 230 && distY > 230){
+            cc.log("円しこ");
+            this.scrollRPower++;
+        }else
+*/
         if(distX > distY){
 cc.log("横しこ");
+this.scrollXPower++;
+
+
+
+this.player.targetType = "CHIP";
+
         }else{
 cc.log("縦しこ");
+this.scrollYPower++;
         }
+
+
+        this.movedCnt++;
+        if(this.movedCnt>30){
+        /*
+        this.scrollMinX = 0;
+        this.scrollMaxX = 0;
+        this.scrollMinY = 0;
+        this.scrollMaxY = 0;
+        */
+        }
+
 
     },
 
@@ -658,6 +759,26 @@ cc.log("縦しこ");
         this.scrollMaxX = 0;
         this.scrollMinY = 0;
         this.scrollMaxY = 0;
+
+
+        for(var i=0;i<this.enemies.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
+            if(distance <= 50){
+cc.log("敵を指定しています");
+this.player.targetType = "ENEMY";
+this.player.targetId   = this.enemies[i].id;
+this.player.tE         = this.enemies[i];
+return;
+            }
+        }
+        for(var i=0;i<this.stage.chips.length;i++){
+            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+            if(distance <= 50){
+cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
+this.player.targetType = "CHIP";
+this.player.targetId   = this.stage.chips[i].id;
+            }
+        }
     },
 
     onTouchesCancelled:function (touches, event) {

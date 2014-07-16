@@ -222,6 +222,21 @@ var GameUI = cc.Node.extend({
         this.addChild(this.comboLabel);
         //this.comboLabel.setOpacity(255*0.4);
 
+
+
+//1
+this.gauge1             = new Gauge(300,5,'blue');
+this.gauge1.setPosition(10,30);
+this.addChild(this.gauge1);
+
+this.gauge2             = new Gauge(300,5,'blue');
+this.gauge2.setPosition(10,20);
+this.addChild(this.gauge2);
+
+this.gauge3             = new Gauge(300,5,'blue');
+this.gauge3.setPosition(10,10);
+this.addChild(this.gauge3);
+
     },
 /*
     useCard001:function(){
