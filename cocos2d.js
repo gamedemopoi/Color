@@ -65,6 +65,7 @@
             'src/Sprite/Chip.js',
             'src/Sprite/Button.js',
             'src/Sprite/Tower.js',
+            'src/Sprite/Temple.js',
             'src/Util/HttpClient.js',
             'src/Util/Calc.js',
             'src/Util/Storage.js',

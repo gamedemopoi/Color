@@ -28,6 +28,11 @@ var s_result_clear       = base_dir + "ui/result_clear.png";
 var s_result_gameover    = base_dir + "ui/result_gameover.png";
 var s_mission_start      = base_dir + "ui/mission_start.png"; 
 
+
+var s_input_device       = base_dir + "ui/input_device.png"; 
+var s_input_device2      = base_dir + "ui/input_device2.png"; 
+var s_temple      = base_dir + "ui/temple.png"; 
+
 //map
 var s_mapchip_001_colored= base_dir + "map/q_map_green_colored_200.png";
 

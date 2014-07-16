@@ -140,7 +140,7 @@ var Enemy = cc.Node.extend({
 
     update:function() {
         if(this.routes){
-            cc.log(this.routes[this.routeId]);
+            //cc.log(this.routes[this.routeId]);
             var pos = this.game.stage.getChipPosition(this.routes[this.routeId]);
             var margin = 1;
             if(

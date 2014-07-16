@@ -134,6 +134,15 @@ cc.log(storage.stageDatas[0].type);
 
     update:function(){
 
+        for(var i=0;i<this.chips.length;i++){
+            //zソートする
+            this.game.mapNode.reorderChild(
+                this.chips[i],
+                Math.floor(0 - this.chips[i].getPosition().y)
+            );
+        }
+
+
         //世界が色づく
         var cnt = this.getTerritoryCnt();
         if(cnt >= 2){

@@ -156,6 +156,14 @@ var GameLayer = cc.Layer.extend({
 
         this.storage.coinAmount = 999;
         this.comboCnt=0;
+
+
+
+
+        this.scrollMinX = 0;
+        this.scrollMaxX = 0;
+        this.scrollMinY = 0;
+        this.scrollMaxY = 0;
     },
 
     setUI : function(){
@@ -595,6 +603,40 @@ this.player.targetId   = this.stage.chips[i].id;
 //cc.log("moved");
         this.scrollX = (this.touched.x - this.cameraX) / this.mapScale;
         this.scrollY = (this.touched.y - this.cameraY) / this.mapScale;
+
+
+
+/*
+        this.scrollMinX = 0;
+        this.scrollMaxX = 0;
+        this.scrollMinY = 0;
+        this.scrollMaxY = 0;
+*/
+
+        if(this.scrollMinX < this.touched.x){
+            this.scrollMinX = this.touched.x;
+        }
+        if(this.scrollMaxX > this.touched.x){
+            this.scrollMaxX = this.touched.x;
+        }
+        if(this.scrollMinY < this.touched.y){
+            this.scrollMinY = this.touched.y;
+        }
+        if(this.scrollMaxY > this.touched.y){
+            this.scrollMaxY = this.touched.y;
+        }
+
+
+        var distX = Math.abs(this.scrollMaxX - this.scrollMinX);
+        var distY = Math.abs(this.scrollMaxY - this.scrollMinY);
+
+//cc.log(distX);
+        if(distX > distY){
+cc.log("横しこ");
+        }else{
+cc.log("縦しこ");
+        }
+
     },
 
     onTouchesEnded:function (touches, event) {
@@ -609,6 +651,13 @@ this.player.targetId   = this.stage.chips[i].id;
         this.scrollX = 0;
         this.scrollY = 0;
         this.comboCnt = 0;
+
+
+
+        this.scrollMinX = 0;
+        this.scrollMaxX = 0;
+        this.scrollMinY = 0;
+        this.scrollMaxY = 0;
     },
 
     onTouchesCancelled:function (touches, event) {
