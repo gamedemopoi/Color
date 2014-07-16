@@ -32,6 +32,7 @@ var s_mission_start      = base_dir + "ui/mission_start.png";
 var s_input_device       = base_dir + "ui/input_device.png"; 
 var s_input_device2      = base_dir + "ui/input_device2.png"; 
 var s_temple      = base_dir + "ui/temple.png"; 
+var s_temple2      = base_dir + "ui/temple2.png"; 
 
 //map
 var s_mapchip_001_colored= base_dir + "map/q_map_green_colored_200.png";
@@ -212,6 +213,9 @@ var g_resources       = [
     s_chip_009,
 
     s_mapchip_001_colored,
-    s_effect_pipo113
+    s_effect_pipo113,
+
+    s_temple,
+    s_temple2
 
 ];

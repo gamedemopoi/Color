@@ -24,11 +24,15 @@ var Tower = cc.Node.extend({
             this.tree     = cc.Sprite.create(s_temple);
             this.tree.setPosition(0,40);
             this.addChild(this.tree);        
+        }else if(this.type==3){
+            this.tree     = cc.Sprite.create(s_temple2);
+            this.tree.setPosition(0,40);
+            this.addChild(this.tree);       
         }
     },
 
     update:function(){
-        if(this.type == 2) return;
+        if(this.type == 2 || this.type == 3) return;
         //木がプレイヤーが画面で重なっている場合は透過する
         if(this.getPosition().x - 100 <= this.game.player.getPosition().x 
             && this.game.player.getPosition().x <= this.getPosition().x + 100
