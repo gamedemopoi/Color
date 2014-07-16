@@ -37,18 +37,19 @@
             "enemy_interval" : 170,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":1, "type":"poi"    ,"hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+
+                {"id":1, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
                 
-                {"id":16,"type":"twitter","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                {"id":19,"type":"twitter","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":19,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
                 
-                {"id":22,"type":"tree"   ,"hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                {"id":23,"type":"tree"   ,"hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":22,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":23,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
                 
-                {"id":11,"type":"azito"  ,"hp":100,"maxHp":100,"depTime":4,"depMaxTime":5,"reproduction":true,"destroy":false},
-                {"id":25,"type":"azito"  ,"hp":100,"maxHp":100,"depTime":0,"depMaxTime":8,"reproduction":true,"destroy":false},
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":4,"depMaxTime":5,"reproduction":true,"destroy":false},
+                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":8,"reproduction":true,"destroy":false},
                 
-                {"id":10,"type":"boss"   ,"hp":100,"maxHp":100,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false}
+                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false}
             ]
         },
         { 

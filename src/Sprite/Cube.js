@@ -23,7 +23,7 @@ var Cube = cc.Node.extend({
         //AttackRollingCube
         this.rollingCube = cc.LayerColor.create(cc.c4b(255,0,0,this.alpha),2,2);
         this.addChild(this.rollingCube,999);
-        this.cubeAngle   = num * 20;
+        this.cubeAngle   = num * 36;
     },
 
     init:function () {

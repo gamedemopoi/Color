@@ -14,10 +14,12 @@ var Tower = cc.Node.extend({
         this.posX     = posX;
         this.posY     = posY;
         this.setPosition(posX,posY);
+/*
         this.tree     = cc.Sprite.create(s_mapchip_sakura);
         this.tree.setPosition(0,50);
         //this.tree.setVisible(false);
         this.addChild(this.tree);
+*/
     },
 
     setAlpha:function(alpha){

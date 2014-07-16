@@ -20,7 +20,7 @@ var Colleague = cc.Node.extend({
 
         this.actionType        = "none";
 
-        this.randId            = getRandNumberFromRange(1,16);
+        this.randId            = getRandNumberFromRange(1,10);
 
         //status
         this.lv                = this.storage.lv;

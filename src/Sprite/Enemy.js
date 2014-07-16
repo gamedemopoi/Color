@@ -92,7 +92,7 @@ var Enemy = cc.Node.extend({
 
         //軌跡（クラゲ型)
         this.trackJellyFishes = new Array();
-        for (var i=0 ; i < 18 ; i++){
+        for (var i=0 ; i < 10 ; i++){
             this.cube = new Cube(i,30,65);
             this.trackJellyFishes.push(this.cube);
             this.addChild(this.cube,999);

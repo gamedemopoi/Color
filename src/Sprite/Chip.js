@@ -41,63 +41,33 @@ var Chip = cc.Node.extend({
             this.addChild(this.sigh,-9995);
         }
 
+        this.type = "normal";
+        this.chipSprite = cc.Sprite.create(s_mapchip_001);
+        this.hp = 0;
+        for(var i=0;i<storage.stageDatas.length;i++){
+            if(storage.stageDatas[i].id == this.id){
+                this.type  = storage.stageDatas[i].type;
+                this.hp    = storage.stageDatas[i].hp;
+                this.maxHp = storage.stageDatas[i].maxHp;
+                
+                this.enemyDepTime    = 30 * storage.stageDatas[i].depTime;
+                this.enemyDepMaxTime = 30 * storage.stageDatas[i].depMaxTime;
 
-/*
-cc.log(storage.stageDatas.length);
-cc.log(storage.stageDatas[0].type);
-for()
-*/
-
-
-        if(this.id == 1){
-            this.type  = "poi";
-            this.hp    = 10;
-            this.maxHp = 10;
-            this.chipSprite = cc.Sprite.create(s_chip_003);
-        }else if(this.id == 10){
-            this.enemyDepMaxTime = 30 * 30;
-            this.type = "boss";
-            this.chipSprite = cc.Sprite.create(s_chip_002);
-        }else if(this.id == 11 || this.id == 25){
-            this.type = "azito";
-            if(this.id == 11){
-                this.enemyDepTime    = 30 * 4;
-                this.enemyDepMaxTime = 30 * 5;
+                this.img   = storage.stageDatas[i].img;
+                this.chipSprite = cc.Sprite.create(this.img);
             }
-            if(this.id == 25){
-                this.enemyDepTime    = 30 * 0;
-                this.enemyDepMaxTime = 30 * 8;
-            }
-            this.chipSprite = cc.Sprite.create(s_chip_001);
-        }else if(this.id == 23 || this.id == 22){
-            this.type  = "tree";
-            this.hp    = 50;
-            this.maxHp = 50;
-            this.chipSprite = cc.Sprite.create(s_chip_004);
-        }else if(this.id == 16 || this.id == 19){
-            this.type  = "twitter";
-            this.hp    = 15;
-            this.maxHp = 15;
-            this.chipSprite = cc.Sprite.create(s_chip_005);
-        }else{
-            this.type = "normal";
-            this.chipSprite = cc.Sprite.create(s_mapchip_001);
-            this.hp = 0;
         }
-
 
         if(this.type == "normal"){
         }else{
             //軌跡（クラゲ型)
             this.trackJellyFishes = new Array();
-            for (var i=0 ; i < 18 ; i++){
+            for (var i=0 ; i < 10 ; i++){
                 this.cube = new Cube(i,30,90);
                 this.trackJellyFishes.push(this.cube);
                 this.addChild(this.cube,999);
             }
         }
-
-
 
         //マップ配置
         this.addChild(this.chipSprite);
@@ -359,24 +329,6 @@ if(this.id == 11 || this.id == 25 || this.id == 10){
                 }
             }
         }
-
-/*
-        //敵が占領する
-        if(this.isOccupied == true && this.hp >= 100){
-            this.isOccupied = false;
-            this.game.storage.occupiedCnt--;
-            //SE
-            playSE(s_se_enemyOccupied);
-            //ターゲットを削除する
-            this.game.stage.enemyTargetChip = null;
-            //新しいターゲットを選択
-            this.game.stage.getEnemyTargetChip();
-            //CutIN
-            this.game.setTerritoryCnt();
-            this.game.cutIn.set_text("敵に占領された.[" + this.game.territoryCnt + "/" + this.game.missionMaxCnt + "]");
-        }
-*/
-
 
         
 if(this.type == "poi"){
