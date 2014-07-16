@@ -204,6 +204,15 @@ if(this.player.targetType == "ENEMY"){
 
 //cc.log(this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].getPosition().x);
 
+}else if(this.player.targetType == "CHIP"){
+
+
+    this.moveToPositions(
+        this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+        this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y
+    );
+
+
 }else{
     this.moveTo(this.player);
 }

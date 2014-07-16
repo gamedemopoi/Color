@@ -8,7 +8,7 @@
 
 //プレイヤとマップチップの衝突判定
 var collisionPlayerAndChip = function(game){
-    game.player.targetChip = null;
+    //game.player.targetChip = null;
 
     for(var i=0;i<game.stage.chips.length;i++){
         if(
@@ -19,13 +19,21 @@ var collisionPlayerAndChip = function(game){
         &&  game.player.getPosition().y <= game.stage.chips[i].getPosition().y + 50
 
         ){
-            game.player.targetChip = game.stage.chips[i];
+            //game.player.targetChip = game.stage.chips[i];
+            
+
             //このチップと仲間全員との距離を測る
             var cnt = getCollisionColleagueAndChipCount(game,game.stage.chips[i]);
             //最大値は8程度
             if(cnt >= 2){cnt = 2;}
+
+
+if(game.scrollXPower >= 50){
             game.stage.chips[i].hp -= 0.18 + cnt * CONFIG.PLAYER_OCCUPY_POWER;
             game.stage.chips[i].colleagueCnt = cnt;
+}
+
+
         }else{
             if(game.stage.chips[i].isOccupied == false){
                 game.stage.chips[i].hp = 100;

@@ -48,20 +48,26 @@ cc.log(storage.stageDatas[0].type);
 for()
 */
 
+        //軌跡（クラゲ型)
+        this.trackJellyFishes = new Array();
+        for (var i=0 ; i < 18 ; i++){
+            this.cube = new Cube(i,30,65);
+            this.trackJellyFishes.push(this.cube);
+            this.addChild(this.cube,999);
+        }
+
 
         if(this.id == 1){
-            //poi
-this.type = "poi";
-this.hp = 10;
-this.maxHp = 10;
+            this.type  = "poi";
+            this.hp    = 10;
+            this.maxHp = 10;
             this.chipSprite = cc.Sprite.create(s_chip_003);
         }else if(this.id == 10){
             this.enemyDepMaxTime = 30 * 30;
-this.type = "boss";
-            //boss
+            this.type = "boss";
             this.chipSprite = cc.Sprite.create(s_chip_002);
         }else if(this.id == 11 || this.id == 25){
-this.type = "azito";
+            this.type = "azito";
             if(this.id == 11){
                 this.enemyDepTime    = 30 * 4;
                 this.enemyDepMaxTime = 30 * 5;
@@ -70,45 +76,22 @@ this.type = "azito";
                 this.enemyDepTime    = 30 * 0;
                 this.enemyDepMaxTime = 30 * 8;
             }
-            //ajito
             this.chipSprite = cc.Sprite.create(s_chip_001);
         }else if(this.id == 23 || this.id == 22){
-this.type = "tree";
-this.hp = 50;
-this.maxHp = 50;
-            //tree
+            this.type  = "tree";
+            this.hp    = 50;
+            this.maxHp = 50;
             this.chipSprite = cc.Sprite.create(s_chip_004);
         }else if(this.id == 16 || this.id == 19){
-this.type = "twitter";
-this.hp = 15;
-this.maxHp = 15;
-            //twitter
+            this.type  = "twitter";
+            this.hp    = 15;
+            this.maxHp = 15;
             this.chipSprite = cc.Sprite.create(s_chip_005);
         }else{
-this.type = "normal";
+            this.type = "normal";
             this.chipSprite = cc.Sprite.create(s_mapchip_001);
             this.hp = 0;
-            //this.rectBase.setScale(0,0);
-            //this.rectBase.setOpacity(255*0.7);
         }
-        //マップイメージ
-/*
-        if(this.type == "normal"){
-            //var rand = getRandNumberFromRange(1,8);
-            //var num = getZeroPaddingNumber(rand,3);
-            //var imgPath = "map/chip_" + num + ".png";
-            this.chipSprite = cc.Sprite.create(s_mapchip_001);
-        }else if(this.type == "levelup"){
-            this.chipSprite = cc.Sprite.create(s_mapchip_002);
-        }else if(this.type == "recover"){
-            this.chipSprite = cc.Sprite.create(s_mapchip_003);
-        }else if(this.type == "bomb"){
-            this.chipSprite = cc.Sprite.create(s_mapchip_004);
-        }else if(this.type == "costdown"){
-            this.chipSprite = cc.Sprite.create(s_mapchip_005);
-        }
-*/
-
 
         //マップ配置
         this.addChild(this.chipSprite);
@@ -123,10 +106,9 @@ this.type = "normal";
         this.rectBase.setAnchorPoint(0.5,0.5);
         this.addChild(this.rectBase);
 
-if(this.type == "normal"){
-    this.rectBase.setOpacity(255*0);
-}
-
+        if(this.type == "normal"){
+            this.rectBase.setOpacity(255*0);
+        }
     
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);
@@ -240,6 +222,25 @@ if(this.type == "poi"){
     },
 
     update:function() {
+
+        //cubes
+        for(var i=0;i<this.trackJellyFishes.length;i++){
+            this.trackJellyFishes[i].update();
+        }
+
+        if(this.game.player.targetChip.id == this.id){
+            if(this.type == "poi"){
+                if(this.game.scrollXCnt==5){
+                    this.game.addColleagues(1,1);
+                }
+            }
+            if(this.type == "twitter"){
+                if(this.game.scrollXCnt==5){
+                    this.game.addColleagues(1,2);
+                }
+            }
+        }
+
         if(this.colorAlpha >= 1){
             this.coloredCnt++;
             if(this.coloredCnt>=2*this.coloredTime){
@@ -335,40 +336,13 @@ if(this.id == 11 || this.id == 25 || this.id == 10){
             if(this.type == "tree"){  
                 this.isOccupied = true;
                 this.game.storage.occupiedCnt++;
-
-
                 this.game.setTerritoryCnt();
-
                 //占領ミッションの場合はカットインを表示する
                 if(this.game.storage.missionGenre == "occupy"){
                     this.game.cutIn.set_text(
                         "占領した!.[" + this.game.territoryCnt + "/2]"
                     );
                 }
-
-                //コインを作成する
-                /*
-                for (var i=0 ; i < 6 ; i++){
-                    var data = this.getCirclePos(i * 60);
-                    this.game.stage.addCoin(data[0],data[1]);
-                }*/
-            }
-            if(this.type == "recover"){
-                //this.game.setAllUnitRecover();
-                //this.game.cutIn.set_text("全ユニット回復!!");
-            }
-            if(this.type == "levelup"){           
-                //this.game.setLevelUpPlayerAndColleagues();
-                //this.game.cutIn.set_text("パワーアップ × " + this.game.player.lv + "");
-                //this.game.strategyCode = 4;
-            }
-            if(this.type == "bomb"){
-                //this.game.setRemoveAllEnemies();
-                //this.game.cutIn.set_text("Map上の敵を排除!");
-            }
-            if(this.type == "costdown"){
-                //this.game.setBornCostDecrease();
-                //this.game.cutIn.set_text("仲間生産コスト↓");
             }
         }
 
@@ -404,11 +378,9 @@ if(this.type == "poi"){
         //HPの最大と最小
         if(this.hp <= 0){
             this.hp = this.maxHp;
-            this.game.addColleagues(1,2);
+            //this.game.addColleagues(1,2);
         }
         if(this.hp >= this.maxHp) this.hp = this.maxHp;
-
-
 }else{
         //HPの最大と最小
         if(this.hp <= 0)   this.hp = 0;
