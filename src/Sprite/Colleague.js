@@ -18,6 +18,8 @@ var Colleague = cc.Node.extend({
         this.damageCnt         = 0;
         this.isDamageOn        = false;
 
+        this.actionType        = "none";
+
         this.randId            = getRandNumberFromRange(1,16);
 
         //status
@@ -190,29 +192,21 @@ if(type == 1){
 
 if(this.player.targetType == "ENEMY"){
 
-    /*
-    this.moveToPositions(
-        this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[rand].getPosition().x,
-        this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[rand].getPosition().y
-    );
-    */
-
     this.moveToPositions(
         this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
         this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y
     );
 
-//cc.log(this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].getPosition().x);
-
 }else if(this.player.targetType == "CHIP"){
 
-
-    this.moveToPositions(
-        this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-        this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y
-    );
-
-
+    if(this.game.scrollXPower > 50){
+        this.moveToPositions(
+            this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+            this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y
+        );
+    }else{
+        this.moveTo(this.player);
+    }
 }else{
     this.moveTo(this.player);
 }

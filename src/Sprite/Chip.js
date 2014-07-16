@@ -227,7 +227,7 @@ if(this.type == "poi"){
         for(var i=0;i<this.trackJellyFishes.length;i++){
             this.trackJellyFishes[i].update();
         }
-
+if(this.game.player.targetChip){
         if(this.game.player.targetChip.id == this.id){
             if(this.type == "poi"){
                 if(this.game.scrollXCnt==5){
@@ -240,7 +240,7 @@ if(this.type == "poi"){
                 }
             }
         }
-
+}
         if(this.colorAlpha >= 1){
             this.coloredCnt++;
             if(this.coloredCnt>=2*this.coloredTime){

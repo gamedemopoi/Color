@@ -43,16 +43,6 @@ var GameLayer = cc.Layer.extend({
         this.targetSprite.setPosition(800,220);
         this.mapNode.addChild(this.targetSprite);
 
-        //setColleague
-        //this.addColleagues(4);
-
-        //setEnemies
-        /*
-        var enemyCnt = this.storage.initEnemyCnt;
-        for(var i=0;i<enemyCnt;i++){
-            this.addEnemy(this.storage.enemyCode);
-        }*/
-
         //initialize camera
         this.cameraX = 320/2 - this.player.getPosition().x;
         this.cameraY = 420/2 - this.player.getPosition().y;
@@ -67,12 +57,12 @@ var GameLayer = cc.Layer.extend({
         this.marker = cc.Sprite.create(s_cube_blue);
         this.mapNode.addChild(this.marker);
         this.marker.setAnchorPoint(0.5,0.5);
-
+/*
         this.enemyMarkerScale = 2.5;
         this.enemyMarker = cc.Sprite.create(s_cube_red);
         this.mapNode.addChild(this.enemyMarker);
         this.enemyMarker.setAnchorPoint(0.5,0.5);
-
+*/
         this.setUI();
         this.scheduleUpdate();
         this.setTouchEnabled(true);
@@ -286,7 +276,7 @@ cc.log(this.player.targetType);
         }else{
             this.marker.setVisible(false);
         }
-
+/*
         //Enemy占領中のマーカーを表示する
         if(this.stage.enemyTargetChip != null && this.stage.enemyTargetChip.enemyCollisionFlg == true){
             this.enemyMarker.setVisible(true);
@@ -304,7 +294,7 @@ cc.log(this.player.targetType);
         }else{
             this.enemyMarker.setVisible(false);
         }
-
+*/
         //プレイヤー
         this.player.update();
         this.mapNode.reorderChild(
@@ -713,18 +703,13 @@ this.player.targetId   = this.stage.chips[i].id;
         }else
 */
         if(distX > distY){
-cc.log("横しこ");
-this.scrollXPower+=5;
-
-
-
-this.player.targetType = "CHIP";
-
+            cc.log("横しこ");
+            this.scrollXPower+=5;
+            this.player.targetType = "CHIP";
         }else{
-
-this.player.targetType = "ENEMY";
-cc.log("縦しこ");
-this.scrollYPower+=5;
+            this.player.targetType = "ENEMY";
+            cc.log("縦しこ");
+            this.scrollYPower+=5;
         }
 
 
@@ -756,13 +741,10 @@ this.player.targetType = "NONE";
         this.scrollY = 0;
         this.comboCnt = 0;
 
-
-
         this.scrollMinX = 0;
         this.scrollMaxX = 0;
         this.scrollMinY = 0;
         this.scrollMaxY = 0;
-
 
         for(var i=0;i<this.enemies.length;i++){
             var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
@@ -784,7 +766,7 @@ this.player.targetChip = this.stage.chips[i];
 
             }
         }
-        
+
     },
 
     onTouchesCancelled:function (touches, event) {
