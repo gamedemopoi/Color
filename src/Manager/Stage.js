@@ -16,6 +16,13 @@ var Stage = cc.Class.extend({
         this.trees            = [];
         this.isColored        = false;
 
+//s_field
+        this.field = cc.Sprite.create(s_field);
+        this.field.setScale(1.8,1.8);
+        this.field.setPosition(800,340);
+        this.game.mapNode.addChild(this.field);
+
+
         var excludeNums = [];
         var items = [];
         for(var i=0;i<game.storage.stageItems.length;i++){            

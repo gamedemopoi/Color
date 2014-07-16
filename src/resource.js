@@ -104,6 +104,8 @@ var s_effect_pipo113     = base_dir + "sprite/pipo-btleffect113.png";
 
 var s_critical_message   = base_dir + "ui/critical_message.png";
 
+var s_field   = base_dir + "ui/field.png";
+
 var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";
 

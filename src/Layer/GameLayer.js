@@ -25,6 +25,7 @@ var GameLayer = cc.Layer.extend({
         else if ('mouse' in sys.capabilities)
                 this.setMouseEnabled(true);
 
+
         this.setParams();
         this.setScrollView();
         this.stage = new Stage(this);
