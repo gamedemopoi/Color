@@ -301,6 +301,8 @@ if(this.trackSnakeInterval >= 20){
     moveToNearistEnemy:function() {
         if(this.isStop) return;
 
+        if(this.nearistEnemy == null) return;
+
         var min = 9999;
         for(var i=0;i<this.game.enemies.length;i++){
             var distance = cc.pDistance(this.getPosition(),this.game.enemies[i].getPosition());
