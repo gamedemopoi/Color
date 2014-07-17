@@ -15,19 +15,19 @@ var Stage = cc.Class.extend({
         this.chips            = [];
         this.trees            = [];
         this.isColored        = false;
+        this.isEscaped        = false;
 
-//s_field
+        this.clearTargetCnt   = 0;
+
         this.field = cc.Sprite.create(s_field);
         this.field.setScale(1.8,1.3);
         this.field.setPosition(820,330);
         this.game.mapNode.addChild(this.field);
 
-//s_scape_zone
         this.escape = cc.Sprite.create(s_scape_zone);
         //this.escape.setScale(1.8,1.3);
         this.escape.setPosition(800,560);
         this.game.mapNode.addChild(this.escape);
-
 
         var excludeNums = [];
         var items = [];
@@ -84,6 +84,12 @@ var Stage = cc.Class.extend({
                         this.trees.push(this.tree);
                     }
                     chipNum++;
+
+
+                    if(this.chipSprite.type == "tree"){
+                        this.clearTargetCnt++;
+                    }
+
                 }
                 stageBaseNum++;
             }
@@ -126,9 +132,21 @@ var Stage = cc.Class.extend({
     },
 
     update:function(){
+//cc.log(this.clearTargetCnt);
+        if(
+            this.escape.getPosition().x - 50 <= this.game.player.getPosition().x &&
+            this.game.player.getPosition().x <= this.escape.getPosition().x + 50 &&
+            this.escape.getPosition().y - 50 <= this.game.player.getPosition().y &&
+            this.game.player.getPosition().y <= this.escape.getPosition().y + 50
+        ){
+            if(this.isColored == true){
+                this.isEscaped = true;
+            }
+        }
+
         //世界が色づく
         var cnt = this.getTerritoryCnt();
-        if(cnt >= 2){
+        if(cnt >= this.clearTargetCnt){
             //敵が増殖
             if(this.isColored == false){
                 this.isColored = true;

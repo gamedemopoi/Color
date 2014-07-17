@@ -49,7 +49,8 @@ var Chip = cc.Node.extend({
                 this.type  = storage.stageDatas[i].type;
                 this.hp    = storage.stageDatas[i].hp;
                 this.maxHp = storage.stageDatas[i].maxHp;
-                
+                this.routes = storage.stageDatas[i].route;
+cc.log(this.route);
                 this.enemyDepTime    = 30 * storage.stageDatas[i].depTime;
                 this.enemyDepMaxTime = 30 * storage.stageDatas[i].depMaxTime;
 
@@ -263,7 +264,7 @@ if(this.game.player.targetChip){
         }
 
 
-if(this.id == 11 || this.id == 25 || this.id == 10){
+if(this.type == "azito" || this.type == "boss"){
 
         var depEnemyCnt = 0;
         for(var i=0;i<this.game.enemies.length;i++){
@@ -272,7 +273,6 @@ if(this.id == 11 || this.id == 25 || this.id == 10){
             }
         }
 
-
         //if(depEnemyCnt == 0){
             this.enemyDepTime++;
         //}
@@ -280,19 +280,12 @@ if(this.id == 11 || this.id == 25 || this.id == 10){
         var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
         this.timeLabel.setString("" + nokori);
         if(this.enemyDepTime >= this.enemyDepMaxTime){
-            //this.timeLabel.setString("OPEN");
-            if(this.id == 11){
+            if(this.type == "azito"){
                 this.enemyDepTime = 0;
-                this.routes = [11,16,20,17,12,7];
                 this.game.addEnemyByPos(1,this.routes);
-            }else if(this.id == 25){
+            }
+            if(this.type == "boss"){
                 this.enemyDepTime = 0;
-                this.routes = [25,24,22,18,21,23];
-                this.game.addEnemyByPos(4,this.routes);
-            }else if(this.id == 10){
-                this.enemyDepTime = -9999;
-                this.timeLabel.setString("OPEN");
-                this.routes = [10,15,19,14,9,5,3,6];
                 this.game.addEnemyByPos(8,this.routes);
             }
         }

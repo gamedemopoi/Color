@@ -32,6 +32,11 @@ var Tower = cc.Node.extend({
     },
 
     update:function(){
+        if(this.game.stage.isColored == true){
+            this.setAlpha(255*0);
+            return;
+        }
+
         if(this.type == 2 || this.type == 3) return;
         //木がプレイヤーが画面で重なっている場合は透過する
         if(this.getPosition().x - 100 <= this.game.player.getPosition().x 

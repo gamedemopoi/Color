@@ -37,24 +37,14 @@
             "enemy_interval" : 170,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-
-                {"id":1, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                
-                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                {"id":19,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                
-                {"id":22,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                {"id":23,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
-                
-                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false},
-                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false},
-                
-                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false}
+                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"route":[]},
+                {"id":1,"type":"tree"     ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
+                {"id":15,"type":"azito"   ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":10,"reproduction":true,"destroy":false,"route":[15,1,11,25]}
             ]
         },
         { 
             "id"             : 2, 
-            "title"          : "1-2:土地×5を占領",
+            "title"          : "1-2.土地×2を占領",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -62,25 +52,45 @@
             "map"            : {"image":"sprite/ghost.png","w":32,"h":48,"x":5,"y":5},
             "reward"         : {"coin":100,"exp":100},
             "item_coin"      : 0,
-            "enemy_code"     : 1,
-            "init_enemy_cnt" : 0,  
-            "enemy_interval" : 150,
-            "items"          : [{"type":"levelup","count":2},{"type":"bomb","count":1}]
+            "enemy_code"     : 0,
+            "init_enemy_cnt" : 0,      
+            "enemy_interval" : 170,
+            "items"          : [{"type":"levelup","count":0}],
+            "datas"          : [
+                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":20,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":6,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":7,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":3,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":15,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":21,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false},
+                {"id":4,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false}
+            ]
         },
         { 
             "id"             : 3, 
-            "title"          : "1-3:ボスの討伐",
+            "title"          : "1-3.土地×2を占領",
             "detail"         : "",
             "time_limit"     : 2700,
-            "genre"          : "enemy",
-            "mission_count"  : 1,
+            "genre"          : "occupy",
+            "mission_count"  : 5,
             "map"            : {"image":"sprite/ghost.png","w":32,"h":48,"x":5,"y":5},
             "reward"         : {"coin":100,"exp":100},
             "item_coin"      : 0,
-            "enemy_code"     : 3,
-            "init_enemy_cnt" : 1,
-            "enemy_interval" : 9999999,
-            "items"          : [{"type":"levelup","count":2},{"type":"bomb","count":0}]
+            "enemy_code"     : 0,
+            "init_enemy_cnt" : 0,      
+            "enemy_interval" : 170,
+            "items"          : [{"type":"levelup","count":0}],
+            "datas"          : [
+                {"id":1, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":19,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":22,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":23,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false},
+                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false},
+                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false}
+            ]
         },
         { 
             "id"             : 4, 

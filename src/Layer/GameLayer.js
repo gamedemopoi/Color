@@ -58,12 +58,7 @@ var GameLayer = cc.Layer.extend({
         this.marker = cc.Sprite.create(s_cube_blue);
         this.mapNode.addChild(this.marker);
         this.marker.setAnchorPoint(0.5,0.5);
-/*
-        this.enemyMarkerScale = 2.5;
-        this.enemyMarker = cc.Sprite.create(s_cube_red);
-        this.mapNode.addChild(this.enemyMarker);
-        this.enemyMarker.setAnchorPoint(0.5,0.5);
-*/
+
         this.setUI();
         this.scheduleUpdate();
         this.setTouchEnabled(true);
@@ -151,7 +146,6 @@ var GameLayer = cc.Layer.extend({
         this.beforeTPosX = 0;
         this.beforeTPosY = 0;
 
-
         this.scrollXCnt    = 0;
         this.scrollYCnt    = 0;
         this.scrollRCnt    = 0;
@@ -204,14 +198,10 @@ var GameLayer = cc.Layer.extend({
 
     update:function(dt){
 
-
-//cc.log(this.comboCnt);
         //ページ遷移した場合はupdateは実行しない
         if(this.isMovedResult == true) return;
         //ミッションが表示中はupdateは実行しない
         if(this.isMissionVisible == true) return;
-
-cc.log(this.player.targetType);
 
         //スクロールのハンドリング
         this.scrollXPower-=1;
@@ -442,8 +432,9 @@ cc.log(this.player.targetType);
         }else{
             this.missionCnt = 0;
         }
+
         //ミッション達成した後の遷移
-        if(this.missionCnt >= this.missionMaxCnt){
+        if(this.stage.isEscaped == true){
             this.isMovedResult = true;
             this.goResultLayer();
         }
