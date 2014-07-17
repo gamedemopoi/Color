@@ -18,8 +18,8 @@ var Stage = cc.Class.extend({
 
 //s_field
         this.field = cc.Sprite.create(s_field);
-        this.field.setScale(1.8,1.8);
-        this.field.setPosition(800,340);
+        this.field.setScale(1.8,1.3);
+        this.field.setPosition(800,330);
         this.game.mapNode.addChild(this.field);
 
 

@@ -46,10 +46,10 @@
                 {"id":22,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
                 {"id":23,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false},
                 
-                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":4,"depMaxTime":5,"reproduction":true,"destroy":false},
-                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":8,"reproduction":true,"destroy":false},
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false},
+                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false},
                 
-                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false}
+                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false}
             ]
         },
         { 

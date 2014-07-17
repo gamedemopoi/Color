@@ -18,6 +18,7 @@ var EnemyBody = cc.Node.extend({
             this.cube = cc.LayerColor.create(cc.c4b(0,255,0,255),5,5);
             this.addChild(this.cube,999);
         }
+        this.setScale(1.5,1.5);
     },
 
     initializeParam:function(code){
