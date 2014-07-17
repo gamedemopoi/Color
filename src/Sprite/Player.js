@@ -301,7 +301,7 @@ if(this.trackSnakeInterval >= 20){
     moveToNearistEnemy:function() {
         if(this.isStop) return;
 
-        if(this.nearistEnemy == null) return;
+
 
         var min = 9999;
         for(var i=0;i<this.game.enemies.length;i++){
@@ -315,6 +315,8 @@ if(this.trackSnakeInterval >= 20){
                 this.tE         = this.game.enemies[i];
             }
         }
+
+        if(this.nearistEnemy == null) return;
 
         if(this.getPosition().x < this.nearistEnemy.getPosition().x){
             if(Math.abs(this.getPosition().x - this.nearistEnemy.getPosition().x) > this.walkSpeed){

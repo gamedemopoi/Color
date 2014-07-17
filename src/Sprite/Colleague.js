@@ -200,6 +200,9 @@ if(this.player.targetChip.type == "normal"){
 }
         }else if(this.game.scrollYPower > 50){
             this.actionType = "ENEMY";
+
+            if(this.player.tE == null) return;
+
             this.moveToPositions(
                 this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
                 this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y
