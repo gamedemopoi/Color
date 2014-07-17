@@ -477,7 +477,7 @@ this.setScale(3,3);
     initSprite:function(){
         //足下の影
         this.shadow = cc.Sprite.create(s_shadow);
-        this.shadow.setPosition(0,-20);
+        this.shadow.setPosition(0,0);
         this.shadow.setOpacity(255*0.4);
         this.addChild(this.shadow);
 
@@ -489,6 +489,7 @@ this.setScale(3,3);
         this.wa = cc.Animation.create(frameSeq,0.2);
         this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
         this.sprite = cc.Sprite.create(this.imagePath,cc.rect(0,0,this.imgWidth,this.imgHeight));
+        this.sprite.setPosition(0,20);
         this.sprite.runAction(this.ra);
         this.addChild(this.sprite);
 
