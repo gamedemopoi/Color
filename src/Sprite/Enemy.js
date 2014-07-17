@@ -95,7 +95,7 @@ this.setScale(1.5,1.5);
         //軌跡（クラゲ型)
         this.trackJellyFishes = new Array();
         for (var i=0 ; i < 10 ; i++){
-            this.cube = new Cube(i,30,65);
+            this.cube = new Cube(i,30,120);
             this.trackJellyFishes.push(this.cube);
             this.addChild(this.cube,999);
         }
@@ -222,10 +222,12 @@ this.setScale(1.5,1.5);
             var rad = Math.atan2(dX,dY);
             var speedX = this.walkSpeed * Math.sin(rad);
             var speedY = this.walkSpeed * Math.cos(rad);
-            this.setPosition(
-                this.getPosition().x + speedX,
-                this.getPosition().y + speedY
-            );
+            if(this.isDamageOn == false){
+                this.setPosition(
+                    this.getPosition().x + speedX,
+                    this.getPosition().y + speedY
+                );
+            }
         }else{
             if(this.routes){
                 var posi = this.game.stage.getChipPosition(this.routes[this.routeId]);
