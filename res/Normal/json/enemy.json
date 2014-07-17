@@ -30,7 +30,7 @@
             "hp"           : 500,
             "attack"       : 5,
             "defence"      : 10,
-            "eye_sight"    : 150,
+            "eye_sight"    : 120,
             "walk_speed"   : 2.4,
             "type"         : "normal",
             "track_num"    : 0,

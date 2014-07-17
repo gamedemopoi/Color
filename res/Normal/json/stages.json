@@ -59,7 +59,7 @@
             "datas"          : [
                 {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false  ,"enemyId":0,"route":[]},
                 {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false   ,"enemyId":0,"route":[]},
-                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":3,"reproduction":true,"destroy":false,"enemyId":1,"route":[11,25,4,15,1,22]}
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":10,"reproduction":true,"destroy":false,"enemyId":1,"route":[11,25,4,15,1,22]}
             ]
         },
         { 
