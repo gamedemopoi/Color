@@ -19,8 +19,14 @@ var Stage = cc.Class.extend({
 //s_field
         this.field = cc.Sprite.create(s_field);
         this.field.setScale(1.8,1.3);
-        this.field.setPosition(800,330);
+        this.field.setPosition(820,330);
         this.game.mapNode.addChild(this.field);
+
+//s_scape_zone
+        this.escape = cc.Sprite.create(s_scape_zone);
+        //this.escape.setScale(1.8,1.3);
+        this.escape.setPosition(800,560);
+        this.game.mapNode.addChild(this.escape);
 
 
         var excludeNums = [];

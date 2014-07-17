@@ -108,6 +108,7 @@ var s_field   = base_dir + "ui/field.png";
 
 var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";
+var s_scape_zone         = base_dir + "ui/escape_zone.png";
 
 //bgm
 var s_bgm_001            = base_dir + "res/sound/bgm/bgm_maoudamashii_cyber09.mp3";
@@ -218,6 +219,8 @@ var g_resources       = [
     s_effect_pipo113,
 
     s_temple,
-    s_temple2
+    s_temple2,
+
+    s_scape_zone
 
 ];
