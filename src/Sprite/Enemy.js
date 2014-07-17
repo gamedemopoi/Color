@@ -31,7 +31,7 @@ var Enemy = cc.Node.extend({
         this.initSprite();
         this.update();
 
-this.setScale(2,2);
+this.setScale(3,3);
     },
 
     loadEnemyJson : function() {
