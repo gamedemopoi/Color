@@ -197,37 +197,39 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                     }
                 }
             }
-/*
+
             //ノックバック
-            if(distance < 30){
-                var diffX = colleagues[j].getPosition().x - enemies[k].getPosition().x;
-                var diffY = colleagues[j].getPosition().y - enemies[k].getPosition().y;
-                if(diffX > 0){
-                    colleagues[j].setPosition(
-                        colleagues[j].getPosition().x + 10,
-                        colleagues[j].getPosition().y
-                    );
-                }
-                if(diffX < 0){
-                    colleagues[j].setPosition(
-                        colleagues[j].getPosition().x - 10,
-                        colleagues[j].getPosition().y
-                    );
-                }
-                if(diffY > 0){
-                    colleagues[j].setPosition(
-                        colleagues[j].getPosition().x,
-                        colleagues[j].getPosition().y + 10
-                    );
-                }
-                if(diffY < 0){
-                    colleagues[j].setPosition(
-                        colleagues[j].getPosition().x,
-                        colleagues[j].getPosition().y - 10
-                    );
+            if(distance < 80){
+                if(colleagues[j].actionType == "ENEMY"){}else{
+                    var diffX = colleagues[j].getPosition().x - enemies[k].getPosition().x;
+                    var diffY = colleagues[j].getPosition().y - enemies[k].getPosition().y;
+                    if(diffX > 0){
+                        colleagues[j].setPosition(
+                            colleagues[j].getPosition().x + 10,
+                            colleagues[j].getPosition().y
+                        );
+                    }
+                    if(diffX < 0){
+                        colleagues[j].setPosition(
+                            colleagues[j].getPosition().x - 10,
+                            colleagues[j].getPosition().y
+                        );
+                    }
+                    if(diffY > 0){
+                        colleagues[j].setPosition(
+                            colleagues[j].getPosition().x,
+                            colleagues[j].getPosition().y + 10
+                        );
+                    }
+                    if(diffY < 0){
+                        colleagues[j].setPosition(
+                            colleagues[j].getPosition().x,
+                            colleagues[j].getPosition().y - 10
+                        );
+                    }
                 }
             }
-*/
+
         }
     }
 };
