@@ -37,9 +37,9 @@
             "enemy_interval" : 170,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"route":[]},
-                {"id":1,"type":"tree"     ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":15,"type":"azito"   ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":29,"depMaxTime":30,"reproduction":true,"destroy":false,"route":[15,1,11,25]}
+                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"enemyId":0,"route":[]},
+                {"id":1,"type":"tree"     ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"enemyId":0,"route":[]},
+                {"id":15,"type":"azito"   ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":29,"depMaxTime":30,"reproduction":true,"destroy":false,"enemyId":1,"route":[15,1,11,25]}
             ]
         },
         { 
@@ -57,9 +57,9 @@
             "enemy_interval" : 170,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"route":[]},
-                {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":3,"reproduction":true,"destroy":false,"route":[11,25,4,15,1,22]}
+                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false  ,"enemyId":0,"route":[]},
+                {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false   ,"enemyId":0,"route":[]},
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":3,"reproduction":true,"destroy":false,"enemyId":1,"route":[11,25,4,15,1,22]}
             ]
         },
         { 
@@ -77,12 +77,12 @@
             "enemy_interval" : 170,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"route":[]},
-                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false ,"route":[]},
-                {"id":1,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":6,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":11,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":45,"depMaxTime":50,"reproduction":false,"destroy":false ,"route":[11,25,4,15,1,22]}
+                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"enemyId":0,"route":[]},
+                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false  ,"enemyId":0,"route":[]},
+                {"id":1,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
+                {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
+                {"id":6,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
+                {"id":11,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":45,"depMaxTime":50,"reproduction":false,"destroy":false ,"enemyId":1,"route":[11,25,4,15,1,22]}
             ]
         },
         { 
@@ -100,14 +100,14 @@
             "enemy_interval" : 170,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":1, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"route":[]},
-                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false ,"route":[]},
-                {"id":19,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false ,"route":[]},
-                {"id":22,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":23,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"route":[]},
-                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false,"route":[11,16,20,17,12,7]},
-                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false ,"route":[25,24,22,18,21,23]},
-                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false ,"route":[10,15,19,14,9,5,3,6]}
+                {"id":1, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false     ,"enemyId":0,"route":[]},
+                {"id":16,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false ,"enemyId":0,"route":[]},
+                {"id":19,"type":"twitter","img":"map/q_map_twitter.png","hp":15,"maxHp":15,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false ,"enemyId":0,"route":[]},
+                {"id":22,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"enemyId":0,"route":[]},
+                {"id":23,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false    ,"enemyId":0,"route":[]},
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false,"enemyId":1,"route":[11,16,20,17,12,7]},
+                {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false ,"enemyId":1,"route":[25,24,22,18,21,23]},
+                {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false ,"enemyId":1,"route":[10,15,19,14,9,5,3,6]}
             ]
         },
         { 

@@ -12,7 +12,7 @@
             "name"         : "デビルLv1",
             "detail"       : "", 
             "hp"           : 20,
-            "attack"       : 20,
+            "attack"       : 50,
             "defence"      : 10,
             "eye_sight"    : 30,
             "walk_speed"   : 2,
