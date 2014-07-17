@@ -95,6 +95,9 @@ if(type == 1){
         this.addChild(this.iconVoice,101);
 
         this.bulletLncTime = 0;
+
+
+this.setScale(0.5,0.5);
     },
     
     remove:function() {
