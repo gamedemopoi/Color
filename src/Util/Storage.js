@@ -205,8 +205,8 @@ var changeLoadingImage = function(){
         var loaderScene = new cc.LoaderScene();
         loaderScene.init();
         loaderScene._logoTexture.src    = "res/loading.png";
-        loaderScene._logoTexture.width  = 100;
-        loaderScene._logoTexture.height = 100;
+        loaderScene._logoTexture.width  = 104;
+        loaderScene._logoTexture.height = 215;
         cc.LoaderScene._instance = loaderScene;
     }
 };
