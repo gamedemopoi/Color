@@ -71,6 +71,9 @@ this.scrachMarker = cc.Sprite.create(s_input_scratch);
 this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
 this.addChild(this.scrachMarker,99999999);  
 
+
+this.addColleagues(5,1);
+
         this.scheduleUpdate();
         this.setTouchEnabled(true);
         return true;

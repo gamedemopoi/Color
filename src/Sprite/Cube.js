@@ -34,7 +34,7 @@ this.type = type;
     update:function() {
 
 if(this.type == "CHIP"){
-    this.eyeSightRange = 80;
+    this.eyeSightRange = 30;
     this.cubeAngle+=2;
 }
 

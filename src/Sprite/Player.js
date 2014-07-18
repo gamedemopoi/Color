@@ -75,6 +75,9 @@ for(var i=0;i<5;i++){
         this.initializeWalkAnimation();
 
 this.setScale(0.5,0.5);
+
+
+this.update();
     },
     
     init:function () {
