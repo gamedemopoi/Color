@@ -245,6 +245,7 @@ if(this.trackSnakeInterval >= 20){
 
     moveToTargetMarker:function(targetSprite) {
         if(this.isStop) return;
+        if(targetSprite == null) return;
 
         if(this.getPosition().x < targetSprite.getPosition().x){
             if(Math.abs(this.getPosition().x - targetSprite.getPosition().x) > this.walkSpeed){

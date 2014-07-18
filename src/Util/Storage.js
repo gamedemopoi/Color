@@ -45,9 +45,7 @@ var Storage = cc.Class.extend({
         //stage difficulty
         this.stageNumber      = 1;
         this.itemCoinCnt      = 10;
-        this.enemySetInterval = 30*30;
         this.begenEnemyCnt    = 0;
-        this.enemyCode        = 2;
 
         //player status
         this.lv               = 1;
@@ -185,11 +183,8 @@ var getStageDataFromJson = function(storage,stageNum) {
     storage.mapY             = stageData["map"]["y"];
 
     //stage difficult
-    storage.initEnemyCnt     = stageData["init_enemy_cnt"];
     storage.stageNumber      = stageData["id"];
     storage.itemCoinCnt      = stageData["item_coin"];
-    storage.enemySetInterval = stageData["enemy_interval"];
-    storage.enemyCode        = stageData["enemy_code"];
     storage.stageDatas       = stageData["datas"];
     storage.stageItems       = stageData["items"];
 

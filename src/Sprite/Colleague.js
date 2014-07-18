@@ -190,15 +190,18 @@ this.sprite.setPosition(0,this.jumpY);
 
         if(this.game.scrollXPower > 50){
             this.actionType = "CHIP";
-            if(this.player.targetChip.type == "normal"){
-                this.actionType = "FOLLOW";
-                this.moveTo(this.player);
-            }else{
-                this.moveToPositions(
-                    this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-                    this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y,
-                    0
-                );
+
+            if(this.player.targetChip == null){}else{
+                if(this.player.targetChip.type == "normal"){
+                    this.actionType = "FOLLOW";
+                    this.moveTo(this.player);
+                }else{
+                    this.moveToPositions(
+                        this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+                        this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y,
+                        0
+                    );
+                }
             }
         }else if(this.game.scrollYPower > 50){
             this.actionType = "ENEMY";

@@ -8,24 +8,8 @@
     ],
     "enemies": [
         {
-            "id"           : 0,
-            "name"         : "デビルLv1",
-            "detail"       : "", 
-            "hp"           : 20,
-            "attack"       : 50,
-            "defence"      : 10,
-            "eye_sight"    : 30,
-            "walk_speed"   : 2,
-            "type"         : "normal",
-            "track_num"    : 0,
-            "bullet"       : "none",
-            "image"        : "sprite/devil_001.png",
-            "image_width"  : 66.6,
-            "image_height" : 46.75
-        },
-        {
             "id"           : 1,
-            "name"         : "デビルLv1",
+            "name"         : "デビル",
             "detail"       : "", 
             "hp"           : 500,
             "attack"       : 5,
@@ -41,23 +25,7 @@
         },
         {
             "id"           : 2,
-            "name"         : "デビルLv2",
-            "detail"       : "", 
-            "hp"           : 50,
-            "attack"       : 5,
-            "defence"      : 10,
-            "eye_sight"    : 20,
-            "walk_speed"   : 2.4,
-            "type"         : "normal",
-            "track_num"    : 0,
-            "bullet"       : "none",
-            "image"        : "sprite/devil_001.png",
-            "image_width"  : 66.6,
-            "image_height" : 46.75
-        },
-        {
-            "id"           : 3,
-            "name"         : "デビルBoss",
+            "name"         : "REDデビル",
             "detail"       : "", 
             "hp"           : 300,
             "attack"       : 30,
@@ -72,7 +40,7 @@
             "image_height" : 46.75
         },
         {
-            "id"           : 4,
+            "id"           : 3,
             "name"         : "ドラゴンLv1",
             "detail"       : "", 
             "hp"           : 50,
@@ -88,40 +56,8 @@
             "image_height" : 46.75
         },
         {
-            "id"           : 5,
-            "name"         : "ドラゴンLv2",
-            "detail"       : "", 
-            "hp"           : 50,
-            "attack"       : 25,
-            "defence"      : 10,
-            "eye_sight"    : 30,
-            "walk_speed"   : 1.6,
-            "type"         : "normal",
-            "track_num"    : 0,
-            "bullet"       : "fire",
-            "image"        : "sprite/dragon_black.png",
-            "image_width"  : 50,
-            "image_height" : 46.75
-        },
-        {
-            "id"           : 6,
-            "name"         : "ドラゴンLv3",
-            "detail"       : "", 
-            "hp"           : 50,
-            "attack"       : 35,
-            "defence"      : 10,
-            "eye_sight"    : 30,
-            "walk_speed"   : 0.8,
-            "type"         : "normal",
-            "track_num"    : 0,
-            "bullet"       : "fire",
-            "image"        : "sprite/dragon_black.png",
-            "image_width"  : 50,
-            "image_height" : 46.75
-        },
-        {
-            "id"           : 7,
-            "name"         : "ドラゴンBoss",
+            "id"           : 4,
+            "name"         : "REDドラゴン",
             "detail"       : "", 
             "hp"           : 1200,
             "attack"       : 80,
@@ -136,7 +72,7 @@
             "image_height" : 46.75
         },
         {
-            "id"           : 8,
+            "id"           : 5,
             "name"         : "芋虫(S)",
             "detail"       : "", 
             "hp"           : 300,
@@ -152,7 +88,7 @@
             "image_height" : 78
         },
         {
-            "id"           : 9,
+            "id"           : 6,
             "name"         : "芋虫",
             "detail"       : "", 
             "hp"           : 9999,
@@ -168,7 +104,7 @@
             "image_height" : 78
         },
         {
-            "id"           : 10,
+            "id"           : 7,
             "name"         : "くらげ",
             "detail"       : "", 
             "hp"           : 9999,
@@ -184,7 +120,7 @@
             "image_height" : 78
         },
         {
-            "id"           : 11,
+            "id"           : 8,
             "name"         : "カメレオン",
             "detail"       : "", 
             "hp"           : 9999,
@@ -200,7 +136,7 @@
             "image_height" : 109
         },
         {
-            "id"           : 12,
+            "id"           : 9,
             "name"         : "カメレオンBIG",
             "detail"       : "", 
             "hp"           : 9999,
@@ -216,7 +152,7 @@
             "image_height" : 179
         },
         {
-            "id"           : 13,
+            "id"           : 10,
             "name"         : "アリジゴク",
             "detail"       : "", 
             "hp"           : 9999,

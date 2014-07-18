@@ -45,16 +45,35 @@ var SysMenu = cc.Layer.extend({
         sp.setAnchorPoint(0,0);
         this.addChild(sp, 0, 1);
 
-        //new game
-        this.newGameButton = new ButtonItem("NEW GAME",200,40,this.onNewGame,this);
-        this.newGameButton.setPosition(160,80);
-        this.addChild(this.newGameButton);
+
+
+        this.stage001Button = new ButtonItem("ST1:はじめてのポイ",250,40,this.goSt01,this);
+        this.stage001Button.setPosition(160,380);
+        this.addChild(this.stage001Button);
+
+        this.stage002Button = new ButtonItem("ST2:デビルハンター",250,40,this.goSt02,this);
+        this.stage002Button.setPosition(160,380 - 50 * 1);
+        this.addChild(this.stage002Button);
+
+        this.stage003Button = new ButtonItem("ST3:イモムシの謎",250,40,this.goSt03,this);
+        this.stage003Button.setPosition(160,380 - 50 * 2);
+        this.addChild(this.stage003Button);
+
+        //new stage003Button
+        this.stage004Button = new ButtonItem("ST4:イギタサンMAP",250,40,this.goSt04,this);
+        this.stage004Button.setPosition(160,380 - 50 * 3);
+        this.addChild(this.stage004Button);
 
         //story & tutorial
-        this.newGameButton = new ButtonItem("TUTORIAL",200,40,this.onTutorial,this);
-        this.newGameButton.setPosition(160,30);
-        this.addChild(this.newGameButton);
+        this.stage005Button = new ButtonItem("xxxxxxxx",250,40,this.goSt05,this);
+        this.stage005Button.setPosition(160,380 - 50 * 4);
+        this.addChild(this.stage005Button);
 
+        this.stage006Button = new ButtonItem("xxxxxxxx",250,40,this.goSt06,this);
+        this.stage006Button.setPosition(160,380 - 50 * 5);
+        this.addChild(this.stage006Button);
+
+/*
         //load game
         var loadGameTitle = "LOAD GAME (cleared)";
         if(this.storage.maxStageNumber < CONFIG.MAX_STAGE_NUMBER){
@@ -67,7 +86,7 @@ var SysMenu = cc.Layer.extend({
             //保存データがない人はロードボタンを表示させない
             this.loadGameButton.set_visible(false);
         }
-
+*/
         // debug
         this.label = cc.LabelTTF.create("DEBUG", "Arial", 18);
         this.debugModeButton = cc.MenuItemLabel.create(this.label,this.onDebugMode,this);
@@ -106,6 +125,26 @@ var SysMenu = cc.Layer.extend({
         return true;
     },
 
+goSt01:function(dt){
+this.onStageGame(1);
+},
+goSt02:function(dt){
+this.onStageGame(2);
+},
+goSt03:function(dt){
+this.onStageGame(3);
+},
+goSt04:function(dt){
+this.onStageGame(4);
+},
+goSt05:function(dt){
+this.onStageGame(5);
+},
+goSt06:function(dt){
+this.onStageGame(6);
+},
+
+
     update:function(dt){
         //ゲームの情報を右から左に流す
         this.infoText.setPosition(this.infoTextPosX,this.infoTextPosY);
@@ -123,6 +162,20 @@ var SysMenu = cc.Layer.extend({
 
             //ステージ情報（難易度）を取得する
             this.storage = getStageDataFromJson(this.storage,1);
+
+            scene.addChild(CharaSelectLayer.create(this.storage));
+            cc.Director.getInstance().replaceScene(cc.TransitionSlideInR.create(1.2, scene));
+        }, this);
+    },
+
+    onStageGame:function (stageNum) {
+        playSystemButton();
+
+        cc.LoaderScene.preload(g_chara_select_resources, function () {
+            var scene = cc.Scene.create();
+
+            //ステージ情報（難易度）を取得する
+            this.storage = getStageDataFromJson(this.storage,stageNum);
 
             scene.addChild(CharaSelectLayer.create(this.storage));
             cc.Director.getInstance().replaceScene(cc.TransitionSlideInR.create(1.2, scene));

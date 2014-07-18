@@ -11,7 +11,6 @@ var Enemy = cc.Node.extend({
         this.game    = game;
         this.storage = this.game.storage;
         this.routes  = routes;
-
         this.id      = getRandNumberFromRange(1,9999999);
 
         //dep
@@ -41,8 +40,13 @@ this.setScale(3,3);
     },
 
     initializeParam:function(code){
-        var data             = this.loadEnemyJson();
-        var jsonData         = data[code];
+        var jsonData = [];
+        var datas = this.loadEnemyJson();
+        for(var i=0;i<datas.length;i++){
+            if(datas[i]["id"] == code){
+                jsonData = datas[i];
+            }
+        }
         this.hp              = jsonData["hp"];
         this.maxHp           = jsonData["hp"];
         this.attack          = jsonData["attack"];

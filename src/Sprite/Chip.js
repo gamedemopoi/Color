@@ -15,8 +15,6 @@ var Chip = cc.Node.extend({
         this.isOccupied        = false;
         this.id                = id;
 
-        this.enemyCollisionCnt = 0;
-        this.enemyCollisionFlg = false;
         this.hp                = 100;
         this.maxHp             = 100;
         this.colleagueCnt      = 0;
@@ -50,10 +48,8 @@ var Chip = cc.Node.extend({
                 this.hp    = storage.stageDatas[i].hp;
                 this.maxHp = storage.stageDatas[i].maxHp;
                 this.routes = storage.stageDatas[i].route;
-cc.log(this.route);
                 this.enemyDepTime    = 30 * storage.stageDatas[i].depTime;
                 this.enemyDepMaxTime = 30 * storage.stageDatas[i].depMaxTime;
-
                 this.img   = storage.stageDatas[i].img;
                 this.chipSprite = cc.Sprite.create(this.img);
             }
@@ -119,6 +115,135 @@ if(this.type == "poi"){
         var cubeY = 50 * Math.sin(cubeRad) + this.posY;
         return [cubeX,cubeY];
     },
+
+
+
+
+    update:function() {
+
+        if(this.type == "normal"){
+        }else{
+            for(var i=0;i<this.trackJellyFishes.length;i++){
+                this.trackJellyFishes[i].update();
+            }
+        }
+
+        if(this.game.player.targetChip){
+            if(this.game.player.targetChip.id == this.id){
+                if(this.type == "poi"){
+                    if(this.game.scrollXCnt==5){
+                        this.game.addColleagues(1,1);
+                    }
+                }
+                if(this.type == "twitter"){
+                    if(this.game.scrollXCnt==5){
+                        this.game.addColleagues(1,2);
+                    }
+                }
+            }
+        }
+
+
+        if(this.colorAlpha >= 1){
+            this.coloredCnt++;
+            if(this.coloredCnt>=2*this.coloredTime){
+                if(this.isSetColor==false){
+                    this.isSetColor=true;
+                    var frameSeq = [];
+                    for (var y = 0; y <= 3; y++) {
+                        for (var x = 0; x <= 4; x++) {
+                            var frame = cc.SpriteFrame.create(s_effect_pipo113,cc.rect(192*x,192*y,192,192));
+                            frameSeq.push(frame);
+                        }
+                    }
+                    var wa = cc.Animation.create(frameSeq,0.1);
+                    this.energyRep = cc.Repeat.create(cc.Animate.create(wa),1);
+                    this.energyRep.retain();
+                    this.energySprite = cc.Sprite.create(s_enargy,cc.rect(0,0,48,96));
+                    this.energySprite.retain();
+                    this.energySprite.setPosition(0,70);
+                    this.energySprite.runAction(this.energyRep);
+                    this.addChild(this.energySprite);
+                    this.colored.setOpacity(255*100/100);
+                }
+            }
+        }
+
+
+if(this.type == "azito" || this.type == "boss"){
+
+        var depEnemyCnt = 0;
+        for(var i=0;i<this.game.enemies.length;i++){
+            if(this.game.enemies[i].depChipId == this.id){
+                depEnemyCnt++;
+            }
+        }
+
+        //if(depEnemyCnt == 0){
+            this.enemyDepTime++;
+        //}
+
+        var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
+        this.timeLabel.setString("" + nokori);
+        if(this.enemyDepTime >= this.enemyDepMaxTime){
+            if(this.type == "azito"){
+                this.enemyDepTime = 0;
+                this.game.addEnemyByPos(1,this.routes);
+            }
+            if(this.type == "boss"){
+                this.enemyDepTime = 0;
+                this.game.addEnemyByPos(8,this.routes);
+            }
+        }
+}
+
+
+
+
+
+        //プレイヤーが占領する
+        if(this.isOccupied == false && this.hp <= 0){
+            //SE
+            playSE(s_se_occupied);
+            if(this.type == "tree"){  
+                this.isOccupied = true;
+                this.game.storage.occupiedCnt++;
+                this.game.setTerritoryCnt();
+                //占領ミッションの場合はカットインを表示する
+                if(this.game.storage.missionGenre == "occupy"){
+                    this.game.cutIn.set_text(
+                        "占領した!.[" + this.game.territoryCnt + "]"
+                    );
+                }
+            }
+        }
+
+        
+if(this.type == "poi"){
+        //HPの最大と最小
+        if(this.hp <= 0){
+            this.hp = this.maxHp;
+        }
+        if(this.hp >= this.maxHp) this.hp = this.maxHp;
+
+
+}else if(this.type == "twitter"){
+        //HPの最大と最小
+        if(this.hp <= 0){
+            this.hp = this.maxHp;
+        }
+        if(this.hp >= this.maxHp) this.hp = this.maxHp;
+}else{
+        //HPの最大と最小
+        if(this.hp <= 0)   this.hp = 0;
+        if(this.hp >= this.maxHp) this.hp = this.maxHp;
+}  
+
+        var rate = this.hp / this.maxHp;
+        this.rectBase.setScale(rate);
+    },
+
+
 
 
     setColoredTime:function(){
@@ -197,157 +322,5 @@ if(this.type == "poi"){
         if(this.id == 25){
             this.coloredTime       = 25;
         }
-    },
-
-    update:function() {
-
-
-
-        if(this.type == "normal"){
-        }else{
-            //cubes
-            for(var i=0;i<this.trackJellyFishes.length;i++){
-                this.trackJellyFishes[i].update();
-            }
-        }
-
-
-
-if(this.game.player.targetChip){
-        if(this.game.player.targetChip.id == this.id){
-            if(this.type == "poi"){
-                if(this.game.scrollXCnt==5){
-                    this.game.addColleagues(1,1);
-                }
-            }
-            if(this.type == "twitter"){
-                if(this.game.scrollXCnt==5){
-                    this.game.addColleagues(1,2);
-                }
-            }
-        }
-}
-        if(this.colorAlpha >= 1){
-            this.coloredCnt++;
-            if(this.coloredCnt>=2*this.coloredTime){
-                if(this.isSetColor==false){
-                    this.isSetColor=true;
-
-                    //this.game.addEnemyByPos(this.game.storage.enemyCode,this.getPosition().x,this.getPosition().y);
-
-                    //木を生やす
-                    var frameSeq = [];
-                    for (var y = 0; y <= 3; y++) {
-                        for (var x = 0; x <= 4; x++) {
-                            var frame = cc.SpriteFrame.create(s_effect_pipo113,cc.rect(192*x,192*y,192,192));
-                            frameSeq.push(frame);
-                        }
-                    }
-                    var wa = cc.Animation.create(frameSeq,0.1);
-                    this.energyRep = cc.Repeat.create(cc.Animate.create(wa),1);
-                    this.energyRep.retain();
-                    this.energySprite = cc.Sprite.create(s_enargy,cc.rect(0,0,48,96));
-                    this.energySprite.retain();
-                    this.energySprite.setPosition(0,70);
-                    this.energySprite.runAction(this.energyRep);
-                    this.addChild(this.energySprite);
-/*
-                this.colorAlpha++;
-                if(this.colorAlpha>=100){
-                    this.colorAlpha = 100;
-                }
-*/
-                this.colored.setOpacity(255*100/100);
-                }
-
-            }
-        }
-
-
-if(this.type == "azito" || this.type == "boss"){
-
-        var depEnemyCnt = 0;
-        for(var i=0;i<this.game.enemies.length;i++){
-            if(this.game.enemies[i].depChipId == this.id){
-                depEnemyCnt++;
-            }
-        }
-
-        //if(depEnemyCnt == 0){
-            this.enemyDepTime++;
-        //}
-
-        var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
-        this.timeLabel.setString("" + nokori);
-        if(this.enemyDepTime >= this.enemyDepMaxTime){
-            if(this.type == "azito"){
-                this.enemyDepTime = 0;
-                this.game.addEnemyByPos(1,this.routes);
-            }
-            if(this.type == "boss"){
-                this.enemyDepTime = 0;
-                this.game.addEnemyByPos(8,this.routes);
-            }
-        }
-}
-
-
-
-        if(this.enemyCollisionCnt == 1){
-            this.enemyCollisionFlg = true;
-            this.enemyCollisionCnt++;
-            if(this.enemyCollisionCnt>=10){
-                this.enemyCollisionCnt = 0;
-                this.enemyCollisionFlg = false;
-            }
-        }
-
-        //プレイヤーが占領する
-        if(this.isOccupied == false && this.hp <= 0){
-            /*
-            if(this.type == "tree"){
-                this.isOccupied = true;
-                this.game.storage.occupiedCnt++;
-            }*/
-            //SE
-            playSE(s_se_occupied);
-            if(this.type == "tree"){  
-                this.isOccupied = true;
-                this.game.storage.occupiedCnt++;
-                this.game.setTerritoryCnt();
-                //占領ミッションの場合はカットインを表示する
-                if(this.game.storage.missionGenre == "occupy"){
-                    this.game.cutIn.set_text(
-                        "占領した!.[" + this.game.territoryCnt + "/2]"
-                    );
-                }
-            }
-        }
-
-        
-if(this.type == "poi"){
-        //HPの最大と最小
-        if(this.hp <= 0){
-            this.hp = this.maxHp;
-            //this.game.addColleagues(1,1);
-        }
-        if(this.hp >= this.maxHp) this.hp = this.maxHp;
-
-
-}else if(this.type == "twitter"){
-        //HPの最大と最小
-        if(this.hp <= 0){
-            this.hp = this.maxHp;
-            //this.game.addColleagues(1,2);
-        }
-        if(this.hp >= this.maxHp) this.hp = this.maxHp;
-}else{
-        //HPの最大と最小
-        if(this.hp <= 0)   this.hp = 0;
-        if(this.hp >= this.maxHp) this.hp = this.maxHp;
-}  
-
-        var rate = this.hp / this.maxHp;
-        this.rectBase.setScale(rate);
     },
 });
