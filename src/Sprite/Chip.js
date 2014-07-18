@@ -64,7 +64,7 @@ cc.log(this.route);
             //軌跡（クラゲ型)
             this.trackJellyFishes = new Array();
             for (var i=0 ; i < 10 ; i++){
-                this.cube = new Cube(i,30,90);
+                this.cube = new Cube(i,30,90,"CHIP");
                 this.trackJellyFishes.push(this.cube);
                 this.addChild(this.cube,999);
             }

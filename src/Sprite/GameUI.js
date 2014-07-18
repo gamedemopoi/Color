@@ -47,10 +47,31 @@ var GameUI = cc.Node.extend({
         this.uiHeader.addChild(this.imgHeader);
 
         //s_footer
-        this.imgHeader = cc.Sprite.create(s_footer);
+        this.imgHeader = cc.Sprite.create(s_input_device);
         this.imgHeader.setPosition(0,0);
         this.imgHeader.setAnchorPoint(0,0);
-        this.uiFooter.addChild(this.imgHeader);  
+        this.uiFooter.addChild(this.imgHeader);
+
+
+
+//input_tap
+/*
+this.tapMarkerOpacityRate = 0;
+this.tapMarker = cc.Sprite.create(s_input_tap);
+this.tapMarker.setPosition(100,10);
+this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
+this.uiFooter.addChild(this.tapMarker);
+
+this.scrachMarkerOpacityRate = 0;
+this.scrachMarker = cc.Sprite.create(s_input_scratch);
+//this.scrachMarker.setPosition(0,0);
+this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
+this.uiFooter.addChild(this.scrachMarker);   
+*/
+//s_input_device
+
+
+
 
         //ミッション文字
         this.missionLabel = cc.LabelTTF.create("","Arial",14);        
@@ -222,7 +243,7 @@ var GameUI = cc.Node.extend({
         this.addChild(this.comboLabel);
         //this.comboLabel.setOpacity(255*0.4);
 
-
+/*
 
 //1
 this.gauge1             = new Gauge(300,5,'blue');
@@ -236,6 +257,9 @@ this.addChild(this.gauge2);
 this.gauge3             = new Gauge(300,5,'blue');
 this.gauge3.setPosition(10,10);
 this.addChild(this.gauge3);
+
+*/
+
 
     },
 /*
@@ -281,6 +305,18 @@ this.addChild(this.gauge3);
 */
     //UIのテキストをupdateする
     update:function() {
+
+/*
+this.tapMarkerOpacityRate-=0.1;
+if(this.tapMarkerOpacityRate<0){this.tapMarkerOpacityRate=0}
+this.scrachMarkerOpacityRate-=0.1;
+if(this.scrachMarkerOpacityRate<0){this.scrachMarkerOpacityRate=0}
+
+
+this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
+this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
+*/
+
 
         if(this.game.comboCnt >= 1){
             this.comboLabel.setOpacity(255*1);

@@ -60,6 +60,17 @@ var GameLayer = cc.Layer.extend({
         this.marker.setAnchorPoint(0.5,0.5);
 
         this.setUI();
+
+this.tapMarkerOpacityRate = 0;
+this.tapMarker = cc.Sprite.create(s_input_tap);
+this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
+this.addChild(this.tapMarker,99999999);
+
+this.scrachMarkerOpacityRate = 0;
+this.scrachMarker = cc.Sprite.create(s_input_scratch);
+this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
+this.addChild(this.scrachMarker,99999999);  
+
         this.scheduleUpdate();
         this.setTouchEnabled(true);
         return true;
@@ -203,6 +214,14 @@ var GameLayer = cc.Layer.extend({
         //ミッションが表示中はupdateは実行しない
         if(this.isMissionVisible == true) return;
 
+this.tapMarkerOpacityRate-=0.1;
+if(this.tapMarkerOpacityRate<0){this.tapMarkerOpacityRate=0}
+this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
+
+this.scrachMarkerOpacityRate-=0.1;
+if(this.scrachMarkerOpacityRate<0){this.scrachMarkerOpacityRate=0}
+this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
+
         //スクロールのハンドリング
         this.scrollXPower-=1;
         this.scrollYPower-=1;
@@ -225,16 +244,11 @@ var GameLayer = cc.Layer.extend({
         if(this.scrollRPower<0){
             this.scrollRPower=0;
         }
-        this.gameUI.gauge1.update(this.scrollRPower/100);
-        this.gameUI.gauge2.update(this.scrollYPower/100);
-        this.gameUI.gauge3.update(this.scrollXPower/100);
-
 
         if(this.scrollXPower>50){
             this.scrollXCnt++;
             if(this.scrollXCnt>10){
                 this.scrollXCnt=0;
-                //this.addColleagues(1,1);
             }
         }else{
             this.scrollXCnt=0;
@@ -247,7 +261,6 @@ var GameLayer = cc.Layer.extend({
         }else{
             this.scrollYCnt=0;
         }
-
 
         this.stage.update();
 
@@ -583,177 +596,42 @@ var GameLayer = cc.Layer.extend({
     onTouchesBegan:function (touches, event) {
         if(this.isToucheable() == false) return;
 
-        this.player.targetType = "NONE";
-
         this.touched = touches[0].getLocation();
-        var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
-        var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
-        
-
-this.beforeTPosX = this.targetSprite.getPosition().x;
-this.beforeTPosY = this.targetSprite.getPosition().y;
-
-        this.targetSprite.setPosition(tPosX,tPosY);
-
-        for(var i=0;i<this.stage.chips.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 70){
-                this.player.targetChip = this.stage.chips[i];
+        if(this.touched.y <= 80){
+            this.scrollYPower+=25;
+            this.tapMarker.setPosition(this.touched.x,this.touched.y);
+            this.tapMarkerOpacityRate = 1;
+        }else{
+            this.player.targetType = "NONE";
+            var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
+            var tPosY = (this.touched.y - this.cameraY) / this.mapScale;   
+            this.targetSprite.setPosition(tPosX,tPosY);
+            for(var i=0;i<this.stage.chips.length;i++){
+                var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+                if(distance <= 70){
+                    this.player.targetChip = this.stage.chips[i];
+                }
             }
         }
-
-/*
-        this.touched = touches[0].getLocation();
-        var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
-        var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
-        this.targetSprite.setPosition(tPosX,tPosY);
-
-
-        for(var i=0;i<this.enemies.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
-            if(distance <= 50){
-cc.log("敵を指定しています");
-this.player.targetType = "ENEMY";
-this.player.targetId   = this.enemies[i].id;
-this.player.tE         = this.enemies[i];
-return;
-            }
-        }
-        for(var i=0;i<this.stage.chips.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 50){
-cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
-this.player.targetType = "CHIP";
-this.player.targetId   = this.stage.chips[i].id;
-            }
-        }
-*/
-//cc.log("began");
     },
 
     onTouchesMoved:function (touches, event) {
         if(this.isToucheable() == false) return;
 
-
-
-
-        this.targetSprite.setPosition(this.beforeTPosX,this.beforeTPosY);
-        for(var i=0;i<this.stage.chips.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 70){
-                this.player.targetChip = this.stage.chips[i];
-            }
-        }
-
-
         this.touched = touches[0].getLocation();
-
-        this.scrollX = (this.touched.x - this.cameraX) / this.mapScale;
-        this.scrollY = (this.touched.y - this.cameraY) / this.mapScale;
-
-        if(this.scrollMinX < this.touched.x){
-            this.scrollMinX = this.touched.x;
+        if(this.touched.y <= 80){
+            this.scrollXPower+=5;
+            this.scrachMarker.setPosition(this.touched.x,this.touched.y);
+            this.scrachMarkerOpacityRate = 1;
         }
-        if(this.scrollMaxX > this.touched.x){
-            this.scrollMaxX = this.touched.x;
-        }
-        if(this.scrollMinY < this.touched.y){
-            this.scrollMinY = this.touched.y;
-        }
-        if(this.scrollMaxY > this.touched.y){
-            this.scrollMaxY = this.touched.y;
-        }
-
-        var distX = Math.abs(this.scrollMaxX - this.scrollMinX);
-        var distY = Math.abs(this.scrollMaxY - this.scrollMinY);
-
-/*
-        if(distX > 230 && distY > 230){
-            cc.log("円しこ");
-            this.scrollRPower++;
-        }else
-*/
-
-
-if(distX > 60 || distY > 60){
-        if(distX > distY){
-            cc.log("横しこ");
-            this.scrollXPower+=7;
-        }else{
-            cc.log("縦しこ");
-            this.scrollYPower+=7;
-        }
-}
-
-
-        this.movedCnt++;
-        if(this.movedCnt>30){
-        /*
-        this.scrollMinX = 0;
-        this.scrollMaxX = 0;
-        this.scrollMinY = 0;
-        this.scrollMaxY = 0;
-        */
-        }
-
-
     },
 
     onTouchesEnded:function (touches, event) {
 
-        this.scrollXPower=0;
-        this.scrollYPower=0;
-        this.scrollRPower=0;
-
-        if(this.scrollX == 0){
-            this.touched = touches[0].getLocation();
-            var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
-            var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
-            this.targetSprite.setPosition(tPosX,tPosY);
-        }
-
-        this.scrollX = 0;
-        this.scrollY = 0;
-        this.comboCnt = 0;
-
-        this.scrollMinX = 0;
-        this.scrollMaxX = 0;
-        this.scrollMinY = 0;
-        this.scrollMaxY = 0;
-
-        for(var i=0;i<this.stage.chips.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 70){
-                this.player.targetChip = this.stage.chips[i];
-            }
-        }
-
-/*
-        for(var i=0;i<this.enemies.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
-            if(distance <= 50){
-cc.log("敵を指定しています");
-this.player.targetType = "ENEMY";
-this.player.targetId   = this.enemies[i].id;
-this.player.tE         = this.enemies[i];
-return;
-            }
-        }
-        for(var i=0;i<this.stage.chips.length;i++){
-            var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-            if(distance <= 50){
-cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
-this.player.targetType = "CHIP";
-this.player.targetId   = this.stage.chips[i].id;
-this.player.targetChip = this.stage.chips[i];
-
-            }
-        }
-*/
     },
 
     onTouchesCancelled:function (touches, event) {
-cc.log("cancel");
+
     },
 
     //アイテムの使用関数----->

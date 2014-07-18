@@ -34,6 +34,12 @@ var s_input_device2      = base_dir + "ui/input_device2.png";
 var s_temple      = base_dir + "ui/temple.png"; 
 var s_temple2      = base_dir + "ui/temple2.png"; 
 
+
+
+var s_input_device       = base_dir + "ui/input_device.png"; 
+var s_input_scratch      = base_dir + "ui/scratch.png"; 
+var s_input_tap          = base_dir + "ui/tap.png"; 
+
 //map
 var s_mapchip_001_colored= base_dir + "map/q_map_green_colored_200.png";
 
@@ -221,6 +227,9 @@ var g_resources       = [
     s_temple,
     s_temple2,
 
-    s_scape_zone
+    s_scape_zone,
+    s_input_device,
+    s_input_scratch,
+    s_input_tap
 
 ];

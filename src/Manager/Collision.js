@@ -197,7 +197,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                     }
                 }
             }
-
+/*
             //ノックバック
             if(distance < 80){
                 if(colleagues[j].actionType == "ENEMY"){}else{
@@ -229,7 +229,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                     }
                 }
             }
-
+*/
         }
     }
 };

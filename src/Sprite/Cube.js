@@ -7,8 +7,10 @@
 //
 
 var Cube = cc.Node.extend({
-    ctor:function (num,rangeMin,rangeMax) {
+    ctor:function (num,rangeMin,rangeMax,type) {
         this._super();
+
+this.type = type;
 
         this.rangeMin = rangeMin;
         this.rangeMax = rangeMax;
@@ -31,6 +33,12 @@ var Cube = cc.Node.extend({
 
     update:function() {
 
+if(this.type == "CHIP"){
+    this.eyeSightRange = 80;
+    this.cubeAngle+=2;
+}
+
+if(this.type == "ENEMY"){
 
         if(this.rangeMin != this.rangeMax){
             this.eyeSightRange += 1 * this.frowaringDirection;
@@ -41,8 +49,8 @@ var Cube = cc.Node.extend({
                 this.frowaringDirection = 5;
             }
         }
+}
 
-//this.eyeSightRange = 80;
 
         //update rolling cube
         //this.cubeAngle+=2;

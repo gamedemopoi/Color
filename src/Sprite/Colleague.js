@@ -95,7 +95,8 @@ if(type == 1){
         this.addChild(this.iconVoice,101);
 
         this.bulletLncTime = 0;
-
+this.jumpY = 0;
+this.jumpYDirect = "up";
 
 this.setScale(0.5,0.5);
     },
@@ -133,6 +134,8 @@ this.setScale(0.5,0.5);
     },
 
     update:function() {
+
+this.sprite.setPosition(0,this.jumpY);
 
         if(this.bulletLncTime>=1){
             this.iconVoice.setOpacity(255*0);
@@ -187,25 +190,23 @@ this.setScale(0.5,0.5);
 
         if(this.game.scrollXPower > 50){
             this.actionType = "CHIP";
-
-if(this.player.targetChip.type == "normal"){
-    this.actionType = "FOLLOW";
-    this.moveTo(this.player);
-}else{
-
-            this.moveToPositions(
-                this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-                this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y
-            );
-}
+            if(this.player.targetChip.type == "normal"){
+                this.actionType = "FOLLOW";
+                this.moveTo(this.player);
+            }else{
+                this.moveToPositions(
+                    this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+                    this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y,
+                    0
+                );
+            }
         }else if(this.game.scrollYPower > 50){
             this.actionType = "ENEMY";
-
             if(this.player.tE == null) return;
-
             this.moveToPositions(
                 this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-                this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y
+                this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y,
+                1
             );
         }else{
             this.actionType = "FOLLOW";
@@ -334,240 +335,54 @@ if(this.player.targetChip.type == "normal"){
         }
     },
 
-    attackToBullet:function(bullet){
-        //if(this.isStop) return;
-        if(this.getPosition().x < bullet.getPosition().x){
-            if(Math.abs(this.getPosition().x - bullet.getPosition().x) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x + this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    bullet.getPosition().x,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().x > bullet.getPosition().x){
-            if(Math.abs(this.getPosition().x - bullet.getPosition().x) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x - this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    bullet.getPosition().x,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y < bullet.getPosition().y){
-            if(Math.abs(this.getPosition().y - bullet.getPosition().y) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y + this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    bullet.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y > bullet.getPosition().y){
-            if(Math.abs(this.getPosition().y - bullet.getPosition().y) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y - this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    bullet.getPosition().y
-                );
-            }
-        }
-    },
-
-    attackTo:function(enemy){
-        if(this.isStop) return;
-
-        if(this.getPosition().x < enemy.getPosition().x){
-            if(Math.abs(this.getPosition().x - enemy.getPosition().x) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x + this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    enemy.getPosition().x,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().x > enemy.getPosition().x){
-            if(Math.abs(this.getPosition().x - enemy.getPosition().x) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x - this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    enemy.getPosition().x,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y < enemy.getPosition().y){
-            if(Math.abs(this.getPosition().y - enemy.getPosition().y) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y + this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    enemy.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y > enemy.getPosition().y){
-            if(Math.abs(this.getPosition().y - enemy.getPosition().y) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y - this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    enemy.getPosition().y
-                );
-            }
-        }
-    },
-
-
     moveTo:function(player) {
-        if(this.isStop) return;
+        this.jumpY=0;
+        this.jumpYDirect = "up";
 
-        if(this.getPosition().x < player.getPosition().x){
-            if(Math.abs(this.getPosition().x - player.getPosition().x) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x + this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    player.getPosition().x,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().x > player.getPosition().x){
-            if(Math.abs(this.getPosition().x - player.getPosition().x) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x - this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    player.getPosition().x,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y < player.getPosition().y){
-            if(Math.abs(this.getPosition().y - player.getPosition().y) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y + this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    player.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y > player.getPosition().y){
-            if(Math.abs(this.getPosition().y - player.getPosition().y) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y - this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    player.getPosition().y
-                );
-            }
-        }
+        if(this.isStop) return;
+        var dX = this.game.player.getPosition().x - this.getPosition().x;
+        var dY = this.game.player.getPosition().y - this.getPosition().y;
+        var rad = Math.atan2(dX,dY);
+        var speedX = this.walkSpeed * Math.sin(rad);
+        var speedY = this.walkSpeed * Math.cos(rad);
+        this.setPosition(
+            this.getPosition().x + speedX,
+            this.getPosition().y + speedY
+        );
     },
 
+    moveToPositions:function(posX,posY,jumpType) {
+        if(jumpType==1){
+            if(this.jumpYDirect=="up"){
+                this.jumpY+=5;
+                if(this.jumpY >= 120){
+                    this.jumpY = 120;
+                    this.jumpYDirect="down";
+                }
+            }else if(this.jumpYDirect=="down"){
+                this.jumpY-=15;
+                if(this.jumpY <= 0){
+                    this.jumpY = 0;
+                    this.jumpYDirect="up";
+                }
+            }
 
-    moveToPositions:function(posX,posY) {
-        //if(this.isStop) return;
-        if(this.getPosition().x < posX){
-            if(Math.abs(this.getPosition().x - posX) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x + this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    posX,
-                    this.getPosition().y
-                );
-            }
         }
-        if(this.getPosition().x > posX){
-            if(Math.abs(this.getPosition().x - posX) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x - this.walkSpeed,
-                    this.getPosition().y
-                );
-            }else{
-                this.setPosition(
-                    posX,
-                    this.getPosition().y
-                );
-            }
-        }
-        if(this.getPosition().y < posY){
-            if(Math.abs(this.getPosition().y - posY) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y + this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    posY
-                );
-            }
-        }
-        if(this.getPosition().y > posY){
-            if(Math.abs(this.getPosition().y - posY) > this.walkSpeed){
-                this.setPosition(
-                    this.getPosition().x,
-                    this.getPosition().y - this.walkSpeed
-                );
-            }else{
-                this.setPosition(
-                    this.getPosition().x,
-                    posY
-                );
-            }
-        }
-
+        var dX = posX - this.getPosition().x;
+        var dY = posY - this.getPosition().y;
+        var rad = Math.atan2(dX,dY);
+        var speedX = this.walkSpeed * Math.sin(rad);
+        var speedY = this.walkSpeed * Math.cos(rad);
+        this.setPosition(
+            this.getPosition().x + speedX,
+            this.getPosition().y + speedY
+        );
     },
 
     setDirection:function(DX,DY){
         //横の距離が大きいとき
         var diffX = Math.floor(this.getPosition().x - DX);
         var diffY = Math.floor(this.getPosition().y - DY);
-        
         if(diffX > 0 && diffY > 0){
             this.walkRightUp();
         }

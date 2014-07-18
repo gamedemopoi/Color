@@ -95,7 +95,7 @@ this.setScale(3,3);
         //軌跡（クラゲ型)
         this.trackJellyFishes = new Array();
         for (var i=0 ; i < 10 ; i++){
-            this.cube = new Cube(i,30,120);
+            this.cube = new Cube(i,30,120,"ENEMY");
             this.trackJellyFishes.push(this.cube);
             this.addChild(this.cube,999);
         }
@@ -468,7 +468,9 @@ this.setScale(3,3);
         }
         
         this.damageText = new DamageText();
+        this.damageText.setScale(0.2);
         this.addChild(this.damageText,5);
+
         this.damangeTexts.push(this.damageText);
 
         this.isDamageOn = true;
