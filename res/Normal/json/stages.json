@@ -38,7 +38,7 @@
         },
         { 
             "id"             : 2, 
-            "title"          : "2.デビルハンター",
+            "title"          : "2.xxxxxxxx",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -50,12 +50,12 @@
             "datas"          : [
                 {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false  ,"enemyId":0,"route":[]},
                 {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false   ,"enemyId":0,"route":[]},
-                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":10,"reproduction":true,"destroy":false,"enemyId":1,"route":[11,25,4,15,1,22]}
+                {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":10,"reproduction":true,"destroy":false,"enemyId":8,"route":[11,25,4,15,1,22]}
             ]
         },
         { 
             "id"             : 3, 
-            "title"          : "3.ツイッターポイの出現",
+            "title"          : "3.xxxxxxxx",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -70,12 +70,12 @@
                 {"id":1,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
                 {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
                 {"id":6,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
-                {"id":11,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":45,"depMaxTime":50,"reproduction":false,"destroy":false ,"enemyId":1,"route":[11,25,4,15,1,22]}
+                {"id":11,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":45,"depMaxTime":50,"reproduction":false,"destroy":false ,"enemyId":6,"route":[11,25,4,15,1,22]}
             ]
         },
         { 
             "id"             : 4, 
-            "title"          : "4.イギタサンMAP",
+            "title"          : "4.xxxxxxxx",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -97,7 +97,7 @@
         },
         { 
             "id"             : 5, 
-            "title"          : "1-3.土地×2を占領",
+            "title"          : "5.xxxxxxxx",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -119,7 +119,7 @@
         },
         { 
             "id"             : 6, 
-            "title"          : "1-3.土地×2を占領",
+            "title"          : "6.xxxxxxxx",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",

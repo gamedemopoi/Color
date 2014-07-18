@@ -131,9 +131,9 @@
             "type"         : "cockroach",
             "track_num"    : 0,
             "bullet"       : "none",
-            "image"        : "sprite/chameleon_blue.png",
-            "image_width"  : 77.66,
-            "image_height" : 109
+            "image"        : "sprite/chameleon_blue_s.png",
+            "image_width"  : 50,
+            "image_height" : 70
         },
         {
             "id"           : 9,

@@ -8,28 +8,19 @@
 
 var Chip = cc.Node.extend({
 
-    ctor:function (posX,posY,game,type,id) {
+    ctor:function (posX,posY,game,id) {
         this._super();
         this.game              = game;
-        this.type              = type;
-        this.isOccupied        = false;
         this.id                = id;
+        this.isOccupied        = false;
 
-        this.hp                = 100;
-        this.maxHp             = 100;
-        this.colleagueCnt      = 0;
         this.posX              = posX;
         this.posY              = posY;
-
         this.coloredCnt        = 0;
         this.colorAlpha        = 0;
         this.isSetColor        = false;
 
-        this.enemyDepMaxTime   = 30 * 5;
-        this.enemyDepTime      = 0;
-
         this.coloredTime       = 1;
-
         this.setColoredTime();
 
         //デバッグ用の中心を表示するサインマーカー
@@ -39,19 +30,26 @@ var Chip = cc.Node.extend({
             this.addChild(this.sigh,-9995);
         }
 
-        this.type = "normal";
+        //マップチップの作成(default)
+        this.hp              = 0;
+        this.maxHp           = 0;
+        this.routes          = [];
+        this.enemyId         = 0;
+        this.enemyDepTime    = 0;
+        this.enemyDepMaxTime = 0;
         this.chipSprite = cc.Sprite.create(s_mapchip_001);
-        this.hp = 0;
+        //マップチップの作成(confに設定されている場合)
         for(var i=0;i<storage.stageDatas.length;i++){
             if(storage.stageDatas[i].id == this.id){
-                this.type  = storage.stageDatas[i].type;
-                this.hp    = storage.stageDatas[i].hp;
-                this.maxHp = storage.stageDatas[i].maxHp;
-                this.routes = storage.stageDatas[i].route;
+                this.type            = storage.stageDatas[i].type;
+                this.hp              = storage.stageDatas[i].hp;
+                this.maxHp           = storage.stageDatas[i].maxHp;
+                this.routes          = storage.stageDatas[i].route;
+                this.enemyId         = storage.stageDatas[i].enemyId;
                 this.enemyDepTime    = 30 * storage.stageDatas[i].depTime;
                 this.enemyDepMaxTime = 30 * storage.stageDatas[i].depMaxTime;
-                this.img   = storage.stageDatas[i].img;
-                this.chipSprite = cc.Sprite.create(this.img);
+                this.img             = storage.stageDatas[i].img;
+                this.chipSprite      = cc.Sprite.create(this.img);
             }
         }
 
@@ -78,24 +76,12 @@ var Chip = cc.Node.extend({
         this.rectBase.setPosition(0,0);
         this.rectBase.setAnchorPoint(0.5,0.5);
         this.addChild(this.rectBase);
-
-        if(this.type == "normal"){
-            this.rectBase.setOpacity(255*0);
-        }
     
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);
         this.colored.setPosition(0,0);
         this.colored.setAnchorPoint(0.5,0.5);
         this.addChild(this.colored);
-
-/*
-if(this.type == "poi"){
-        this.temple = cc.Sprite.create(s_temple);
-        this.temple.setPosition(0,40);
-        this.temple.setAnchorPoint(0.5,0.5);
-        this.addChild(this.temple);
-}*/
 /*
         //mapNumber
         this.missionLabel = cc.LabelTTF.create(this.id,"Arial",14);
@@ -115,9 +101,6 @@ if(this.type == "poi"){
         var cubeY = 50 * Math.sin(cubeRad) + this.posY;
         return [cubeX,cubeY];
     },
-
-
-
 
     update:function() {
 
@@ -142,7 +125,6 @@ if(this.type == "poi"){
                 }
             }
         }
-
 
         if(this.colorAlpha >= 1){
             this.coloredCnt++;
@@ -188,11 +170,11 @@ if(this.type == "azito" || this.type == "boss"){
         if(this.enemyDepTime >= this.enemyDepMaxTime){
             if(this.type == "azito"){
                 this.enemyDepTime = 0;
-                this.game.addEnemyByPos(1,this.routes);
+                this.game.addEnemyByPos(this.enemyId,this.routes);
             }
             if(this.type == "boss"){
                 this.enemyDepTime = 0;
-                this.game.addEnemyByPos(8,this.routes);
+                this.game.addEnemyByPos(this.enemyId,this.routes);
             }
         }
 }
@@ -221,9 +203,7 @@ if(this.type == "azito" || this.type == "boss"){
         
 if(this.type == "poi"){
         //HPの最大と最小
-        if(this.hp <= 0){
-            this.hp = this.maxHp;
-        }
+        if(this.hp <= 0) this.hp = this.maxHp;
         if(this.hp >= this.maxHp) this.hp = this.maxHp;
 
 

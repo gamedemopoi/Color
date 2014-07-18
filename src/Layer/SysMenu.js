@@ -45,13 +45,11 @@ var SysMenu = cc.Layer.extend({
         sp.setAnchorPoint(0,0);
         this.addChild(sp, 0, 1);
 
-
-
         this.stage001Button = new ButtonItem("ST1:はじめてのポイ",250,40,this.goSt01,this);
         this.stage001Button.setPosition(160,380);
         this.addChild(this.stage001Button);
 
-        this.stage002Button = new ButtonItem("ST2:デビルハンター",250,40,this.goSt02,this);
+        this.stage002Button = new ButtonItem("ST2:カメレオンハンター",250,40,this.goSt02,this);
         this.stage002Button.setPosition(160,380 - 50 * 1);
         this.addChild(this.stage002Button);
 

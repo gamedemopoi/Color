@@ -101,7 +101,7 @@ var s_enemy_snake_body   = base_dir + "sprite/snake_body.png";
 var s_enemy_snake_head   = base_dir + "sprite/snake_head.png";
 var s_enemy_snake_body_m = base_dir + "sprite/snake_body_M.png";
 var s_enemy_snake_head_m = base_dir + "sprite/snake_head_M.png";
-var s_enemy_chameleon    = base_dir + "sprite/chameleon_blue.png";
+var s_enemy_chameleon    = base_dir + "sprite/chameleon_blue_s.png";
 var s_enemy_chameleon_m  = base_dir + "sprite/chameleon_blue_m.png";
 
 var s_promin_pipo002     = base_dir + "sprite/pipo-mapeffect009.png";

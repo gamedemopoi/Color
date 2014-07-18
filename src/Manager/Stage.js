@@ -48,12 +48,6 @@ var Stage = cc.Class.extend({
         for (var j=0 ; j< 9 ; j++){
             for(var i=0 ; i < 9 ; i++){
                 if(CONFIG.STAGE_BASE[stageBaseNum] == 1){
-                    var type = "normal";
-                    for(var k=0;k<items.length;k++){
-                        if(chipNum == items[k]["chipNum"]){
-                            type = items[k]["type"];
-                        }
-                    }
 
                     //奇数行と偶数行で列の位置をずらす
                     if(Math.floor(j%2)==0){
@@ -65,7 +59,7 @@ var Stage = cc.Class.extend({
                     }
 
                     //マップチップを張る
-                    this.chipSprite = new Chip(posX,posY,this.game,type,chipNum);
+                    this.chipSprite = new Chip(posX,posY,this.game,chipNum);
                     this.game.mapNode.addChild(this.chipSprite);
                     this.chips.push(this.chipSprite);
 
