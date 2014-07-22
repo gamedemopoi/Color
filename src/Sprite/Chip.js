@@ -114,12 +114,12 @@ var Chip = cc.Node.extend({
         if(this.game.player.targetChip){
             if(this.game.player.targetChip.id == this.id){
                 if(this.type == "poi"){
-                    if(this.game.scrollXCnt==5){
+                    if(this.game.scrollYCnt==5){
                         this.game.addColleagues(1,1);
                     }
                 }
                 if(this.type == "twitter"){
-                    if(this.game.scrollXCnt==5){
+                    if(this.game.scrollYCnt==5){
                         this.game.addColleagues(1,2);
                     }
                 }

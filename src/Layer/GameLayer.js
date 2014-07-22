@@ -61,10 +61,7 @@ var GameLayer = cc.Layer.extend({
 
         this.setUI();
 
-this.tapMarkerOpacityRate = 0;
-this.tapMarker = cc.Sprite.create(s_input_tap);
-this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
-this.addChild(this.tapMarker,99999999);
+
 
 this.scrachMarkerOpacityRate = 0;
 this.scrachMarker = cc.Sprite.create(s_input_scratch);
@@ -73,6 +70,8 @@ this.addChild(this.scrachMarker,99999999);
 
 
 this.addColleagues(5,1);
+
+
 
         this.scheduleUpdate();
         this.setTouchEnabled(true);
@@ -160,6 +159,8 @@ this.addColleagues(5,1);
         this.beforeTPosX = 0;
         this.beforeTPosY = 0;
 
+
+        this.tapPower      = 0;
         this.scrollXCnt    = 0;
         this.scrollYCnt    = 0;
         this.scrollRCnt    = 0;
@@ -217,13 +218,6 @@ this.addColleagues(5,1);
         //ミッションが表示中はupdateは実行しない
         if(this.isMissionVisible == true) return;
 
-this.tapMarkerOpacityRate-=0.1;
-if(this.tapMarkerOpacityRate<0){this.tapMarkerOpacityRate=0}
-this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
-
-this.scrachMarkerOpacityRate-=0.1;
-if(this.scrachMarkerOpacityRate<0){this.scrachMarkerOpacityRate=0}
-this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
 
         //スクロールのハンドリング
         this.scrollXPower-=1;
@@ -295,6 +289,7 @@ this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
         );
         this.player.playerDirectionManage(this.targetSprite);
 
+/*
         if(this.scrollYPower >= 50){
             this.player.targetType = "ENEMY";
             this.player.moveToNearistEnemy();
@@ -305,6 +300,21 @@ this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
             this.player.targetType = "NONE";
             this.player.moveToTargetMarker(this.targetSprite);
         }
+*/
+
+cc.log(this.player.targetType + "|" + this.scrollYPower);
+if(this.player.targetType == "ENEMY" && this.scrollYPower >= 50){
+    cc.log("A");
+    this.player.moveToNearistEnemy();
+}else if(this.player.targetType == "CHIP" && this.scrollYPower >= 50){
+    cc.log("B");
+    this.player.moveToTargetMarker(this.player.targetChip);
+}else{
+    cc.log("C");
+    this.player.moveToTargetMarker(this.targetSprite);
+}
+
+
 
         if(this.scrollType == 1){
             this.moveCamera();
@@ -602,31 +612,45 @@ this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
         this.touched = touches[0].getLocation();
         if(this.touched.y <= 80){
             this.scrollYPower+=25;
-            this.tapMarker.setPosition(this.touched.x,this.touched.y);
-            this.tapMarkerOpacityRate = 1;
         }else{
             this.player.targetType = "NONE";
             var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
             var tPosY = (this.touched.y - this.cameraY) / this.mapScale;   
             this.targetSprite.setPosition(tPosX,tPosY);
-            for(var i=0;i<this.stage.chips.length;i++){
-                var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
-                if(distance <= 70){
-                    this.player.targetChip = this.stage.chips[i];
-                }
-            }
+
+
+this.player.targetType = "NONE";
+for(var i=0;i<this.enemies.length;i++){
+    var distance = cc.pDistance(this.targetSprite.getPosition(),this.enemies[i].getPosition());
+    if(distance <= 50){
+        cc.log("敵を指定しています");
+        this.player.targetType = "ENEMY";
+        this.player.targetId   = this.enemies[i].id;
+        this.player.tE         = this.enemies[i];
+        return;
+    }
+ }
+ for(var i=0;i<this.stage.chips.length;i++){
+    var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
+    if(distance <= 50){
+        cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
+        this.player.targetType = "CHIP";
+        this.player.targetChip = this.stage.chips[i];
+    }
+}
+
+
+
+
+
+
+
+
         }
     },
 
     onTouchesMoved:function (touches, event) {
-        if(this.isToucheable() == false) return;
 
-        this.touched = touches[0].getLocation();
-        if(this.touched.y <= 80){
-            this.scrollXPower+=5;
-            this.scrachMarker.setPosition(this.touched.x,this.touched.y);
-            this.scrachMarkerOpacityRate = 1;
-        }
     },
 
     onTouchesEnded:function (touches, event) {

@@ -188,22 +188,10 @@ this.sprite.setPosition(0,this.jumpY);
 
         this.drawnode.setVisible(false);
 
-        if(this.game.scrollXPower > 50){
-            this.actionType = "CHIP";
 
-            if(this.player.targetChip == null){}else{
-                if(this.player.targetChip.type == "normal"){
-                    this.actionType = "FOLLOW";
-                    this.moveTo(this.player);
-                }else{
-                    this.moveToPositions(
-                        this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-                        this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y,
-                        0
-                    );
-                }
-            }
-        }else if(this.game.scrollYPower > 50){
+
+if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
+
             this.actionType = "ENEMY";
             if(this.player.tE == null) return;
             this.moveToPositions(
@@ -211,10 +199,32 @@ this.sprite.setPosition(0,this.jumpY);
                 this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y,
                 1
             );
-        }else{
+}else if(this.game.player.targetType == "CHIP" && this.game.scrollYPower >= 50){
+            this.actionType = "CHIP";
+            if(this.player.targetChip == null){}else{
+                //if(this.player.targetChip.type == "normal"){
+                //    this.actionType = "FOLLOW";
+                //    this.moveTo(this.player);
+                //}else{
+                    this.moveToPositions(
+                        this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
+                        this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y,
+                        0
+                    );
+                //}
+            }
+
+}else{
+
             this.actionType = "FOLLOW";
             this.moveTo(this.player);
-        }
+
+}
+
+
+
+
+
 
         //向きの制御
         this.directionCnt++;
