@@ -34,35 +34,20 @@ var s_input_device2      = base_dir + "ui/input_device2.png";
 var s_temple             = base_dir + "ui/temple.png"; 
 var s_temple2            = base_dir + "ui/temple2.png";
 
-var s_timer            = base_dir + "ui/timer.png"; 
-
-
-
+var s_timer              = base_dir + "ui/timer.png"; 
 var s_input_device       = base_dir + "ui/input_device.png"; 
-var s_input_scratch      = base_dir + "ui/scratch.png"; 
-var s_input_tap          = base_dir + "ui/tap.png"; 
+
 
 //map
 var s_mapchip_001_colored= base_dir + "map/q_map_green_colored_200.png";
-
 var s_mapchip_001        = base_dir + "map/q_map_green_200.png";
-var s_mapchip_002        = base_dir + "map/q_map_blue_200.png";
-var s_mapchip_003        = base_dir + "map/q_map_orange_200.png";
-var s_mapchip_004        = base_dir + "map/q_map_red_200.png";
-var s_mapchip_005        = base_dir + "map/q_map_orange_200.png";
 var s_mapchip_black      = base_dir + "map/q_map_black_200.png";
 var s_mapchip_sakura     = base_dir + "map/sakura.png";
-
-
 var s_chip_001        = base_dir + "map/q_map_ajito.png";
 var s_chip_002        = base_dir + "map/q_map_boss.png";
 var s_chip_003        = base_dir + "map/q_map_poi.png";
 var s_chip_004        = base_dir + "map/q_map_tree.png";
 var s_chip_005        = base_dir + "map/q_map_twitter.png";
-var s_chip_006        = base_dir + "map/chip_006.png";
-var s_chip_007        = base_dir + "map/chip_007.png";
-var s_chip_008        = base_dir + "map/chip_008.png";
-var s_chip_009        = base_dir + "map/chip_009.png";
 
 //button
 var s_button001_scale9   = base_dir + "button/button001_scale9.png";
@@ -105,14 +90,10 @@ var s_enemy_snake_body_m = base_dir + "sprite/snake_body_M.png";
 var s_enemy_snake_head_m = base_dir + "sprite/snake_head_M.png";
 var s_enemy_chameleon    = base_dir + "sprite/chameleon_blue_s.png";
 var s_enemy_chameleon_m  = base_dir + "sprite/chameleon_blue_m.png";
-
 var s_promin_pipo002     = base_dir + "sprite/pipo-mapeffect009.png";
-
 var s_effect_pipo113     = base_dir + "sprite/pipo-btleffect113.png";
-
 var s_critical_message   = base_dir + "ui/critical_message.png";
-
-var s_field   = base_dir + "ui/field.png";
+var s_field   = base_dir + "ui/field.jpg";
 
 var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";
@@ -195,44 +176,20 @@ var g_resources       = [
     s_damage_001,
     s_damage_002,
     s_mapchip_001,
-    s_mapchip_002,
-    s_mapchip_003,
-    s_mapchip_004,
-    s_mapchip_005,
-    s_mapchip_black,
     s_mapchip_sakura,
     s_footer,
     s_cube_white,
-    s_se_dog,
-    s_se_occupied,
-    s_se_coin,
-    s_se_attack,
-    s_se_system,
-    s_se_enemyOccupied,
     s_button001_scale9,
     s_critical_message,
-    s_promin_pipo002,
-
     s_chip_001,
     s_chip_002,
     s_chip_003,
     s_chip_004,
     s_chip_005,
-    s_chip_006,
-    s_chip_007,
-    s_chip_008,
-    s_chip_009,
-
     s_mapchip_001_colored,
-    s_effect_pipo113,
-
     s_temple,
     s_temple2,
-
     s_scape_zone,
     s_input_device,
-    s_input_scratch,
-    s_input_tap,
     s_timer
-
 ];
