@@ -31,8 +31,10 @@ var s_mission_start      = base_dir + "ui/mission_start.png";
 
 var s_input_device       = base_dir + "ui/input_device.png"; 
 var s_input_device2      = base_dir + "ui/input_device2.png"; 
-var s_temple      = base_dir + "ui/temple.png"; 
-var s_temple2      = base_dir + "ui/temple2.png"; 
+var s_temple             = base_dir + "ui/temple.png"; 
+var s_temple2            = base_dir + "ui/temple2.png";
+
+var s_timer            = base_dir + "ui/timer.png"; 
 
 
 
@@ -230,6 +232,7 @@ var g_resources       = [
     s_scape_zone,
     s_input_device,
     s_input_scratch,
-    s_input_tap
+    s_input_tap,
+    s_timer
 
 ];

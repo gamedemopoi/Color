@@ -71,6 +71,10 @@ var Stage = cc.Class.extend({
                         this.tree = new Tower(posX,posY,this.game,3);
                         this.game.mapNode.addChild(this.tree,1000 - posY);
                         this.trees.push(this.tree);
+                    }else if(this.chipSprite.type == "tree"){
+                        this.tree = new Tower(posX,posY,this.game,1);
+                        this.game.mapNode.addChild(this.tree,1000 - posY);
+                        this.trees.push(this.tree);
                     }else{
                         this.tree = new Tower(posX,posY,this.game,1);
                         this.game.mapNode.addChild(this.tree,1000 - posY);

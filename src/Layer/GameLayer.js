@@ -40,6 +40,11 @@ var GameLayer = cc.Layer.extend({
         this.targetSprite.setPosition(800,220);
         this.mapNode.addChild(this.targetSprite);
 
+        //timerSprite
+        this.timerSprite = cc.Sprite.create(s_timer);
+        this.timerSprite.setPosition(800,220);
+        this.mapNode.addChild(this.timerSprite,9999999);
+
         //initialize camera
         this.cameraX = 320/2 - this.player.getPosition().x;
         this.cameraY = 420/2 - this.player.getPosition().y;
@@ -195,11 +200,21 @@ var GameLayer = cc.Layer.extend({
         );
         this.player.playerDirectionManage(this.targetSprite);
 
+
+
         if(this.player.targetType == "ENEMY" && this.scrollYPower >= 50){
             this.player.moveToNearistEnemy();
+            this.timerSprite.setVisible(false);
         }else if(this.player.targetType == "CHIP" && this.scrollYPower >= 50){
             this.player.moveToTargetMarker(this.player.targetChip);
+            //タイマーをset
+            this.timerSprite.setVisible(true);
+            this.timerSprite.setPosition(
+                this.player.targetChip.getPosition().x,
+                this.player.targetChip.getPosition().y + 40
+            );
         }else{
+            this.timerSprite.setVisible(false);
             this.player.moveToTargetMarker(this.targetSprite);
         }
 
