@@ -91,25 +91,26 @@ var GameUI = cc.Node.extend({
         this.addChild(this.comboLabel);
         //this.comboLabel.setOpacity(255*0.4);
 
-        this.rectBarL = cc.LayerColor.create(cc.c4b(0,255,0,255),10,400);
+        this.rectBarL = cc.LayerColor.create(cc.c4b(0,255,0,255),320,20);
         this.rectBarL.setPosition(0,0);
         this.rectBarL.setAnchorPoint(0,0);
         this.rectBarL.setOpacity(255*0.4);
         this.addChild(this.rectBarL);
-
+/*
         this.rectBarR = cc.LayerColor.create(cc.c4b(0,255,0,255),10,400);
         this.rectBarR.setPosition(310,0);
         this.rectBarR.setAnchorPoint(0,0);
         this.rectBarR.setOpacity(255*0.4);
         this.addChild(this.rectBarR);
+*/
     },
 
     //UIのテキストをupdateする
     update:function() {
 
         var rate = this.game.scrollYPower / 100;
-        this.rectBarL.setScale(1,rate);
-        this.rectBarR.setScale(1,rate);
+        this.rectBarL.setScale(rate,1);
+        //this.rectBarR.setScale(1,rate);
 
         if(this.game.player.targetType == "ENEMY"){
             this.imgFooter.setVisible(true);
