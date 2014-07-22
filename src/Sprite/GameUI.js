@@ -47,11 +47,15 @@ var GameUI = cc.Node.extend({
         this.uiHeader.addChild(this.imgHeader);
 
         //s_footer
-        this.imgHeader = cc.Sprite.create(s_input_device);
-        this.imgHeader.setPosition(0,0);
-        this.imgHeader.setAnchorPoint(0,0);
-        this.uiFooter.addChild(this.imgHeader);
+        this.imgFooter = cc.Sprite.create(s_input_device);
+        this.imgFooter.setPosition(0,0);
+        this.imgFooter.setAnchorPoint(0,0);
+        this.uiFooter.addChild(this.imgFooter);
 
+        this.imgFooter2 = cc.Sprite.create(s_input_device2);
+        this.imgFooter2.setPosition(0,0);
+        this.imgFooter2.setAnchorPoint(0,0);
+        this.uiFooter.addChild(this.imgFooter2);
 
 
 //input_tap
@@ -316,6 +320,18 @@ if(this.scrachMarkerOpacityRate<0){this.scrachMarkerOpacityRate=0}
 this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
 this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
 */
+
+if(this.game.player.targetType == "ENEMY"){
+    this.imgFooter.setVisible(true);
+    this.imgFooter2.setVisible(false);
+}else if(this.game.player.targetType == "CHIP"){
+    this.imgFooter.setVisible(false);
+    this.imgFooter2.setVisible(true);
+}else{
+    this.imgFooter.setVisible(false);
+    this.imgFooter2.setVisible(false);
+}
+
 
 
         if(this.game.comboCnt >= 1){
