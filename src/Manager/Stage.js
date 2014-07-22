@@ -165,6 +165,13 @@ var Stage = cc.Class.extend({
                 for(var i=0;i<this.game.colleagues.length;i++){
                     this.game.colleagues[i].hp = 0;
                 }
+
+
+                this.game.addEnemyByPos(2,[20]);
+                this.game.addEnemyByPos(2,[11]);
+                this.game.addEnemyByPos(2,[22]);
+                this.game.addEnemyByPos(2,[19]);
+                this.game.addEnemyByPos(2,[25]);
             }
         }
 
