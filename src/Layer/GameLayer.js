@@ -528,7 +528,7 @@ var GameLayer = cc.Layer.extend({
 
         this.touched = touches[0].getLocation();
         if(this.touched.y <= 80){
-            this.scrollYPower+=25;
+            this.scrollYPower+=20;
         }else{
             this.player.targetType = "NONE";
             var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
