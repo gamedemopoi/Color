@@ -55,9 +55,9 @@ if(type == 1){
         this.direction         = "front";
         
         //HPゲージ
-        this.gauge             = new Gauge(30,4,'blue');
-        this.gauge.setPosition(-20,20);
-        this.addChild(this.gauge,100);
+        //this.gauge             = new Gauge(30,4,'blue');
+        //this.gauge.setPosition(-20,20);
+        //this.addChild(this.gauge,100);
 
         this.drawnode          = cc.DrawNode.create();
         this.addChild(this.drawnode);
@@ -74,6 +74,7 @@ if(type == 1){
         this.removeTargetEnemyCnt = 0;
         this.rollingId = getRandNumberFromRange(0,17);
 
+/*
         var frameSeq = [];
         for (var i = 0; i <= 4; i++) {
             var frame = cc.SpriteFrame.create(s_break,cc.rect(48*i,0,48,96));
@@ -87,11 +88,14 @@ if(type == 1){
         this.energySprite.setPosition(0,20);
         this.energySprite.runAction(this.energyRep);
         this.addChild(this.energySprite);
+*/
 
         //s_critical_message
+        /*
         this.iconVoice = cc.Sprite.create(s_critical_message);
         this.iconVoice.setPosition(0,30);
         this.addChild(this.iconVoice,101);
+        */
 
         this.bulletLncTime = 0;
         this.jumpY = 0;
@@ -101,7 +105,7 @@ if(type == 1){
     
     remove:function() {
         this.removeChild(this.sprite);
-        this.removeChild(this.gauge);
+        //this.removeChild(this.gauge);
         //damage text
         for(var i=0;i<this.damangeTexts.length;i++){
             this.removeChild(this.damangeTexts[i]);
@@ -136,13 +140,13 @@ if(type == 1){
 this.sprite.setPosition(0,this.jumpY);
 
         if(this.bulletLncTime>=1){
-            this.iconVoice.setOpacity(255*0);
+            //this.iconVoice.setOpacity(255*0);
             this.bulletLncTime++;
             if(this.bulletLncTime>=30*8){
                 this.bulletLncTime = 0;
             }
         }else{
-            this.iconVoice.setOpacity(255*1);
+           //this.iconVoice.setOpacity(255*1);
         }
 
         if(this.isDamageOn == true){
@@ -155,11 +159,12 @@ this.sprite.setPosition(0,this.jumpY);
             }
         }
 
-        if(this.energyRep.isDone() == true){
-            this.energyRep.release();
-            this.energySprite.release();
-            this.removeChild(this.energySprite);
-        }
+        //if(this.energyRep.isDone() == true){
+            //this.energyRep.release();
+            //this.energySprite.release();
+            //this.removeChild(this.energySprite);
+        //}
+
         //一定時間が経過するまで敵をターゲットすることができない
         if(this.isSettableTargetEnemy == false){
             this.removeTargetEnemyCnt++;
@@ -174,7 +179,7 @@ this.sprite.setPosition(0,this.jumpY);
             return false;
         }
 
-        this.gauge.update(this.hp/this.maxHp);
+        //this.gauge.update(this.hp/this.maxHp);
 
         //damage text
         for(var i=0;i<this.damangeTexts.length;i++){

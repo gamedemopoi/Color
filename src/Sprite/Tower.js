@@ -17,7 +17,7 @@ var Tower = cc.Node.extend({
         this.setPosition(posX,posY);
 
         if(this.type==1){
-            this.tree     = cc.Sprite.create(s_mapchip_sakura);
+            this.tree     = cc.Sprite.create(s_initSprite);
             this.tree.setPosition(0,50);
             this.addChild(this.tree);
         }else if(this.type==2){

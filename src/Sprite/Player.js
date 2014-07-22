@@ -48,9 +48,9 @@ this.depX = 0;
 this.depY = 0;
 
         //HPゲージ
-        this.gauge             = new Gauge(30,4,'blue');
-        this.gauge.setPosition(-20,20);
-        this.addChild(this.gauge,100);
+        //this.gauge             = new Gauge(30,4,'blue');
+        //this.gauge.setPosition(-20,20);
+        //this.addChild(this.gauge,100);
 
 
 
@@ -96,7 +96,7 @@ if(this.trackSnakeInterval >= 20){
 }
 
 
-        this.gauge.update(this.hp/this.maxHp);
+//this.gauge.update(this.hp/this.maxHp);
 
         //update eye sight range
         this.eyeSightRange = 50 + this.game.colleagueCnt * 5;
@@ -112,7 +112,7 @@ if(this.trackSnakeInterval >= 20){
 
     remove:function() {
         this.removeChild(this.sprite);
-        this.removeChild(this.gauge);
+//this.removeChild(this.gauge);
         //damage text
         for(var i=0;i<this.damangeTexts.length;i++){
             this.removeChild(this.damangeTexts[i]);
