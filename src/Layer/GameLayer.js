@@ -41,9 +41,11 @@ var GameLayer = cc.Layer.extend({
         this.mapNode.addChild(this.targetSprite);
 
         //timerSprite
-        this.timerSprite = cc.Sprite.create(s_timer);
+        this.timerSprite = cc.Sprite.create(s_timer,cc.rect(50*0,0,50,50));
         this.timerSprite.setPosition(800,220);
         this.mapNode.addChild(this.timerSprite,9999999);
+        this.timerImage = cc.TextureCache.getInstance().addImage(s_timer);
+        this.timerSprite.setTexture(this.timerImage);
 
         //initialize camera
         this.cameraX = 320/2 - this.player.getPosition().x;
@@ -200,21 +202,56 @@ var GameLayer = cc.Layer.extend({
         );
         this.player.playerDirectionManage(this.targetSprite);
 
-
-
-        if(this.player.targetType == "ENEMY" && this.scrollYPower >= 50){
-            this.player.moveToNearistEnemy();
-            this.timerSprite.setVisible(false);
-        }else if(this.player.targetType == "CHIP" && this.scrollYPower >= 50){
-            this.player.moveToTargetMarker(this.player.targetChip);
+        this.timerSprite.setVisible(false);
+        if(this.player.targetType == "CHIP"){
             //タイマーをset
             this.timerSprite.setVisible(true);
             this.timerSprite.setPosition(
                 this.player.targetChip.getPosition().x,
                 this.player.targetChip.getPosition().y + 40
             );
+            var rate = this.player.targetChip.hp / this.player.targetChip.maxHp;
+            this.timerSprite.setTexture(this.timerImage);
+            if(0/8 <= rate && rate <= 1/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*0,0,50,50));
+            }
+            if(1/8 < rate && rate <= 2/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*1,0,50,50));
+            }
+            if(2/8 < rate && rate <= 3/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*2,0,50,50));
+            }
+            if(3/8 < rate && rate <= 4/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*3,0,50,50));
+            }
+            if(4/8 < rate && rate <= 5/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*4,0,50,50));
+            }
+            if(5/8 < rate && rate <= 6/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*5,0,50,50));
+            }
+            if(6/8 < rate && rate <= 7/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*6,0,50,50));
+            }
+            if(7/8 < rate && rate <= 8/8){
+                this.timerSprite.setTexture(this.timerImage);
+                this.timerSprite.setTextureRect(cc.rect(50*7,0,50,50));
+            }
+        }
+
+
+        if(this.player.targetType == "ENEMY" && this.scrollYPower >= 50){
+            this.player.moveToNearistEnemy();
+        }else if(this.player.targetType == "CHIP" && this.scrollYPower >= 50){
+            this.player.moveToTargetMarker(this.player.targetChip);
         }else{
-            this.timerSprite.setVisible(false);
             this.player.moveToTargetMarker(this.targetSprite);
         }
 

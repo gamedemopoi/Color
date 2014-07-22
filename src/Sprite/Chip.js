@@ -143,15 +143,15 @@ var Chip = cc.Node.extend({
         //ポイ生成マスの場合に、仲間を生成する
         if(this.game.player.targetChip){
 
-            if(this.game.player.targetType == "CHIP" && this.game.scrollYPower >= 50){
+            if(this.game.player.targetType == "CHIP"){
                 if(this.game.player.targetChip.id == this.id){
                     if(this.type == "poi"){
-                        if(this.game.scrollYCnt==5){
+                        if(this.hp <= 0){
                             this.game.addColleagues(1,1);
                         }
                     }
                     if(this.type == "twitter"){
-                        if(this.game.scrollYCnt==5){
+                        if(this.hp <= 0){
                             this.game.addColleagues(1,2);
                         }
                     }

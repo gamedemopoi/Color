@@ -31,10 +31,17 @@
             "item_coin"      : 0,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":21, "type":"poi"     ,"img":"map/q_map_poi.png"   ,"hp":50  ,"maxHp":50  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":false ,"destroy":false  ,"enemyId":0, "route":[]},
+                {"id":21, "type":"poi"     ,"img":"map/q_map_poi.png"   ,"hp":10  ,"maxHp":10  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":true ,"destroy":false  ,"enemyId":0, "route":[]},
                 {"id":1,  "type":"tree"    ,"img":"map/q_map_tree.png"  ,"hp":50  ,"maxHp":50  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":false ,"destroy":false  ,"enemyId":0, "route":[]},
-                {"id":15, "type":"azito"   ,"img":"map/q_map_ajito.png" ,"hp":100 ,"maxHp":100 ,"depTime":59 ,"depMaxTime":60 ,"reproduction":true  ,"destroy":false  ,"enemyId":1, "route":[3,2]},
+                {"id":15, "type":"azito"   ,"img":"map/q_map_ajito.png" ,"hp":100 ,"maxHp":100 ,"depTime":59 ,"depMaxTime":60 ,"reproduction":false  ,"destroy":false  ,"enemyId":1, "route":[3,2]},
                 {"id":20, "type":"weapon"     ,"img":"map/q_map_poi.png"   ,"hp":50  ,"maxHp":50  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":false ,"destroy":false  ,"enemyId":0, "route":[]}
+            ],
+            "cleard_enemies" : [
+                {"enemyId":2,"route":[20]},
+                {"enemyId":2,"route":[11]},
+                {"enemyId":2,"route":[22]},
+                {"enemyId":2,"route":[19]},
+                {"enemyId":2,"route":[25]}
             ]
         },
         { 
@@ -49,9 +56,16 @@
             "item_coin"      : 0,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false  ,"enemyId":0,"route":[]},
+                {"id":13, "type":"poi"    ,"img":"map/q_map_poi.png","hp":10,"maxHp":10,"depTime":0,"depMaxTime":0,"reproduction":true,"destroy":false  ,"enemyId":0,"route":[]},
                 {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false   ,"enemyId":0,"route":[]},
                 {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":10,"reproduction":true,"destroy":false,"enemyId":8,"route":[11,25,4,15,1,22]}
+            ],
+            "cleard_enemies" : [
+                {"enemyId":2,"route":[20]},
+                {"enemyId":2,"route":[11]},
+                {"enemyId":2,"route":[22]},
+                {"enemyId":2,"route":[19]},
+                {"enemyId":2,"route":[25]}
             ]
         },
         { 
@@ -72,6 +86,13 @@
                 {"id":4,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
                 {"id":6,"type":"tree"   ,"img":"map/q_map_tree.png","hp":50,"maxHp":50,"depTime":0,"depMaxTime":0,"reproduction":false,"destroy":false      ,"enemyId":0,"route":[]},
                 {"id":11,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":45,"depMaxTime":50,"reproduction":false,"destroy":false ,"enemyId":6,"route":[11,25,4,15,1,22]}
+            ],
+            "cleard_enemies" : [
+                {"enemyId":2,"route":[20]},
+                {"enemyId":2,"route":[11]},
+                {"enemyId":2,"route":[22]},
+                {"enemyId":2,"route":[19]},
+                {"enemyId":2,"route":[25]}
             ]
         },
         { 
@@ -94,6 +115,13 @@
                 {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png",   "hp":100,"maxHp":100,"depTime":10,"depMaxTime":20,"reproduction":true,"destroy":false,"enemyId":1,"route":[11,16,20,17,12,7]},
                 {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png",   "hp":100,"maxHp":100,"depTime":5,"depMaxTime":35,"reproduction":true,"destroy":false ,"enemyId":1,"route":[25,24,22,18,21,23]},
                 {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png",    "hp":100,"maxHp":100,"depTime":0,"depMaxTime":40,"reproduction":false,"destroy":false ,"enemyId":1,"route":[10,15,19,14,9,5,3,6]}
+            ],
+            "cleard_enemies" : [
+                {"enemyId":2,"route":[20]},
+                {"enemyId":2,"route":[11]},
+                {"enemyId":2,"route":[22]},
+                {"enemyId":2,"route":[19]},
+                {"enemyId":2,"route":[25]}
             ]
         },
         { 
@@ -116,6 +144,13 @@
                 {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false,"route":[11,16,20,17,12,7]},
                 {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false ,"route":[25,24,22,18,21,23]},
                 {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false ,"route":[10,15,19,14,9,5,3,6]}
+            ],
+            "cleard_enemies" : [
+                {"enemyId":2,"route":[20]},
+                {"enemyId":2,"route":[11]},
+                {"enemyId":2,"route":[22]},
+                {"enemyId":2,"route":[19]},
+                {"enemyId":2,"route":[25]}
             ]
         },
         { 
@@ -138,6 +173,13 @@
                 {"id":11,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":10,"depMaxTime":10,"reproduction":true,"destroy":false,"route":[11,16,20,17,12,7]},
                 {"id":25,"type":"azito"  ,"img":"map/q_map_ajito.png","hp":100,"maxHp":100,"depTime":5,"depMaxTime":15,"reproduction":true,"destroy":false ,"route":[25,24,22,18,21,23]},
                 {"id":10,"type":"boss"   ,"img":"map/q_map_boss.png","hp":100,"maxHp":100,"depTime":0,"depMaxTime":30,"reproduction":false,"destroy":false ,"route":[10,15,19,14,9,5,3,6]}
+            ],
+            "cleard_enemies" : [
+                {"enemyId":2,"route":[20]},
+                {"enemyId":2,"route":[11]},
+                {"enemyId":2,"route":[22]},
+                {"enemyId":2,"route":[19]},
+                {"enemyId":2,"route":[25]}
             ]
         }
     ]
