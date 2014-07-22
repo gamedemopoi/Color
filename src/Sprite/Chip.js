@@ -31,6 +31,7 @@ var Chip = cc.Node.extend({
         }
 
         //マップチップの作成(default)
+        this.type            = "normal";
         this.hp              = 0;
         this.maxHp           = 0;
         this.routes          = [];
@@ -205,8 +206,14 @@ var Chip = cc.Node.extend({
         }
     },
 
-
-
+    isOccupieType:function(){
+        if(this.type == "normal"){
+            cc.log("NG");
+            return false;
+        }
+        cc.log("OK");
+        return true;
+    },
 
     setColoredTime:function(){
         if(this.id == 13){

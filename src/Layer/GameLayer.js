@@ -498,9 +498,11 @@ var GameLayer = cc.Layer.extend({
              for(var i=0;i<this.stage.chips.length;i++){
                 var distance = cc.pDistance(this.targetSprite.getPosition(),this.stage.chips[i].getPosition());
                 if(distance <= 50){
-                    cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
-                    this.player.targetType = "CHIP";
-                    this.player.targetChip = this.stage.chips[i];
+                    if(this.stage.chips[i].isOccupieType()==true){
+                        cc.log("id:" + this.stage.chips[i].id + "床を指定しています");
+                        this.player.targetType = "CHIP";
+                        this.player.targetChip = this.stage.chips[i];
+                    }
                 }
             }
         }

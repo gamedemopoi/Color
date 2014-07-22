@@ -91,14 +91,12 @@ if(type == 1){
         //s_critical_message
         this.iconVoice = cc.Sprite.create(s_critical_message);
         this.iconVoice.setPosition(0,30);
-        //this.iconVoice.setOpacity(255*0.8);
         this.addChild(this.iconVoice,101);
 
         this.bulletLncTime = 0;
-this.jumpY = 0;
-this.jumpYDirect = "up";
-
-this.setScale(0.5,0.5);
+        this.jumpY = 0;
+        this.jumpYDirect = "up";
+        this.setScale(0.5,0.5);
     },
     
     remove:function() {

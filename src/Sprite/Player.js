@@ -21,7 +21,6 @@ var Player = cc.Node.extend({
         this.defence          = this.storage.defence;
         this.eyeSightRange    = this.storage.eyeSightRange;
         this.walkSpeed        = this.storage.walkSpeed;
-        this.createCot        = this.storage.createCot;
 
         //image
         this.charactorCode     = this.storage.charactorCode;
@@ -53,13 +52,7 @@ this.depY = 0;
         this.gauge.setPosition(-20,20);
         this.addChild(this.gauge,100);
 
-        //AttackCube
-        this.cubes = new Array();
-        for (var i=0 ; i < 18 ; i++){
-            this.cube = new Cube(i,60,60);
-            this.cubes.push(this.cube);
-            this.addChild(this.cube,999);
-        }
+
 
 //軌跡（ヘビ型)
 this.trackSnakeInterval = 0;
@@ -114,11 +107,6 @@ if(this.trackSnakeInterval >= 20){
                 this.removeChild(this.damangeTexts[i]);
                 this.damangeTexts.splice(i, 1);
             }
-        }
-
-        //cubes
-        for(var i=0;i<this.cubes.length;i++){
-            this.cubes[i].update();
         }
     },
 
