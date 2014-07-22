@@ -30,7 +30,6 @@ var Player = cc.Node.extend({
         this.imgHeight         = this.storage.imgHeight;
 
         //init
-        this.scale             = 1;
         this.battleInterval    = 0;
         this.targetEnemy       = null;
         this.direction         = "front";
@@ -305,12 +304,10 @@ if(this.trackSnakeInterval >= 20){
     moveToNearistEnemy:function() {
         if(this.isStop) return;
 
-
-
         var min = 9999;
         for(var i=0;i<this.game.enemies.length;i++){
             var distance = cc.pDistance(this.getPosition(),this.game.enemies[i].getPosition());
-            if(min > distance){
+            if(min > distance && distance > 50){
                 min = distance;
                 //this.player.nE = this.enemies[i];
                 this.nearistEnemy   = this.game.enemies[i];

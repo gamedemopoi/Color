@@ -352,7 +352,7 @@ var collisionEnemyAndEnemy = function(enemies){
                 var distance = cc.pDistance(colleagueOne.getPosition(),colleagueTwo.getPosition());
 
                 //ノックバック
-                if(distance < CONFIG.COLLEAGUE_AND_COLLEAGUE_KNOCK_BAKC_RANGE){
+                if(distance < CONFIG.ENEMY_AND_ENEMY_KNOCK_BAKC_RANGE){
                     var diffX = colleagueTwo.getPosition().x - colleagueOne.getPosition().x;
                     var diffY = colleagueTwo.getPosition().y - colleagueOne.getPosition().y;
                     if(diffX > 0){

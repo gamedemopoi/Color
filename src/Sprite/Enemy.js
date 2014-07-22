@@ -97,10 +97,10 @@ this.setScale(3,3);
         }
 
         //軌跡（クラゲ型)
-        this.trackJellyFishes = new Array();
+        this.motionTrack = new Array();
         for (var i=0 ; i < 10 ; i++){
             this.cube = new Cube(i,30,120,"ENEMY");
-            this.trackJellyFishes.push(this.cube);
+            this.motionTrack.push(this.cube);
             this.addChild(this.cube,999);
         }
 
@@ -174,8 +174,8 @@ this.setScale(3,3);
         }
 
         //cubes
-        for(var i=0;i<this.trackJellyFishes.length;i++){
-            this.trackJellyFishes[i].update();
+        for(var i=0;i<this.motionTrack.length;i++){
+            this.motionTrack[i].update();
         }
 
         //自身が通った座標の履歴

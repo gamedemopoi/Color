@@ -45,29 +45,32 @@ var SysMenu = cc.Layer.extend({
         sp.setAnchorPoint(0,0);
         this.addChild(sp, 0, 1);
 
-        this.stage001Button = new ButtonItem("ST1:はじめてのポイ",250,40,this.goSt01,this);
+        //タイトルの一覧を取得
+        getStageTitlesFromJson(this.storage);
+
+        this.stage001Button = new ButtonItem(this.storage.stageTitles[1],250,40,this.goSt01,this);
         this.stage001Button.setPosition(160,380);
         this.addChild(this.stage001Button);
 
-        this.stage002Button = new ButtonItem("ST2:カメレオンハンター",250,40,this.goSt02,this);
+        this.stage002Button = new ButtonItem(this.storage.stageTitles[2],250,40,this.goSt02,this);
         this.stage002Button.setPosition(160,380 - 50 * 1);
         this.addChild(this.stage002Button);
 
-        this.stage003Button = new ButtonItem("ST3:イモムシの謎",250,40,this.goSt03,this);
+        this.stage003Button = new ButtonItem(this.storage.stageTitles[3],250,40,this.goSt03,this);
         this.stage003Button.setPosition(160,380 - 50 * 2);
         this.addChild(this.stage003Button);
 
         //new stage003Button
-        this.stage004Button = new ButtonItem("ST4:イギタサンMAP",250,40,this.goSt04,this);
+        this.stage004Button = new ButtonItem(this.storage.stageTitles[4],250,40,this.goSt04,this);
         this.stage004Button.setPosition(160,380 - 50 * 3);
         this.addChild(this.stage004Button);
 
         //story & tutorial
-        this.stage005Button = new ButtonItem("xxxxxxxx",250,40,this.goSt05,this);
+        this.stage005Button = new ButtonItem(this.storage.stageTitles[5],250,40,this.goSt05,this);
         this.stage005Button.setPosition(160,380 - 50 * 4);
         this.addChild(this.stage005Button);
 
-        this.stage006Button = new ButtonItem("xxxxxxxx",250,40,this.goSt06,this);
+        this.stage006Button = new ButtonItem(this.storage.stageTitles[6],250,40,this.goSt06,this);
         this.stage006Button.setPosition(160,380 - 50 * 5);
         this.addChild(this.stage006Button);
 
@@ -123,25 +126,24 @@ var SysMenu = cc.Layer.extend({
         return true;
     },
 
-goSt01:function(dt){
-this.onStageGame(1);
-},
-goSt02:function(dt){
-this.onStageGame(2);
-},
-goSt03:function(dt){
-this.onStageGame(3);
-},
-goSt04:function(dt){
-this.onStageGame(4);
-},
-goSt05:function(dt){
-this.onStageGame(5);
-},
-goSt06:function(dt){
-this.onStageGame(6);
-},
-
+    goSt01:function(dt){
+        this.onStageGame(1);
+    },
+    goSt02:function(dt){
+        this.onStageGame(2);
+    },
+    goSt03:function(dt){
+        this.onStageGame(3);
+    },
+    goSt04:function(dt){
+        this.onStageGame(4);
+    },
+    goSt05:function(dt){
+        this.onStageGame(5);
+    },
+    goSt06:function(dt){
+        this.onStageGame(6);
+    },
 
     update:function(dt){
         //ゲームの情報を右から左に流す

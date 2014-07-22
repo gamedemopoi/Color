@@ -16,7 +16,6 @@ var Stage = cc.Class.extend({
         this.trees            = [];
         this.isColored        = false;
         this.isEscaped        = false;
-
         this.clearTargetCnt   = 0;
 
         this.field = cc.Sprite.create(s_field);
@@ -126,7 +125,6 @@ var Stage = cc.Class.extend({
     },
 
     update:function(){
-//cc.log(this.clearTargetCnt);
         if(
             this.escape.getPosition().x - 50 <= this.game.player.getPosition().x &&
             this.game.player.getPosition().x <= this.escape.getPosition().x + 50 &&

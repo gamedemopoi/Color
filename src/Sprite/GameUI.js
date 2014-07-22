@@ -310,29 +310,16 @@ this.addChild(this.gauge3);
     //UIのテキストをupdateする
     update:function() {
 
-/*
-this.tapMarkerOpacityRate-=0.1;
-if(this.tapMarkerOpacityRate<0){this.tapMarkerOpacityRate=0}
-this.scrachMarkerOpacityRate-=0.1;
-if(this.scrachMarkerOpacityRate<0){this.scrachMarkerOpacityRate=0}
-
-
-this.tapMarker.setOpacity(255 * this.tapMarkerOpacityRate);
-this.scrachMarker.setOpacity(255 * this.scrachMarkerOpacityRate);
-*/
-
-if(this.game.player.targetType == "ENEMY"){
-    this.imgFooter.setVisible(true);
-    this.imgFooter2.setVisible(false);
-}else if(this.game.player.targetType == "CHIP"){
-    this.imgFooter.setVisible(false);
-    this.imgFooter2.setVisible(true);
-}else{
-    this.imgFooter.setVisible(false);
-    this.imgFooter2.setVisible(false);
-}
-
-
+        if(this.game.player.targetType == "ENEMY"){
+            this.imgFooter.setVisible(true);
+            this.imgFooter2.setVisible(false);
+        }else if(this.game.player.targetType == "CHIP"){
+            this.imgFooter.setVisible(false);
+            this.imgFooter2.setVisible(true);
+        }else{
+            this.imgFooter.setVisible(false);
+            this.imgFooter2.setVisible(false);
+        }
 
         if(this.game.comboCnt >= 1){
             this.comboLabel.setOpacity(255*1);

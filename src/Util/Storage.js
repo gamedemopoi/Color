@@ -21,6 +21,8 @@ var Storage = cc.Class.extend({
         this.maxStageNumber          = 1;
         this.maxGameScore            = 0;
 
+        this.stageTitles      = [];
+
         //stage
         this.gameScore        = 0;
         this.occupiedCnt      = 0;
@@ -156,6 +158,18 @@ var getCharactorDataFromJson = function(storage,charactorCode){
 
     return storage;
 };
+
+var getStageTitlesFromJson = function(storage){
+
+    var jsonFile             = cc.FileUtils.getInstance().getStringFromFile(stages_json);
+    this.jsonData            = JSON.parse(jsonFile);
+    var stageData            = this.jsonData["stages"];
+    for(var i=0;i<stageData.length;i++){
+        storage.stageTitles.push(stageData[i]["title"]);
+    }
+cc.log(storage.stageTitles);
+    return storage;
+}
 
 var getStageDataFromJson = function(storage,stageNum) {
     var jsonFile             = cc.FileUtils.getInstance().getStringFromFile(stages_json);

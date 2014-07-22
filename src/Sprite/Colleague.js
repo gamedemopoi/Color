@@ -195,8 +195,8 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
             this.actionType = "ENEMY";
             if(this.player.tE == null) return;
             this.moveToPositions(
-                this.player.tE.getPosition().x + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-                this.player.tE.getPosition().y + this.player.tE.trackJellyFishes[this.randId].rollingCube.getPosition().y,
+                this.player.tE.getPosition().x + this.player.tE.motionTrack[this.randId].rollingCube.getPosition().x,
+                this.player.tE.getPosition().y + this.player.tE.motionTrack[this.randId].rollingCube.getPosition().y,
                 1
             );
 }else if(this.game.player.targetType == "CHIP" && this.game.scrollYPower >= 50){
@@ -207,8 +207,8 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
                 //    this.moveTo(this.player);
                 //}else{
                     this.moveToPositions(
-                        this.player.targetChip.getPosition().x + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().x,
-                        this.player.targetChip.getPosition().y + this.player.targetChip.trackJellyFishes[this.randId].rollingCube.getPosition().y,
+                        this.player.targetChip.getPosition().x + this.player.targetChip.motionTrack[this.randId].rollingCube.getPosition().x,
+                        this.player.targetChip.getPosition().y + this.player.targetChip.motionTrack[this.randId].rollingCube.getPosition().y,
                         0
                     );
                 //}

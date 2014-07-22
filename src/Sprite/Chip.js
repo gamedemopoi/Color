@@ -37,7 +37,10 @@ var Chip = cc.Node.extend({
         this.enemyId         = 0;
         this.enemyDepTime    = 0;
         this.enemyDepMaxTime = 0;
-        this.chipSprite = cc.Sprite.create(s_mapchip_001);
+        this.reproduction    = false;
+        this.destroy         = false;
+        this.chipSprite      = cc.Sprite.create(s_mapchip_001);
+
         //マップチップの作成(confに設定されている場合)
         for(var i=0;i<storage.stageDatas.length;i++){
             if(storage.stageDatas[i].id == this.id){
@@ -48,6 +51,8 @@ var Chip = cc.Node.extend({
                 this.enemyId         = storage.stageDatas[i].enemyId;
                 this.enemyDepTime    = 30 * storage.stageDatas[i].depTime;
                 this.enemyDepMaxTime = 30 * storage.stageDatas[i].depMaxTime;
+                this.reproduction    = storage.stageDatas[i].reproduction;
+                this.destroy         = storage.stageDatas[i].destroy;
                 this.img             = storage.stageDatas[i].img;
                 this.chipSprite      = cc.Sprite.create(this.img);
             }
@@ -55,11 +60,11 @@ var Chip = cc.Node.extend({
 
         if(this.type == "normal"){
         }else{
-            //軌跡（クラゲ型)
-            this.trackJellyFishes = new Array();
+            //モーショントラックの作成
+            this.motionTrack = new Array();
             for (var i=0 ; i < 10 ; i++){
                 this.cube = new Cube(i,30,40,"CHIP");
-                this.trackJellyFishes.push(this.cube);
+                this.motionTrack.push(this.cube);
                 this.addChild(this.cube,999);
             }
         }
@@ -69,14 +74,8 @@ var Chip = cc.Node.extend({
         this.chipSprite.setPosition(0,0);
         this.chipSprite.setAnchorPoint(0.5,0.5);
         this.setPosition(posX,posY);
-
-        //ゲージ配置s_mapchip_black
-        this.rectBase = cc.Sprite.create(s_mapchip_black);
-        this.rectBase.setOpacity(255*0.7);
-        this.rectBase.setPosition(0,0);
-        this.rectBase.setAnchorPoint(0.5,0.5);
-        this.addChild(this.rectBase);
-    
+ 
+        //世界が色づいたときのマップ
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);
         this.colored.setPosition(0,0);
@@ -104,28 +103,15 @@ var Chip = cc.Node.extend({
 
     update:function() {
 
+        //モーショントラックを動かす
         if(this.type == "normal"){
         }else{
-            for(var i=0;i<this.trackJellyFishes.length;i++){
-                this.trackJellyFishes[i].update();
+            for(var i=0;i<this.motionTrack.length;i++){
+                this.motionTrack[i].update();
             }
         }
 
-        if(this.game.player.targetChip){
-            if(this.game.player.targetChip.id == this.id){
-                if(this.type == "poi"){
-                    if(this.game.scrollYCnt==5){
-                        this.game.addColleagues(1,1);
-                    }
-                }
-                if(this.type == "twitter"){
-                    if(this.game.scrollYCnt==5){
-                        this.game.addColleagues(1,2);
-                    }
-                }
-            }
-        }
-
+        //世界が色づいたときの処理
         if(this.colorAlpha >= 1){
             this.coloredCnt++;
             if(this.coloredCnt>=2*this.coloredTime){
@@ -151,37 +137,46 @@ var Chip = cc.Node.extend({
             }
         }
 
-
-if(this.type == "azito" || this.type == "boss"){
-
-        var depEnemyCnt = 0;
-        for(var i=0;i<this.game.enemies.length;i++){
-            if(this.game.enemies[i].depChipId == this.id){
-                depEnemyCnt++;
+        //ポイ生成マスの場合に、仲間を生成する
+        if(this.game.player.targetChip){
+            if(this.game.player.targetChip.id == this.id){
+                if(this.type == "poi"){
+                    if(this.game.scrollYCnt==5){
+                        this.game.addColleagues(1,1);
+                    }
+                }
+                if(this.type == "twitter"){
+                    if(this.game.scrollYCnt==5){
+                        this.game.addColleagues(1,2);
+                    }
+                }
             }
         }
 
-        //if(depEnemyCnt == 0){
-            this.enemyDepTime++;
-        //}
-
-        var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
-        this.timeLabel.setString("" + nokori);
-        if(this.enemyDepTime >= this.enemyDepMaxTime){
-            if(this.type == "azito"){
-                this.enemyDepTime = 0;
-                this.game.addEnemyByPos(this.enemyId,this.routes);
+        //アジトとボスの場合のみ、敵を生成する
+        if(this.type == "azito" || this.type == "boss"){
+            var depEnemyCnt = 0;
+            for(var i=0;i<this.game.enemies.length;i++){
+                if(this.game.enemies[i].depChipId == this.id){
+                    depEnemyCnt++;
+                }
             }
-            if(this.type == "boss"){
-                this.enemyDepTime = 0;
-                this.game.addEnemyByPos(this.enemyId,this.routes);
+            //if(depEnemyCnt == 0){
+                this.enemyDepTime++;
+            //}
+            var nokori = Math.floor((this.enemyDepMaxTime-this.enemyDepTime)/30);
+            this.timeLabel.setString("" + nokori);
+            if(this.enemyDepTime >= this.enemyDepMaxTime){
+                if(this.type == "azito"){
+                    this.enemyDepTime = 0;
+                    this.game.addEnemyByPos(this.enemyId,this.routes);
+                }
+                if(this.type == "boss"){
+                    this.enemyDepTime = 0;
+                    this.game.addEnemyByPos(this.enemyId,this.routes);
+                }
             }
         }
-}
-
-
-
-
 
         //プレイヤーが占領する
         if(this.isOccupied == false && this.hp <= 0){
@@ -200,27 +195,14 @@ if(this.type == "azito" || this.type == "boss"){
             }
         }
 
-        
-if(this.type == "poi"){
-        //HPの最大と最小
-        if(this.hp <= 0) this.hp = this.maxHp;
-        if(this.hp >= this.maxHp) this.hp = this.maxHp;
-
-
-}else if(this.type == "twitter"){
-        //HPの最大と最小
-        if(this.hp <= 0){
-            this.hp = this.maxHp;
+        //再生可能な場合は、0まで行ったらまた戻る
+        if(this.reproduction==true){
+            if(this.hp <= 0) this.hp = this.maxHp;
+            if(this.hp >= this.maxHp) this.hp = this.maxHp;
+        }else{
+            if(this.hp <= 0)   this.hp = 0;
+            if(this.hp >= this.maxHp) this.hp = this.maxHp;
         }
-        if(this.hp >= this.maxHp) this.hp = this.maxHp;
-}else{
-        //HPの最大と最小
-        if(this.hp <= 0)   this.hp = 0;
-        if(this.hp >= this.maxHp) this.hp = this.maxHp;
-}  
-
-        var rate = this.hp / this.maxHp;
-        this.rectBase.setScale(rate);
     },
 
 
