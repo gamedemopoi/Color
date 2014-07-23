@@ -57,7 +57,6 @@ this.addChild(editBox);
             this.addChild(this.menu);
             this.menu.setPosition(0,0);
 
-
             this.scheduleUpdate();
             this.setTouchEnabled(true);
 
