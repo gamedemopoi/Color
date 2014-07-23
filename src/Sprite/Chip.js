@@ -83,21 +83,19 @@ this.setPosition(posX,posY);
         }
 
         //マップ配置
-/*
         this.chipSprite.setOpacity(255*0.5);
         this.addChild(this.chipSprite);
         this.chipSprite.setPosition(0,0);
         this.chipSprite.setAnchorPoint(0.5,0.5);
         this.setPosition(posX,posY);
-*/
-/* 
+
+
         //世界が色づいたときのマップ
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);
         this.colored.setPosition(0,0);
         this.colored.setAnchorPoint(0.5,0.5);
         this.addChild(this.colored);
-*/
 
 /*
         //mapNumber
@@ -150,7 +148,7 @@ this.setPosition(posX,posY);
                     this.energySprite.setPosition(0,70);
                     this.energySprite.runAction(this.energyRep);
                     this.addChild(this.energySprite);
-                    //this.colored.setOpacity(255*100/100);
+                    this.colored.setOpacity(255*0.8);
                 }
             }
         }

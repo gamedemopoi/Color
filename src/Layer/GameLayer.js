@@ -64,7 +64,7 @@ var GameLayer = cc.Layer.extend({
 */
         this.setUI();
 
-//this.addColleagues(5,1);
+        this.addColleagues(5,1);
 
         this.scheduleUpdate();
         this.setTouchEnabled(true);
