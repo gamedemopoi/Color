@@ -17,6 +17,8 @@ var TwitterLayer = cc.Layer.extend({
 
         var bRet = false;
         if (this._super()) {
+
+            this.isConverted = false;
             //bgm
             //playSystemBGM();
             changeLoadingImage();
@@ -27,16 +29,15 @@ var TwitterLayer = cc.Layer.extend({
             story.setPosition(0,0);
             this.addChild(story);
 
-
-//input
-var bg = cc.Scale9Sprite.create(s_button001_scale9);
-var editBox = cc.EditBox.create(cc.size(280,60),bg);
-editBox.setPosition(320/2,280);
-editBox.setDelegate(this);
-this.addChild(editBox);
+            //input
+            var bg = cc.Scale9Sprite.create(s_button001_scale9);
+            var editBox = cc.EditBox.create(cc.size(280,60),bg);
+            editBox.setPosition(320/2,280);
+            editBox.setDelegate(this);
+            this.addChild(editBox);
 
             //new game
-            this.nextButton = new ButtonItem("CONVERT",120,60,this.onNextStory,this);
+            this.nextButton = new ButtonItem("CONVERT",120,60,this.setConvertResult,this);
             this.nextButton.setPosition(320/2,200);
             this.addChild(this.nextButton);
 
@@ -57,6 +58,12 @@ this.addChild(editBox);
             this.addChild(this.menu);
             this.menu.setPosition(0,0);
 
+            //UI
+            this.convertResult = cc.Sprite.create(s_convert_success);
+            this.convertResult.setAnchorPoint(0,0);
+            this.addChild(this.convertResult);
+            this.convertResult.setVisible(false);
+
             this.scheduleUpdate();
             this.setTouchEnabled(true);
 
@@ -65,139 +72,16 @@ this.addChild(editBox);
         return bRet;
     },
 
+    setConvertResult:function(){
+        this.isConverted = true;
+    },
+
     update:function(dt){
-        /*
-        this.textDisplayTime++;
-        if(this.textDisplayTime>=5){
-            this.textDisplayTime = 0;
-            this.textDisplayNum++;
-        }*/
-    
-        //var displayText = this.rtn.substring(0,this.textDisplayNum);
-        //this.infoText.setString(displayText);
-    },
-
-    onNextStory : function(){
-
-        this.storyNo++;
-        this.changeText(this.storyNo);
-        if(this.storyNo == 14){
-            onBackCallback();
+        if(this.isConverted == true){
+            this.convertResult.setVisible(true);
         }
     },
 
-    changeText: function(num){
-        this.textDisplayTime=0;
-        this.textDisplayNum =0;
-
-        if(num == 1){
-            this.rtn = "";
-            this.rtn += "[1/6]\n";
-            this.rtn += "\n";
-            this.rtn += "西暦30xx年、\n";
-            this.rtn += "核戦争によって人類は滅亡した。\n";
-            this.rtn += "残されたのは荒廃した土地..\n";
-            this.rtn += "\n";            
-        }else if(num == 2){
-            this.rtn = "";
-            this.rtn += "[2/6]\n";
-            this.rtn += "\n";
-            this.rtn += "その土地には\n";
-            this.rtn += "悪の宇宙人が住みつき、\n";
-            this.rtn += "再びこの場所に生命が育まれるのは\n";
-            this.rtn += "不可能と思われた\n";
-        }else if(num == 3){
-            this.rtn = "";
-            this.rtn += "[3/6]\n";
-            this.rtn += "\n";
-            this.rtn += "ところが、長い時を経て、\n";
-            this.rtn += "新緑の持つ生命が息を吹き返した。\n";   
-            this.rtn += "新しい生命をこの土地に育む為に、\n";
-            this.rtn += "荒廃した土地を取り戻せ。\n";        
-        }else if(num == 4){
-            this.rtn = "";
-            this.rtn += "[4/6]\n";
-            this.rtn += "\n";
-            this.rtn += "唯一の方法は、集団で戦うこと。\n";
-            this.rtn += "\n";
-            this.rtn += "\n";
-            this.rtn += "\n";
-        }else if(num == 5){
-            this.rtn = "";
-            this.rtn += "[5/6]\n";
-            this.rtn += "\n";
-            this.rtn += "荒廃した土地を緑に変えることで\n";
-            this.rtn += "得られる「大地エナジー」を吸収し、\n";
-            this.rtn += "緑の人を増やして宇宙人を討伐せよ\n";
-            this.rtn += "\n";
-        }else if(num == 6){
-            this.rtn = "";
-            this.rtn += "[6/6]\n";
-            this.rtn += "\n";
-            this.rtn += "再び緑豊かに緑の息吹が\n";
-            this.rtn += "生き返るその日まで...\n";
-            this.rtn += "\n";
-            this.rtn += "\n";
-        }else if(num == 7){
-            this.rtn = "";
-            this.rtn += "[操作説明 1/7]\n";
-            this.rtn += "\n";
-            this.rtn += "画面をタップすると\n";
-            this.rtn += "緑の人が移動します。\n";
-            this.rtn += "荒廃した土地の上にいる場合\n";
-            this.rtn += "一定時間で緑を「復元」します。\n";
-        }else if(num == 8){
-            this.rtn = "";
-            this.rtn += "[操作説明 2/7]\n";
-            this.rtn += "\n";
-            this.rtn += "緑を取り戻したときに\n";
-            this.rtn += "「大地エナジー」が生成され、\n";
-            this.rtn += "これを取得すると\n";
-            this.rtn += "左下の瓶に溜まります\n";
-        }else if(num == 9){
-            this.rtn = "";
-            this.rtn += "[操作説明 3/7]\n";
-            this.rtn += "\n";
-            this.rtn += "瓶に蓄えられた\n";
-            this.rtn += "大地のエネルギーは\n";
-            this.rtn += "ボタンを押すことで\n";
-            this.rtn += "緑の人を生み出すことができます\n";
-        }else if(num == 10){
-            this.rtn = "";
-            this.rtn += "[操作説明 4/7]\n";
-            this.rtn += "\n";
-            this.rtn += "緑の人が増えれば増えるほど\n";
-            this.rtn += "土地を取り戻す力や\n";
-            this.rtn += "宇宙人を攻撃する力が\n";
-            this.rtn += "増加します\n";
-        }else if(num == 11){
-            this.rtn = "";
-            this.rtn += "[操作説明 5/7]\n";
-            this.rtn += "\n";
-            this.rtn += "アイテムの土地を\n";
-            this.rtn += "占領することで\n";
-            this.rtn += "特殊な力を得ることも\n";
-            this.rtn += "できます\n";
-        }else if(num == 12){
-            this.rtn = "";
-            this.rtn += "[操作説明 6/7]\n";
-            this.rtn += "\n";
-            this.rtn += "一度、占領した土地は\n";
-            this.rtn += "宇宙人が再び取り戻そうと\n";
-            this.rtn += "してくるので\n";
-            this.rtn += "適度に倒しながら進めて下さい\n";
-        }else if(num == 13){
-            this.rtn = "";
-            this.rtn += "[操作説明 7/7]\n";
-            this.rtn += "\n";
-            this.rtn += "おしまい\n";
-            this.rtn += "\n";
-            this.rtn += "\n";
-        }
-
-        rtn = rtn.substring(1,100);
-        this.infoText.setString(rtn);
-    }
 });
 
 TwitterLayer.scene = function () {

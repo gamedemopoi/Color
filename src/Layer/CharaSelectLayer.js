@@ -96,6 +96,10 @@ this.addChild(this.twitterButton);
             bRet = true;
         }
 
+
+
+
+
         this.scheduleUpdate();
 
         return bRet;

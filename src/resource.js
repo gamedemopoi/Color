@@ -101,6 +101,8 @@ var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";
 var s_scape_zone         = base_dir + "ui/escape_zone.png";
 
+var s_convert_success    = base_dir + "ui/convert_success.png";
+
 //bgm
 var s_bgm_001            = base_dir + "res/sound/bgm/bgm_maoudamashii_cyber09.mp3";
 var s_bgm_002            = base_dir + "res/sound/bgm/bgm_maoudamashii_piano07.mp3";
@@ -135,7 +137,8 @@ var g_chara_select_resources   = [
     s_chara002,
     s_chara003,
     s_chara004,
-    s_button001_scale9
+    s_button001_scale9,
+    s_convert_success
 ];
 
 var g_resources       = [
