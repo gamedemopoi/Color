@@ -61,11 +61,13 @@ var Chip = cc.Node.extend({
                 this.chipSprite      = cc.Sprite.create(this.img);
 
 //マップ配置
+/*
 //this.chipSprite.setOpacity(255*0.2);
 this.addChild(this.chipSprite);
 this.chipSprite.setPosition(0,0);
 this.chipSprite.setAnchorPoint(0.5,0.5);
 this.setPosition(posX,posY);
+*/
             }
         }
 
@@ -81,11 +83,13 @@ this.setPosition(posX,posY);
         }
 
         //マップ配置
-        //this.chipSprite.setOpacity(255*0.2);
-        //this.addChild(this.chipSprite);
-        //this.chipSprite.setPosition(0,0);
-        //this.chipSprite.setAnchorPoint(0.5,0.5);
-        //this.setPosition(posX,posY);
+/*
+        this.chipSprite.setOpacity(255*0.5);
+        this.addChild(this.chipSprite);
+        this.chipSprite.setPosition(0,0);
+        this.chipSprite.setAnchorPoint(0.5,0.5);
+        this.setPosition(posX,posY);
+*/
 /* 
         //世界が色づいたときのマップ
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
