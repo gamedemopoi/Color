@@ -43,6 +43,7 @@ var Chip = cc.Node.extend({
         this.reproduction    = false;
         this.destroy         = false;
         this.chipSprite      = cc.Sprite.create(s_mapchip_001);
+        
 
         //マップチップの作成(confに設定されている場合)
         for(var i=0;i<storage.stageDatas.length;i++){
@@ -58,6 +59,13 @@ var Chip = cc.Node.extend({
                 this.destroy         = storage.stageDatas[i].destroy;
                 this.img             = storage.stageDatas[i].img;
                 this.chipSprite      = cc.Sprite.create(this.img);
+
+//マップ配置
+//this.chipSprite.setOpacity(255*0.2);
+this.addChild(this.chipSprite);
+this.chipSprite.setPosition(0,0);
+this.chipSprite.setAnchorPoint(0.5,0.5);
+this.setPosition(posX,posY);
             }
         }
 
@@ -73,17 +81,20 @@ var Chip = cc.Node.extend({
         }
 
         //マップ配置
-        this.addChild(this.chipSprite);
-        this.chipSprite.setPosition(0,0);
-        this.chipSprite.setAnchorPoint(0.5,0.5);
-        this.setPosition(posX,posY);
- 
+        //this.chipSprite.setOpacity(255*0.2);
+        //this.addChild(this.chipSprite);
+        //this.chipSprite.setPosition(0,0);
+        //this.chipSprite.setAnchorPoint(0.5,0.5);
+        //this.setPosition(posX,posY);
+/* 
         //世界が色づいたときのマップ
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);
         this.colored.setPosition(0,0);
         this.colored.setAnchorPoint(0.5,0.5);
         this.addChild(this.colored);
+*/
+
 /*
         //mapNumber
         this.missionLabel = cc.LabelTTF.create(this.id,"Arial",14);
@@ -135,7 +146,7 @@ var Chip = cc.Node.extend({
                     this.energySprite.setPosition(0,70);
                     this.energySprite.runAction(this.energyRep);
                     this.addChild(this.energySprite);
-                    this.colored.setOpacity(255*100/100);
+                    //this.colored.setOpacity(255*100/100);
                 }
             }
         }
