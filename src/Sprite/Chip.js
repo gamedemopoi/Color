@@ -133,6 +133,7 @@ this.setPosition(posX,posY);
             if(this.coloredCnt>=2*this.coloredTime){
                 if(this.isSetColor==false){
                     this.isSetColor=true;
+                    /*
                     var frameSeq = [];
                     for (var y = 0; y <= 3; y++) {
                         for (var x = 0; x <= 4; x++) {
@@ -148,6 +149,7 @@ this.setPosition(posX,posY);
                     this.energySprite.setPosition(0,70);
                     this.energySprite.runAction(this.energyRep);
                     this.addChild(this.energySprite);
+                    */
                     this.colored.setOpacity(255*0.8);
                 }
             }

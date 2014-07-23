@@ -50,7 +50,7 @@ var CharaSelectLayer = cc.Layer.extend({
 
 
 this.twitterButton = new ButtonItem("Twitterからキャラを生成",250,40,this.onTwitter,this);
-this.twitterButton.setPosition(160,120);
+this.twitterButton.setPosition(160,50);
 this.addChild(this.twitterButton);
 
 
@@ -58,7 +58,7 @@ this.addChild(this.twitterButton);
             var label = cc.LabelTTF.create("-戻る-", "Arial", 20);
             var back = cc.MenuItemLabel.create(label,onBackCallback);
             var menu = cc.Menu.create(back);
-            menu.setPosition( 320 / 2, 40);
+            menu.setPosition( 320 / 2, 20);
             this.addChild(menu);
 
             //詳細ウィンドウ ここから------------------------>

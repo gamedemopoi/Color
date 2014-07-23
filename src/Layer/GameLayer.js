@@ -125,10 +125,8 @@ var GameLayer = cc.Layer.extend({
         this.storage.coinAmount = 999;
         this.comboCnt=0;
 
-        this.scrollYCnt   = 0;
         this.scrollYPower = 0;
-        this.scrollMinY = 0;
-        this.scrollMaxY = 0;
+
 
         this.movedCnt = 0;
     },
@@ -182,14 +180,6 @@ var GameLayer = cc.Layer.extend({
         }
         if(this.scrollYPower<0){
             this.scrollYPower=0;
-        }
-        if(this.scrollYPower>50){
-            this.scrollYCnt++;
-            if(this.scrollYCnt>10){
-                this.scrollYCnt=0;
-            }
-        }else{
-            this.scrollYCnt=0;
         }
 
         this.stage.update();
