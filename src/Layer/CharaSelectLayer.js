@@ -36,23 +36,15 @@ var CharaSelectLayer = cc.Layer.extend({
             this.addChild(ui);
 
             this.charactors = [];
-            for (var i=1 ; i < this.charactorData.length; i++){
-                var row = Math.floor((i-1)/4);
-                var col = Math.floor((i-1)%4) + 1;
-                this.charactor = new DisplayPlayer(
-                    this.charactorData[i]["image"],
-                    this.charactorData[i]["image_width"],
-                    this.charactorData[i]["image_height"]
-                );
-                this.charactors.push(this.charactor);
-                this.addChild(this.charactor);
-                this.charactor.setAnchorPoint(0.5,0.5);
-                this.charactor.setPosition(60 * col,80 * row + 120 + 200);
+            for (var i=1 ; i <= 3; i++){
+                var row = Math.floor((i-1)/3);
+                var col = Math.floor((i-1)%3) + 1;
 
-                var selectButton = new ButtonItem("OK",50,40,this.openDetailWindow,this,i);
-                selectButton.setPosition(0,-50);
+                var selectButton = new ButtonItem("OK",50,30,this.openDetailWindow,this,i);
+                selectButton.setAnchorPoint(0,0.5);
+                selectButton.setPosition(75 * col,80 * row + 120 + 200);
                 selectButton.setTag(i);
-                this.charactor.addChild(selectButton);
+                this.addChild(selectButton);
             }
 
 
