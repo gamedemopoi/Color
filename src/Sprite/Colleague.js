@@ -42,7 +42,6 @@ if(type == 1){
         this.maxHp             = 200;
 }
         //init
-        this.battleInterval    = 0;
         this.direction         = "front";
         this.initSprite();
         this.damangeTexts      = new Array();
@@ -52,8 +51,6 @@ if(type == 1){
         this.beforeX           = this.getPosition().x;
         this.beforeY           = this.getPosition().y;
         this.isWait            = false;
-        this.isSettableTargetEnemy = true;
-        this.removeTargetEnemyCnt = 0;
         this.bulletLncTime     = 0;
         this.jumpY             = 0;
         this.jumpYDirect       = "up";
@@ -112,15 +109,6 @@ if(type == 1){
                 this.damageCnt = 0;
                 this.isDamageOn = false;
                 this.sprite.setOpacity(255*1);
-            }
-        }
-
-        //一定時間が経過するまで敵をターゲットすることができない
-        if(this.isSettableTargetEnemy == false){
-            this.removeTargetEnemyCnt++;
-            if(this.removeTargetEnemyCnt >= 30 * 2){
-                this.isSettableTargetEnemy = true;
-                this.removeTargetEnemyCnt = 0;
             }
         }
 

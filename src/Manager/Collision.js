@@ -19,7 +19,7 @@ var collisionPlayerAndChip = function(game){
 
         ){
             //このチップと仲間全員との距離を測る
-            var cnt = getCollisionColleagueAndChipCount(game,game.stage.chips[i]);
+            var cnt =  game.colleagueCnt;
             if(cnt >= 5){cnt = 5;}
             if(game.player.targetType == "CHIP" && game.scrollYPower > 50){
                 game.stage.chips[i].hp -= 0.1 + cnt * 0.02;
@@ -32,7 +32,7 @@ var collisionPlayerAndChip = function(game){
         }
     }
 };
-
+/*
 //仲間とマップチップの衝突判定
 var getCollisionColleagueAndChipCount = function(game,chip){
     var cnt    = 0;
@@ -51,6 +51,7 @@ var getCollisionColleagueAndChipCount = function(game,chip){
     }
     return cnt;
 };
+*/
 
 //敵とマップチップの衝突判定
 var collisionEnemyAndChip = function(game){
@@ -74,7 +75,6 @@ var collisionEnemyAndChip = function(game){
         }
     }
 };
-
 
 //プレイヤーと仲間の衝突判定
 var collisionPlayerAndColleague = function(player,colleagues,game){
@@ -187,7 +187,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                         colleagues[j].damage(enemies[k].attack);
                     }
                 }
-
+/*
                 //仲間->敵 (ダメージ)
                 colleagues[j].battleInterval++;
                 if(colleagues[j].battleInterval >= 30){
@@ -196,6 +196,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
                         enemies[k].damage(colleagues[j].attack);
                     }
                 }
+*/
             }
 /*
             //ノックバック
@@ -235,7 +236,7 @@ var collisionColleagueAndEnemy = function(colleagues,enemies){
 };
 
 //プレイヤーと敵の衝突判定
-var collisionPlayerAndEnemy = function(player,enemies){
+var collisionPlayerAndEnemy = function(player,enemies,game){
 
     player.targetEnemy = null;
 
@@ -254,7 +255,10 @@ var collisionPlayerAndEnemy = function(player,enemies){
             if(player.battleInterval >= 30){
                 player.battleInterval = 0;
                 if(player.targetType == "ENEMY"){
-                    enemies[i].damage(player.attack);
+                    var colleagueCnt = game.colleagueCnt;
+                    if(colleagueCnt > 3){colleagueCnt = 3;}
+                    var damage = colleagueCnt * player.attack;
+                    enemies[i].damage(player.attack + damage);
                 }
             }
         }

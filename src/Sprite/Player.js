@@ -95,12 +95,6 @@ if(this.trackSnakeInterval >= 20){
     */
 }
 
-
-//this.gauge.update(this.hp/this.maxHp);
-
-        //update eye sight range
-        this.eyeSightRange = 50 + this.game.colleagueCnt * 5;
-
         //damage text
         for(var i=0;i<this.damangeTexts.length;i++){
             if(this.damangeTexts[i].update() == false){
@@ -288,10 +282,8 @@ if(this.trackSnakeInterval >= 20){
         }
     },
 
-
     moveToNearistEnemy:function() {
         if(this.isStop) return;
-
         var min = 9999;
         for(var i=0;i<this.game.enemies.length;i++){
             var distance = cc.pDistance(this.getPosition(),this.game.enemies[i].getPosition());

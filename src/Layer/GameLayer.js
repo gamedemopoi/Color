@@ -195,51 +195,38 @@ var GameLayer = cc.Layer.extend({
             var rate = this.player.targetChip.hp / this.player.targetChip.maxHp;
             this.timerSprite.setTexture(this.timerImage);
             if(0/8 <= rate && rate <= 1/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*0,0,50,50));
             }
             if(1/8 < rate && rate <= 2/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*1,0,50,50));
             }
             if(2/8 < rate && rate <= 3/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*2,0,50,50));
             }
             if(3/8 < rate && rate <= 4/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*3,0,50,50));
             }
             if(4/8 < rate && rate <= 5/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*4,0,50,50));
             }
             if(5/8 < rate && rate <= 6/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*5,0,50,50));
             }
             if(6/8 < rate && rate <= 7/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*6,0,50,50));
             }
             if(7/8 < rate && rate <= 8/8){
-                this.timerSprite.setTexture(this.timerImage);
                 this.timerSprite.setTextureRect(cc.rect(50*7,0,50,50));
             }
         }
-
-
-        if(this.player.targetType == "ENEMY" && this.scrollYPower >= 50){
+        if(this.player.targetType == "ENEMY"){
             this.player.moveToNearistEnemy();
-        }else if(this.player.targetType == "CHIP" && this.scrollYPower >= 50){
+        }else if(this.player.targetType == "CHIP"){
             this.player.moveToTargetMarker(this.player.targetChip);
         }else{
             this.player.moveToTargetMarker(this.targetSprite);
         }
-
         this.moveCamera();
-
-        //UI
         this.gameUI.update();
 
         //Playerの死亡時には生き残っている仲間がいれはスイッチする
@@ -309,6 +296,7 @@ var GameLayer = cc.Layer.extend({
         //Storageに入れる
         this.storage.colleagueCnt = this.colleagueCnt;
 
+/*
         //bullets
         for(var i=0;i<this.bullets.length;i++){
             if(this.bullets[i].update() == false){
@@ -332,9 +320,9 @@ var GameLayer = cc.Layer.extend({
                 //this.enemyBullets.splice(i,1);
             }
         }
+*/
 
         this.cutIn.update();
-        //衝突
         this.collisionAll();
 
         //コイン
@@ -407,7 +395,6 @@ var GameLayer = cc.Layer.extend({
     },
 
     collisionAll:function(){
-
         //プレイヤー & 仲間
         collisionPlayerAndColleague(this.player,this.colleagues,this);
 
@@ -415,7 +402,7 @@ var GameLayer = cc.Layer.extend({
         collisionColleagueAndColleague(this.colleagues);
 
         //プレイヤー & 敵
-        collisionPlayerAndEnemy(this.player,this.enemies);
+        collisionPlayerAndEnemy(this.player,this.enemies,this);
 
         //プレイヤー & 敵弾丸
         collisionPlayerAndEnemyBullet(this.player,this.enemyBullets);
@@ -437,16 +424,6 @@ var GameLayer = cc.Layer.extend({
 
         //プレイヤー & マップチップ
         collisionPlayerAndChip(this);
-
-        //敵 & マップチップ
-//        collisionEnemyAndChip(this);
-/*
-        //仲間 &　スライド
-        var isTouched = getCollisionColleagueAndSlide(this);
-        if(isTouched >= 1){
-            this.comboCnt++;
-        }
-*/
     },
 
     moveCamera:function(){
@@ -486,15 +463,6 @@ var GameLayer = cc.Layer.extend({
             this.colleague.setPosition(depX,depY);
             this.colleague.isChase = true;
             this.colleagues.push(this.colleague);
-        }
-    },
-
-    removeColleagueTargetEnemy:function(){
-        for(var i=0;i<this.colleagues.length;i++){
-            //ターゲットをNullにする
-            this.colleagues[i].targetEnemy = null;
-            //2秒間はtargetEnemyにセットできないようにする
-            this.colleagues[i].isSettableTargetEnemy = false;
         }
     },
 

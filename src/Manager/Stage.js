@@ -80,12 +80,9 @@ var Stage = cc.Class.extend({
                         this.trees.push(this.tree);
                     }
                     chipNum++;
-
-
                     if(this.chipSprite.type == "tree"){
                         this.clearTargetCnt++;
                     }
-
                 }
                 stageBaseNum++;
             }
