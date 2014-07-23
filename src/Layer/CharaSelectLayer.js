@@ -55,6 +55,13 @@ var CharaSelectLayer = cc.Layer.extend({
                 this.charactor.addChild(selectButton);
             }
 
+
+
+this.twitterButton = new ButtonItem("Twitterからキャラを生成",250,40,this.onTwitter,this);
+this.twitterButton.setPosition(160,120);
+this.addChild(this.twitterButton);
+
+
             //Back Menu
             var label = cc.LabelTTF.create("-戻る-", "Arial", 20);
             var back = cc.MenuItemLabel.create(label,onBackCallback);
@@ -162,6 +169,18 @@ var CharaSelectLayer = cc.Layer.extend({
             cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
         },this);
     },
+
+
+    onTwitter:function (stageNum) {
+        playSystemButton();
+
+        cc.LoaderScene.preload(g_chara_select_resources, function () {
+            var scene = cc.Scene.create();
+            scene.addChild(TwitterLayer.create());
+            cc.Director.getInstance().replaceScene(cc.TransitionSlideInR.create(1.2, scene));
+        }, this);
+    },
+
 });
 
 CharaSelectLayer.create = function (storage) {

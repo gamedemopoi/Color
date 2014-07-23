@@ -48,6 +48,7 @@
             'src/Layer/CharaSelectLayer.js',
             'src/Layer/StaffRollLayer.js',
             'src/Layer/TutolialLayer.js',
+            'src/Layer/TwitterLayer.js',
             'src/Sprite/Player.js',
             'src/Sprite/Enemy.js',
             'src/Sprite/EnemyBody.js',

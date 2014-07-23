@@ -31,7 +31,7 @@
             "item_coin"      : 0,
             "items"          : [{"type":"levelup","count":0}],
             "datas"          : [
-                {"id":21, "type":"poi"     ,"img":"map/q_map_poi.png"   ,"hp":10  ,"maxHp":10  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":true ,"destroy":false  ,"enemyId":0, "route":[]},
+                {"id":21, "type":"poi"     ,"img":"map/q_map_poi.png"   ,"hp":3  ,"maxHp":3  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":true ,"destroy":false  ,"enemyId":0, "route":[]},
                 {"id":1,  "type":"tree"    ,"img":"map/q_map_tree.png"  ,"hp":50  ,"maxHp":50  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":false ,"destroy":false  ,"enemyId":0, "route":[]},
                 {"id":15, "type":"azito"   ,"img":"map/q_map_ajito.png" ,"hp":100 ,"maxHp":100 ,"depTime":59 ,"depMaxTime":60 ,"reproduction":false  ,"destroy":false  ,"enemyId":1, "route":[3,2]},
                 {"id":20, "type":"weapon"     ,"img":"map/q_map_poi.png"   ,"hp":50  ,"maxHp":50  ,"depTime":0  ,"depMaxTime":0  ,"reproduction":false ,"destroy":false  ,"enemyId":0, "route":[]}

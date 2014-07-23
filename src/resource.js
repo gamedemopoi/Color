@@ -93,7 +93,9 @@ var s_enemy_chameleon_m  = base_dir + "sprite/chameleon_blue_m.png";
 var s_promin_pipo002     = base_dir + "sprite/pipo-mapeffect009.png";
 var s_effect_pipo113     = base_dir + "sprite/pipo-btleffect113.png";
 var s_critical_message   = base_dir + "ui/critical_message.png";
-var s_field   = base_dir + "ui/field.jpg";
+var s_field              = base_dir + "ui/field.jpg";
+var s_twitter_button     = base_dir + "ui/twitter_button.png";
+var s_chara_make_ui      = base_dir + "ui/chara_make_ui.png";
 
 var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";

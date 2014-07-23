@@ -91,11 +91,9 @@ if(type == 1){
 */
 
         //s_critical_message
-        /*
         this.iconVoice = cc.Sprite.create(s_critical_message);
         this.iconVoice.setPosition(0,30);
         this.addChild(this.iconVoice,101);
-        */
 
         this.bulletLncTime = 0;
         this.jumpY = 0;
@@ -140,13 +138,13 @@ if(type == 1){
 this.sprite.setPosition(0,this.jumpY);
 
         if(this.bulletLncTime>=1){
-            //this.iconVoice.setOpacity(255*0);
+            this.iconVoice.setOpacity(255*0);
             this.bulletLncTime++;
             if(this.bulletLncTime>=30*8){
                 this.bulletLncTime = 0;
             }
         }else{
-           //this.iconVoice.setOpacity(255*1);
+           this.iconVoice.setOpacity(255*1);
         }
 
         if(this.isDamageOn == true){
