@@ -47,15 +47,6 @@ var GameUI = cc.Node.extend({
         this.missionLabel.setAnchorPoint(0,0);
         this.addChild(this.missionLabel);
 
-        //プレイヤーキャラクターの表示
-        this.charactor = new DisplayPlayer(
-            game.player.image,game.player.imgWidth,game.player.imgHeight
-        );
-        this.charactor.setAnchorPoint(0.5,0.5);
-        this.charactor.setPosition(40,20);
-        this.charactor.setScale(1.5,1.5);
-        this.uiHeader.addChild(this.charactor);
-
         //Territory
         this.territoryNumLable = cc.LabelTTF.create("","Arial",25);        
         this.territoryNumLable.setPosition(20,-25);
@@ -86,31 +77,17 @@ var GameUI = cc.Node.extend({
         this.uiHeader.addChild(this.headerMenu,33);
         this.headerMenu.setPosition(0,0);
 
-        this.comboLabel = createLabel("000Combo",40,320/2-80,480/2);
-        this.comboLabel.setFontFillColor(cc.c4b(255,0,0,255));
-        this.addChild(this.comboLabel);
-        //this.comboLabel.setOpacity(255*0.4);
-
         this.rectBarL = cc.LayerColor.create(cc.c4b(0,255,0,255),320,20);
         this.rectBarL.setPosition(0,0);
         this.rectBarL.setAnchorPoint(0,0);
         this.rectBarL.setOpacity(255*0.4);
         this.addChild(this.rectBarL);
-/*
-        this.rectBarR = cc.LayerColor.create(cc.c4b(0,255,0,255),10,400);
-        this.rectBarR.setPosition(310,0);
-        this.rectBarR.setAnchorPoint(0,0);
-        this.rectBarR.setOpacity(255*0.4);
-        this.addChild(this.rectBarR);
-*/
     },
 
     //UIのテキストをupdateする
     update:function() {
-
         var rate = this.game.scrollYPower / 100;
         this.rectBarL.setScale(rate,1);
-        //this.rectBarR.setScale(1,rate);
 
         if(this.game.player.targetType == "ENEMY"){
             this.imgFooter.setVisible(true);
@@ -121,13 +98,6 @@ var GameUI = cc.Node.extend({
         }else{
             this.imgFooter.setVisible(false);
             this.imgFooter2.setVisible(false);
-        }
-
-        if(this.game.comboCnt >= 1){
-            this.comboLabel.setOpacity(255*1);
-            this.comboLabel.setString("+" + this.game.comboCnt + "combo!");
-        }else{
-            this.comboLabel.setOpacity(0);
         }
     
         //ミッションの表示

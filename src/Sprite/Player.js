@@ -53,7 +53,7 @@ this.depY = 0;
         //this.addChild(this.gauge,100);
 
 
-
+/*
 //軌跡（ヘビ型)
 this.trackSnakeInterval = 0;
 this.trackSnakes = [];
@@ -62,7 +62,7 @@ for(var i=0;i<5;i++){
     this.game.mapNode.addChild(track);
     this.trackSnakes.push(track);
 }
-
+*/
         //initialize Animation
         this.initializeWalkAnimation();
 
@@ -88,10 +88,11 @@ if(this.trackSnakeInterval >= 20){
         this.getPosition().x,
         this.getPosition().y
     );
+    /*
     this.trackSnakes.push(track);
-    //remove
     this.game.mapNode.removeChild(this.trackSnakes[0]);
     this.trackSnakes.splice(0,1);
+    */
 }
 
 

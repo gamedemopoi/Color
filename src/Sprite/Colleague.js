@@ -12,16 +12,12 @@ var Colleague = cc.Node.extend({
         this.game              = game;
         this.storage           = this.game.storage;
         this.player            = this.game.player;
-
         this.flashCnt          = 0;
         this.isCharaVisible    = true;
         this.damageCnt         = 0;
         this.isDamageOn        = false;
-
         this.actionType        = "none";
-
         this.randId            = getRandNumberFromRange(1,10);
-
         //status
         this.lv                = this.storage.lv;
         this.hp                = this.storage.hp;
@@ -31,7 +27,6 @@ var Colleague = cc.Node.extend({
         this.eyeSightRange     = 20;
         this.walkSpeed         = this.storage.walkSpeed;
         this.createCot         = this.storage.createCot;
-
         //image
         this.charactorCode     = this.storage.charactorCode;
 
@@ -48,20 +43,7 @@ if(type == 1){
 }
         //init
         this.battleInterval    = 0;
-        this.scale = 1;
-        this.isChase           = false;
-        this.isSetAttackCircle = false;
-        this.targetEnemy       = null;
         this.direction         = "front";
-        
-        //HPゲージ
-        //this.gauge             = new Gauge(30,4,'blue');
-        //this.gauge.setPosition(-20,20);
-        //this.addChild(this.gauge,100);
-
-        this.drawnode          = cc.DrawNode.create();
-        this.addChild(this.drawnode);
-        this.drawnode.drawDot(cc.p(0,0),this.eyeSightRange,cc.c4f(1,0,0,0.3));
         this.initSprite();
         this.damangeTexts      = new Array();
         this.isDamaged         = false;
@@ -72,32 +54,9 @@ if(type == 1){
         this.isWait            = false;
         this.isSettableTargetEnemy = true;
         this.removeTargetEnemyCnt = 0;
-        this.rollingId = getRandNumberFromRange(0,17);
-
-/*
-        var frameSeq = [];
-        for (var i = 0; i <= 4; i++) {
-            var frame = cc.SpriteFrame.create(s_break,cc.rect(48*i,0,48,96));
-            frameSeq.push(frame);
-        }
-        var wa = cc.Animation.create(frameSeq,0.1);
-        this.energyRep = cc.Repeat.create(cc.Animate.create(wa),1);
-        this.energyRep.retain();
-        this.energySprite = cc.Sprite.create(s_enargy,cc.rect(0,0,48,96));
-        this.energySprite.retain();
-        this.energySprite.setPosition(0,20);
-        this.energySprite.runAction(this.energyRep);
-        this.addChild(this.energySprite);
-*/
-
-        //s_critical_message
-        this.iconVoice = cc.Sprite.create(s_critical_message);
-        this.iconVoice.setPosition(0,14);
-        this.addChild(this.iconVoice,101);
-
-        this.bulletLncTime = 0;
-        this.jumpY = 0;
-        this.jumpYDirect = "up";
+        this.bulletLncTime     = 0;
+        this.jumpY             = 0;
+        this.jumpYDirect       = "up";
     },
     
     remove:function() {
@@ -134,7 +93,7 @@ if(type == 1){
 
     update:function() {
 
-this.sprite.setPosition(0,this.jumpY);
+        this.sprite.setPosition(0,this.jumpY);
 
         if(this.bulletLncTime>=1){
             this.iconVoice.setOpacity(255*0);
@@ -156,12 +115,6 @@ this.sprite.setPosition(0,this.jumpY);
             }
         }
 
-        //if(this.energyRep.isDone() == true){
-            //this.energyRep.release();
-            //this.energySprite.release();
-            //this.removeChild(this.energySprite);
-        //}
-
         //一定時間が経過するまで敵をターゲットすることができない
         if(this.isSettableTargetEnemy == false){
             this.removeTargetEnemyCnt++;
@@ -176,8 +129,6 @@ this.sprite.setPosition(0,this.jumpY);
             return false;
         }
 
-        //this.gauge.update(this.hp/this.maxHp);
-
         //damage text
         for(var i=0;i<this.damangeTexts.length;i++){
             if(this.damangeTexts[i].update() == false){
@@ -186,12 +137,7 @@ this.sprite.setPosition(0,this.jumpY);
             }
         }
 
-        this.drawnode.setVisible(false);
-
-
-
-if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
-
+        if(this.game.player.targetType == "ENEMY"){
             this.actionType = "ENEMY";
             if(this.player.tE == null) return;
             this.moveToPositions(
@@ -199,32 +145,19 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
                 this.player.tE.getPosition().y + this.player.tE.motionTrack[this.randId].rollingCube.getPosition().y,
                 1
             );
-}else if(this.game.player.targetType == "CHIP" && this.game.scrollYPower >= 50){
+        }else if(this.game.player.targetType == "CHIP"){
             this.actionType = "CHIP";
             if(this.player.targetChip == null){}else{
-                //if(this.player.targetChip.type == "normal"){
-                //    this.actionType = "FOLLOW";
-                //    this.moveTo(this.player);
-                //}else{
-                    this.moveToPositions(
-                        this.player.targetChip.getPosition().x + this.player.targetChip.motionTrack[this.randId].rollingCube.getPosition().x,
-                        this.player.targetChip.getPosition().y + this.player.targetChip.motionTrack[this.randId].rollingCube.getPosition().y,
-                        0
-                    );
-                //}
+                this.moveToPositions(
+                    this.player.targetChip.getPosition().x + this.player.targetChip.motionTrack[this.randId].rollingCube.getPosition().x,
+                    this.player.targetChip.getPosition().y + this.player.targetChip.motionTrack[this.randId].rollingCube.getPosition().y,
+                    0
+                );
             }
-
-}else{
-
+        }else{
             this.actionType = "FOLLOW";
             this.moveTo(this.player);
-
-}
-
-
-
-
-
+        }
 
         //向きの制御
         this.directionCnt++;
@@ -240,21 +173,16 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
 
     damage:function(damagePoint) {
         playSE(s_se_attack);
-        
         this.hp = this.hp - damagePoint;
         if(this.hp < 0){
             this.hp = 0;
         }
+        /*
         var damageText = new DamageText();
         this.addChild(damageText,5);
         this.damangeTexts.push(damageText);
-
+        */
         this.isDamageOn = true;
-    },
-
-    doLebelUp:function(){
-        this.lv++;
-        this.sprite.setScale(this.lv,this.lv);
     },
 
     getDirection:function(){
@@ -280,71 +208,15 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
         this.sprite.runAction(this.ra);
         this.addChild(this.sprite);
 
+        this.iconVoice = cc.Sprite.create(s_critical_message);
+        this.iconVoice.setPosition(10,25);
+        this.sprite.addChild(this.iconVoice);
+
         //デバッグ
         if(CONFIG.DEBUG_FLAG==1){
             this.sigh = cc.LayerColor.create(cc.c4b(255,0,0,255),3,3);
             this.sigh.setPosition(0,0);
             this.addChild(this.sigh);
-        }
-    },
-
-    walkLeftDown:function(){
-        if(this.direction != "front"){
-            this.direction = "front";
-            this.sprite.stopAllActions();
-            var frameSeq = [];
-            for (var i = 0; i < 3; i++) {
-                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*0,this.imgWidth,this.imgHeight));
-                frameSeq.push(frame);
-            }
-            this.wa = cc.Animation.create(frameSeq,0.2);
-            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
-            this.sprite.runAction(this.ra);
-        }
-    },
-
-    walkRightDown:function(){
-        if(this.direction != "left"){
-            this.direction = "left";
-            this.sprite.stopAllActions();
-            var frameSeq = [];
-            for (var i = 0; i < 3; i++) {
-                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*1,this.imgWidth,this.imgHeight));
-                frameSeq.push(frame);
-            }
-            this.wa = cc.Animation.create(frameSeq,0.2);
-            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
-            this.sprite.runAction(this.ra);
-        }
-    },
-
-    walkLeftUp:function(){
-        if(this.direction != "right"){
-            this.direction = "right";
-            this.sprite.stopAllActions();
-            var frameSeq = [];
-            for (var i = 0; i < 3; i++) {
-                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*2,this.imgWidth,this.imgHeight));
-                frameSeq.push(frame);
-            }
-            this.wa = cc.Animation.create(frameSeq,0.2);
-            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
-            this.sprite.runAction(this.ra);
-        }
-    },
-
-    walkRightUp:function(){
-        if(this.direction != "back"){
-            this.direction = "back";
-            this.sprite.stopAllActions();
-            var frameSeq = [];
-            for (var i = 0; i < 3; i++) {
-                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*3,this.imgWidth,this.imgHeight));
-                frameSeq.push(frame);
-            }
-            this.wa = cc.Animation.create(frameSeq,0.2);
-            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
-            this.sprite.runAction(this.ra);
         }
     },
 
@@ -407,6 +279,66 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
         }
         if(diffX < 0 && diffY < 0){
             this.walkLeftDown();
+        }
+    },
+
+    walkLeftDown:function(){
+        if(this.direction != "front"){
+            this.direction = "front";
+            this.sprite.stopAllActions();
+            var frameSeq = [];
+            for (var i = 0; i < 3; i++) {
+                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*0,this.imgWidth,this.imgHeight));
+                frameSeq.push(frame);
+            }
+            this.wa = cc.Animation.create(frameSeq,0.2);
+            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
+            this.sprite.runAction(this.ra);
+        }
+    },
+
+    walkRightDown:function(){
+        if(this.direction != "left"){
+            this.direction = "left";
+            this.sprite.stopAllActions();
+            var frameSeq = [];
+            for (var i = 0; i < 3; i++) {
+                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*1,this.imgWidth,this.imgHeight));
+                frameSeq.push(frame);
+            }
+            this.wa = cc.Animation.create(frameSeq,0.2);
+            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
+            this.sprite.runAction(this.ra);
+        }
+    },
+
+    walkLeftUp:function(){
+        if(this.direction != "right"){
+            this.direction = "right";
+            this.sprite.stopAllActions();
+            var frameSeq = [];
+            for (var i = 0; i < 3; i++) {
+                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*2,this.imgWidth,this.imgHeight));
+                frameSeq.push(frame);
+            }
+            this.wa = cc.Animation.create(frameSeq,0.2);
+            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
+            this.sprite.runAction(this.ra);
+        }
+    },
+
+    walkRightUp:function(){
+        if(this.direction != "back"){
+            this.direction = "back";
+            this.sprite.stopAllActions();
+            var frameSeq = [];
+            for (var i = 0; i < 3; i++) {
+                var frame = cc.SpriteFrame.create(this.image,cc.rect(this.imgWidth*i,this.imgHeight*3,this.imgWidth,this.imgHeight));
+                frameSeq.push(frame);
+            }
+            this.wa = cc.Animation.create(frameSeq,0.2);
+            this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
+            this.sprite.runAction(this.ra);
         }
     },
 

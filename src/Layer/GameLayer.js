@@ -56,16 +56,8 @@ var GameLayer = cc.Layer.extend({
             this.cameraX,
             this.cameraY
         );
-/*
-        this.markerScale = 2.5;
-        this.marker = cc.Sprite.create(s_cube_blue);
-        this.mapNode.addChild(this.marker);
-        this.marker.setAnchorPoint(0.5,0.5);
-*/
         this.setUI();
-
-        this.addColleagues(5,1);
-
+        this.addColleagues(10,1);
         this.scheduleUpdate();
         this.setTouchEnabled(true);
         return true;
