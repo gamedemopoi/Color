@@ -66,7 +66,6 @@ for(var i=0;i<5;i++){
         //initialize Animation
         this.initializeWalkAnimation();
 
-this.setScale(0.5,0.5);
 
 
 this.update();
@@ -140,7 +139,7 @@ if(this.trackSnakeInterval >= 20){
     initializeWalkAnimation:function(){
         //足下の陰
         this.shadow = cc.Sprite.create(s_shadow);
-        this.shadow.setPosition(0,-20);
+        this.shadow.setPosition(0,-8);
         this.shadow.setOpacity(255*0.4);
         this.addChild(this.shadow);
 

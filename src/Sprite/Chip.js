@@ -71,13 +71,13 @@ var Chip = cc.Node.extend({
                 this.addChild(this.cube,999);
             }
         }
-
+/*
         //マップ配置
         this.addChild(this.chipSprite);
         this.chipSprite.setPosition(0,0);
         this.chipSprite.setAnchorPoint(0.5,0.5);
         this.setPosition(posX,posY);
- 
+ */
         //世界が色づいたときのマップ
         this.colored = cc.Sprite.create(s_mapchip_001_colored);
         this.colored.setOpacity(255*0);

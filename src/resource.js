@@ -134,9 +134,6 @@ var g_chara_select_resources   = [
     s_se_system,
     s_select_button,
     s_chara001,
-    s_chara002,
-    s_chara003,
-    s_chara004,
     s_button001_scale9,
     s_convert_success
 ];
@@ -170,9 +167,6 @@ var g_resources       = [
     s_header,
     s_shadow,
     s_chara001,
-    s_chara002,
-    s_chara003,
-    s_chara004,
     s_chara005,
     s_attack_rolling,
     s_break,

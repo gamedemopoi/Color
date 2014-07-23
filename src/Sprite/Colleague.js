@@ -41,8 +41,8 @@ if(type == 1){
         this.imgHeight         = this.storage.imgHeight;
 }else{
         this.image             = "sprite/chara005.png";
-        this.imgWidth          = 40; 
-        this.imgHeight         = 51.75;
+        this.imgWidth          = 20; 
+        this.imgHeight         = 26;
         this.hp                = 200;
         this.maxHp             = 200;
 }
@@ -92,13 +92,12 @@ if(type == 1){
 
         //s_critical_message
         this.iconVoice = cc.Sprite.create(s_critical_message);
-        this.iconVoice.setPosition(0,30);
+        this.iconVoice.setPosition(0,14);
         this.addChild(this.iconVoice,101);
 
         this.bulletLncTime = 0;
         this.jumpY = 0;
         this.jumpYDirect = "up";
-        this.setScale(0.5,0.5);
     },
     
     remove:function() {
@@ -265,7 +264,7 @@ if(this.game.player.targetType == "ENEMY" && this.game.scrollYPower >= 50){
     initSprite:function(){
         //足下の影
         this.shadow = cc.Sprite.create(s_shadow);
-        this.shadow.setPosition(0,-20);
+        this.shadow.setPosition(0,-8);
         this.shadow.setOpacity(255*0.4);
         this.addChild(this.shadow);
 

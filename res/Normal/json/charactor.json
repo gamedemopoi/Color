@@ -30,8 +30,8 @@
             "eye_sight"    : 100,
             "walk_speed"   : 3,
             "image"        : "sprite/chara001.png",
-            "image_width"  : 33.3,
-            "image_height" : 46.75
+            "image_width"  : 16.66,
+            "image_height" : 23.5
         },
         {
             "id"           : 2,
@@ -42,9 +42,9 @@
             "defence"      : 10,
             "eye_sight"    : 100,
             "walk_speed"   : 3,
-            "image"        : "sprite/chara002.png",
-            "image_width"  : 33.3,
-            "image_height" : 46.75
+            "image"        : "sprite/chara001.png",
+            "image_width"  : 16.66,
+            "image_height" : 23.5
         },
         {
             "id"           : 3,
@@ -55,9 +55,9 @@
             "defence"      : 10,
             "eye_sight"    : 100,
             "walk_speed"   : 3,
-            "image"        : "sprite/chara003.png",
-            "image_width"  : 33.3,
-            "image_height" : 46.75
+            "image"        : "sprite/chara001.png",
+            "image_width"  : 16.66,
+            "image_height" : 23.5
         },
         {
             "id"           : 4,
@@ -68,9 +68,9 @@
             "defence"      : 10,
             "eye_sight"    : 100,
             "walk_speed"   : 3,
-            "image"        : "sprite/chara004.png",
-            "image_width"  : 33.3,
-            "image_height" : 46.75
+            "image"        : "sprite/chara001.png",
+            "image_width"  : 16.66,
+            "image_height" : 23.5
         }
     ]
 }
