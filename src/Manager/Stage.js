@@ -19,8 +19,8 @@ var Stage = cc.Class.extend({
         this.clearTargetCnt   = 0;
 
         this.field = cc.Sprite.create(s_field);
-        this.field.setScale(1.8,1.3);
-        this.field.setPosition(820,330);
+        //this.field.setScale(1.8,1.3);
+        this.field.setPosition(795,318);
         this.game.mapNode.addChild(this.field);
 
         this.escape = cc.Sprite.create(s_scape_zone);

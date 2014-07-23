@@ -62,7 +62,7 @@ var Chip = cc.Node.extend({
 
 //マップ配置
 /*
-//this.chipSprite.setOpacity(255*0.2);
+//this.chipSprite.setOpacity(255*0.5);
 this.addChild(this.chipSprite);
 this.chipSprite.setPosition(0,0);
 this.chipSprite.setAnchorPoint(0.5,0.5);
@@ -71,7 +71,16 @@ this.setPosition(posX,posY);
             }
         }
 
+
+        //マップ配置
+        this.chipSprite.setOpacity(255*0.5);
+        this.addChild(this.chipSprite);
+        this.chipSprite.setPosition(0,0);
+        this.chipSprite.setAnchorPoint(0.5,0.5);
+        this.setPosition(posX,posY);
+
         if(this.type == "normal"){
+            this.chipSprite.setVisible(false);
         }else{
             //モーショントラックの作成
             this.motionTrack = new Array();
@@ -82,12 +91,7 @@ this.setPosition(posX,posY);
             }
         }
 
-        //マップ配置
-        this.chipSprite.setOpacity(255*0.5);
-        this.addChild(this.chipSprite);
-        this.chipSprite.setPosition(0,0);
-        this.chipSprite.setAnchorPoint(0.5,0.5);
-        this.setPosition(posX,posY);
+
 
 
         //世界が色づいたときのマップ
